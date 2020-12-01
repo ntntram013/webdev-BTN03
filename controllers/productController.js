@@ -5,4 +5,9 @@ exports.index = (req, res, next) => {
     const product = productModel.list();
     // Pass data to view to display list of books
     res.render('store',{title:'Store',product})
+
 };
+exports.detail = (req,res,next)=>{
+    const productDetail = productModel.detail();
+    res.render('productDetail',{title:'Detail',productDetail})
+}
