@@ -1,4 +1,15 @@
 
+const {db}=require("../dal/db");
+
+exports.list=async()=>
+{
+    const productCollection=db().collection("Product");
+    const productList=await productCollection.find({}).toArray();
+    console.log(productList[0].productName);
+    return productList;
+}
+
+/*
 exports.list = () => {
     return [
         {
@@ -52,7 +63,8 @@ exports.list = () => {
         },
 
     ]
-}
+}*/
+
 exports.detail = () =>{
     return{
         id: 1,
@@ -63,3 +75,4 @@ exports.detail = () =>{
         newPrice: 59000,
     }
 }
+

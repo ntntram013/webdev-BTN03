@@ -1,10 +1,10 @@
 const productModel = require('../models/productModel');
 
-exports.index = (req, res, next) => {
+exports.index = async (req, res, next) => {
     // Get books from model
-    const product = productModel.list();
+    const product = await productModel.list();
     // Pass data to view to display list of books
-    res.render('store',{title:'Store',product})
+    res.render('store',{title:'Store',product});
 
 };
 exports.detail = (req,res,next)=>{
