@@ -275,7 +275,7 @@ div.style-customizer .skin-teal {
 /*Background Patterns*/
 
 .pattern-1 {
-    background-image: url("../images/customizer/pattern/1.png");
+    background-image: url("/../../images/customizer/pattern/1.png");
 }
 .pattern-2 {
     background-image: url("../images/customizer/pattern/2.png");

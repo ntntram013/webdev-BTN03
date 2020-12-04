@@ -40,9 +40,9 @@
 ======================================*/
 
 /*
-    font-family: 'Poppins', sans-serif;
+    font-family: Cambria, sans-serif;
 
-    font-family: 'Dosis', sans-serif;
+    font-family: Cambria, sans-serif;
 */
 
 /*------------------
@@ -86,7 +86,7 @@ html {
     }
 }
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Cambria, sans-serif;
     color: #303030;
     font-weight: 400;
     font-size: 14px;
@@ -95,7 +95,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 p{
-    font-family: 'Poppins', sans-serif;
+    font-family: Cambria, sans-serif;
     color: #303030;
     font-weight: 400;
     font-size: 14px;
@@ -114,7 +114,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: Cambria, sans-serif;
     color: #303030;
     font-weight: 400;
     font-variant-ligatures: common-ligatures;
@@ -194,12 +194,12 @@ a {
 a:hover,
 a:focus,
 a:active {
-    color: #ff4136;
+    color: #2ec4b6;
 }
 p a:hover,
 p a:focus,
 p a:active {
-    color: #ff4136;
+    color: #2ec4b6;
 }
 h1 a,
 h2 a,
@@ -250,14 +250,14 @@ body {
   background: #fff;
 }
 .mark, mark {
-    background: #ff4136 none repeat scroll 0 0;
+    background: #2ec4b6 none repeat scroll 0 0;
     color: #ffffff;
 }
 /*-------------------------------
   06. Bg-Color
 -------------------------------------*/
 .bg__theme {
-    background: #ff4136;
+    background: #2ec4b6;
 }
 .bg__white {
   background: #fff;
@@ -267,6 +267,9 @@ body {
 }
 .bg__dark {
     background: #151515;
+}
+.bg__darkgray {
+    background: #545662;
 }
 .bg__cat--1{
     background-color: #00c8ff;
@@ -349,7 +352,7 @@ body {
   background: #00aced;
 }
 .bg--googleplus:hover {
-  background: #dd4b39;
+  background: #2a9d8f;
 }
 .bg--instagram:hover {
   background: #125688;
@@ -359,10 +362,10 @@ body {
   09. Text Color
 --------------------------------*/
 .text--theme { 
-  color: #ff4136;
+  color: #2ec4b6;
  }
 .text--blue { 
-  color: #ff4136;
+  color: #2ec4b6;
  }
 .text--white { 
   color: #fff ;
@@ -379,13 +382,13 @@ body {
 ----------------------------*/
 
  .bg--1 {
-  background: rgba(0, 0, 0, 0) url("../../images/bg/1.jpg") no-repeat fixed 0 0 / cover ;
+  background: rgba(0, 0, 0, 0) url("/../../../images/bg/1.jpg") no-repeat fixed 0 0 / cover ;
 }
  .bg--2 {
-  background: rgba(0, 0, 0, 0) url("../../images/bg/2.jpg") no-repeat scroll center center / cover ;
+  background: rgba(0, 0, 0, 0) url("/../../../images/bg/2.jpg") no-repeat scroll center center / cover ;
 }
  .bg--3 {
-  background: rgba(0, 0, 0, 0) url("../../images/others/1.jpg") no-repeat scroll center center / cover ;
+  background: rgba(0, 0, 0, 0) url("/../../../images/others/1.jpg") no-repeat scroll center center / cover ;
 }
 
 /*----------------------------
@@ -516,19 +519,19 @@ select {
 }
 input:focus {
     background: transparent;
-    border: 1px solid #ff4136;
+    border: 1px solid #2ec4b6;
 }
 textarea {
     resize: none;
-    background: #ff4136;
-    border: 1px solid #ff4136;
+    background: #2ec4b6;
+    border: 1px solid #2ec4b6;
     padding: 10px;
     width: 100%;
     font-size: 14px;
 }
 textarea:focus {
     background: transparent;
-    border: 1px solid #ff4136;
+    border: 1px solid #2ec4b6;
     outline: none;
 }
 /*----------------------------
@@ -605,7 +608,7 @@ textarea:focus {
 .pt--100 { padding-top: 100px }
 .pt--110 { padding-top: 110px }
 .pt--120 { padding-top: 120px }
-.pt--130 { padding-top: 130px }-
+.pt--130 { padding-top: 130px }
 .pt--140 { padding-top: 140px }
 .pt--150 { padding-top: 150px }
 
@@ -727,17 +730,17 @@ p.error {
 ------------------------------------------*/
 
 *::-moz-selection {
-    background: #ff4136;
+    background: #2ec4b6;
     color: #fff;
     text-shadow: none;
 }
 ::-moz-selection {
-    background: #ff4136;
+    background: #2ec4b6;
     color: #fff;
     text-shadow: none;
 }
 ::selection {
-    background: #ff4136;
+    background: #2ec4b6;
     color: #fff;
     text-shadow: none;
 }

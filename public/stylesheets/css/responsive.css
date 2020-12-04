@@ -1122,10 +1122,10 @@
         padding-right: 44px;
     }
     .slider__inner {
-        padding-top: 55px;
+                padding-top: 55px;
     }
     .logo img {
-        max-width: inherit;
+        max-height: border-box;
     }
     .menu-extra {
         margin-right: 40px;

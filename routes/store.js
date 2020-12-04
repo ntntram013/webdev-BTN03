@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const productController = require('../controllers/productController');
+const bookController = require('../controllers/bookController');
 
 /* GET list of goods. */
-router.get('/', productController.index);
-router.get('/detail', productController.detail);
+router.get('/', bookController.index);
+router.get('/:id', bookController.detail);
 
 
 module.exports = router;

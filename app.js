@@ -1,20 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 
-
-
-
-var homeRouter = require('./routes/home');
-var usersRouter = require('./routes/users');
-var storeRouter = require('./routes/store');
-var contactRouter = require('./routes/contact');
-var loginRegisterRouter = require('./routes/login-register');
-var cartRouter = require('./routes/cart');
-var app = express();
+const homeRouter = require('./routes/home');
+const usersRouter = require('./routes/users');
+const storeRouter = require('./routes/store');
+const contactRouter = require('./routes/contact');
+const cartRouter = require('./routes/cart');
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,13 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', homeRouter);
 app.use('/home', homeRouter);
 app.use('/store', storeRouter);
 app.use('/contact', contactRouter);
-app.use('/login-register', loginRegisterRouter);
 app.use('/cart', cartRouter);
 app.use('/users', usersRouter);
 

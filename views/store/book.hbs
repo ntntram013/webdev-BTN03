@@ -1,0 +1,64 @@
+<!-- Start Product Details -->
+
+<section class="htc__product__details pt--120 pb--100 bg__gray">
+    {{# book}}
+    <div class="container">
+        <div class="">
+            <div class="col-md-4 col-lg-4 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+
+                <div class="product__details__container">
+                    <div class="product__big__images">
+                        <div class="portfolio-full-image tab-content">
+                                <img src="{{bookImage}}" alt="full-image">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-5 col-xs-12 xmt-30">
+                <div class="htc__product__details__inner">
+                    <div class="pro__detl__title">
+                        <h2>{{bookName}}</h2>
+                    </div>
+                    <div class="pro__detl__title mt--50">
+                        <h5>Tác giả: {{author}}</h5>
+                    </div>
+                    <div class="pro__details">
+                        <p>Giới thiệu: {{detail}}</p>
+                    </div>
+                    <div class="pro__dtl__prize">
+                        <h5>Giá: {{price}}</h5>
+                    </div>
+                    <div class="product-action-wrap">
+                        <div class="prodict-statas"><span>Số lượng :</span></div>
+                        <div class="product-quantity">
+                            <form id='myform' method='POST' action='#'>
+                                <div class="product-quantity">
+                                    <div class="cart-plus-minus">
+                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <ul class="pro__dtl__btn">
+                        <li class="buy__now__btn"><a href="#">Mua ngay</a></li>
+                        <li><a href="#"><span class="ti-heart"></span></a></li>
+                        <li><a href="#"><span class="ti-email"></span></a></li>
+                    </ul>
+                    <div class="pro__social__share">
+                        <h2>Share :</h2>
+                        <ul class="pro__soaial__link">
+                            <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+                            <li><a href="#"><i class="zmdi zmdi-instagram"></i></a></li>
+                            <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
+                            <li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/book}}
+</section>
+<!-- End Product Details -->

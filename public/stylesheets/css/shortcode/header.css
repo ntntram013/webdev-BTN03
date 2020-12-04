@@ -26,11 +26,11 @@
   justify-content: center;
 }
 .main__menu > li > a {
-  color: #666666;
+  color: #000000;
   display: block;
   font-size: 14px;
   font-weight: 400;
-  line-height: 70px;
+  line-height: 40px;
   position: relative;
   text-transform: capitalize;
 }
@@ -66,7 +66,7 @@
 }
 
 .main__menu > li:hover > a{
-  color: #ff4136;
+  color: #2ec4b6;
 }
 .sidebar--content .htc__news__inner {
   margin: 0 auto;
@@ -177,7 +177,7 @@
 
 .sticky__header.scroll-header {
   animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
-  background: rgba(246, 246, 248, 0.9) none repeat scroll 0 0;
+  background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   left: 0;
   margin: 0 auto;
@@ -270,7 +270,7 @@
 }
 .main__menu li.drop ul.dropdown li:hover > a {
   background: #fafafa none repeat scroll 0 0;
-  color: #ff4136;
+  color: #2ec4b6;
 }
 .scroll-header .main__menu li.drop ul.dropdown {
   top: 100%;
@@ -369,7 +369,7 @@
     cursor: pointer;
 }
 .menu-extra li span:hover {
-    color: #ff4136;
+    color: #2ec4b6;
 }
 /*---------------------------
   Header Stayle 2
@@ -399,21 +399,21 @@
 .header--3 .logo {
   align-items: center;
   display: flex;
-  height: 134px;
+  height: 100px;
 }
 .header--3 .main__menu > li > a {
   font-size: 15px;
   font-weight: 500;
-  line-height: 134px;
+  line-height: 70px;
 }
 .header--3 .menu-extra {
   align-items: center;
   display: flex;
-  height: 134px;
+  height: 70px;
 }
 .header--3 .sticky__header.scroll-header {
   animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
-  background: rgba(246, 246, 248, 0.9) none repeat scroll 0 0;
+  background: #ffffff none repeat scroll 0 0;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   left: 0;
   margin: 0 auto;
@@ -482,7 +482,7 @@
   margin-left: 40px;
 }
 .select__language > li:hover {
-    color: #ff4136;
+    color: #2ec4b6;
 }
 .select__language > li + li::before {
   background: #444444 none repeat scroll 0 0;
@@ -520,7 +520,7 @@
     visibility: visible;
 }
 .select__language li.drop--lan .language__option span:hover {
-    color: #ff4136;
+    color: #2ec4b6;
 }
 
 .sticky__header.scroll-header .select__language li {
@@ -639,7 +639,7 @@
   transition: 0.3s;
 }
 .search__area .search__inner form button:hover {
-  background: #ff4136 none repeat scroll 0 0;
+  background: #2ec4b6 none repeat scroll 0 0;
 }
 .search__area .search__inner form button:hover::before {
   color: #fff;
@@ -663,7 +663,7 @@
 }
 .search__close__btn .search__close__btn_icon:hover i {
     transform: scale(2) rotate(180deg);
-    color: #ff4136;
+    color: #2ec4b6;
 }
 .search__box__show__hide .search__area {
   transform: translateY(0px);
@@ -681,7 +681,7 @@
 .body__overlay {
   backface-visibility: hidden;
   background-color: rgba(0, 0, 0, 0.8);
-  cursor: url("../../images/icons/close-20.png") 25 25, pointer;
+  cursor: url("/images/icons/close-20.png") 25 25, pointer;
   height: 100%;
   left: 0;
   opacity: 0;
@@ -747,7 +747,7 @@
   transition: all 0.3s ease 0s;
 }
 .offsetmenu__close__btn a:hover i{
-  color: #ff4136;
+  color: #2ec4b6;
 }
 .offset__widget {
   display: flex;
@@ -773,7 +773,7 @@ h4.offset__title {
 }
 
 .offset__single ul li a:hover {
-    color: #ff4136;
+    color: #2ec4b6;
 }
 .off__contact p {
   color: #303030;
@@ -830,7 +830,7 @@ h4.offset__title {
     width: 100%;
 }
 .sidebar__thumd > li a::before {
-    background: #ff4136 none repeat scroll 0 0;
+    background: #2ec4b6 none repeat scroll 0 0;
     content: "";
     height: 100%;
     opacity: 0;
@@ -902,7 +902,7 @@ h4.offset__title {
   font-weight: 400;
 }
 .shoping__total .total__price {
-  color: #c33;
+  color: #2ec4b6;
   float: right;
 }
 .shopping__btn li a {
@@ -921,8 +921,8 @@ h4.offset__title {
   display: block;
 }
 .shopping__btn li a:hover{
-  background: #ff4136;
-  border: 1px solid #ff4136;
+  background: #2ec4b6;
+  border: 1px solid #2ec4b6;
   color: #fff;
 }
 .shopping__btn .shp__checkout a{
@@ -966,7 +966,7 @@ h4.offset__title {
     transition: all 0.5s ease 0s;
 }
 .remove__btn a:hover i {
-    color: #ff4136;
+    color: #2ec4b6;
     transform: rotate(180deg);
 }
 .shp__cart__wrap .shp__single__product + .shp__single__product {
@@ -1018,7 +1018,7 @@ h4.offset__title {
 
 .main__menu li.drop ul.dropdown.mega_dropdown li:hover > a {
   background: transparent none repeat scroll 0 0;
-  color: #ff4136;
+  color: #2ec4b6;
 }
 .main__menu ul.dropdown.mega_dropdown li a {
   padding: 4px 0 7px;
@@ -1074,7 +1074,7 @@ h4.offset__title {
     color: #fff;
 }
 .category-heading > h3:hover {
-    color: #ff4136;
+    color: #2ec4b6;
 }
 .category-heading > h3::before {
     content: "";
@@ -1114,7 +1114,7 @@ h4.offset__title {
     width: 15px;
 }
 .category-menu-list ul li:hover a {
-    color: #ff4136;
+    color: #2ec4b6;
     background-color: #f9f9f9;
 }
 .category-menu-list ul li .category-menu-dropdown {
@@ -1167,7 +1167,7 @@ h4.offset__title {
 .category-menu-list ul li .category-common ul li a:hover,
 .category-menu-list ul li .category-common2 ul li a:hover {
     background-color: transparent;
-    color: #ff4136;
+    color: #2ec4b6;
 }
 .category-menu-list ul li .mega-banner-img a {
     padding: 0;
