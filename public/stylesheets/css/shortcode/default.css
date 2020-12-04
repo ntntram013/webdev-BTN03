@@ -86,7 +86,7 @@ html {
     }
 }
 body {
-    font-family: Cambria, sans-serif;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
     color: #303030;
     font-weight: 400;
     font-size: 14px;
@@ -95,7 +95,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 p{
-    font-family: Cambria, sans-serif;
+    font-family: "Segoe UI Light", "Helvetica Neue", sans-serif;
     color: #303030;
     font-weight: 400;
     font-size: 14px;
@@ -114,7 +114,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: Cambria, sans-serif;
+    font-family: Segoe UI, sans-serif;
     color: #303030;
     font-weight: 400;
     font-variant-ligatures: common-ligatures;

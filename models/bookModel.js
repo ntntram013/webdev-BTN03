@@ -4,7 +4,7 @@ const {db}=require("../dal/db");
 exports.list=async()=>
 {
     const bookCollection=db().collection("Product");
-    const bookList=await bookCollection.find({}).toArray();
+    const bookList=await bookCollection.find({isDeleted:false}).toArray();
     return bookList;
 }
 
