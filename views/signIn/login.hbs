@@ -4,20 +4,36 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <ul class="login__register__menu" role="tablist">
-                    <li role="presentation" class="login active"><a href="#login" role="tab" data-toggle="tab">Đăng nhập</a></li>
+                    <li role="presentation" class="login active"><a role="tab" data-toggle="tab">ĐĂNG NHẬP</a></li>
                 </ul>
             </div>
         </div>
+
         <!-- Start Login Register Content -->
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="htc__login__register__wrap">
+
+                    {{#if errors}}
+                        {{#each errors}}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <div class="alert-message">
+                                    <strong> {{this}} </strong> Vui lòng nhập lại!
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{/if}}
+
+
                     <!-- Start Single Content -->
                     <div id="login" role="tabpanel" class="single__tabs__panel tab-pane fade in active">
-                        <form class="login" method="post">
-                            <input type="text" placeholder="Email hoặc tên tài khoản*">
-                            <input type="password" placeholder="Mật khẩu*">
+
+
+                        <form class="login" id="loginForm" method="POST">
+                            <input type="text"  name="email" placeholder="Email hoặc tên tài khoản*" >
+                            <input type="password" name="password" placeholder="Mật khẩu*" >
                         </form>
+
                         <div class="tabs__checkbox">
                             <input type="checkbox">
                             <span> Lưu tài khoản của tôi</span>
@@ -25,8 +41,10 @@
                         </div>
 
                         <div class="htc__login__btn mt--30">
-                            <a href="#">Đăng nhập</a>
+                            <a id ="loginButton">Đăng nhập</a>
                         </div>
+
+
 
                         <div class="htc__social__connect">
                             <h2>Hoặc đăng nhập với</h2>

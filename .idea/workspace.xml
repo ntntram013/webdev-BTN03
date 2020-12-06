@@ -20,10 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ab11ff8-0445-4e5a-978c-ea75e23988fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webdev-store.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascripts/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/user/profile.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Trial.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/bin_www.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/dal/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/signIn/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/signIn/login.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,20 +57,26 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.18.4" />
-    <property name="javascript.nodejs.core.library.typings.version" value="12.19.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../webdev-admin" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="13.14.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="13.13.34" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\My Documents\Desktop\webdev-store\views\signIn" />
+      <recent name="E:\My Documents\Desktop\webdev-store\views\user" />
       <recent name="D:\HK1_20_21\Lap trinh web\Trial\webdev-BTN03\views\store" />
       <recent name="D:\HK1_20_21\Lap trinh web\Trial\views" />
     </key>
@@ -85,6 +102,12 @@
       <workItem from="1607059127403" duration="6540000" />
       <workItem from="1607075521705" duration="974000" />
       <workItem from="1607082808468" duration="613000" />
+      <workItem from="1607232303744" duration="547000" />
+      <workItem from="1607232873744" duration="72000" />
+      <workItem from="1607232958992" duration="13000" />
+      <workItem from="1607232985592" duration="175000" />
+      <workItem from="1607233184935" duration="6000" />
+      <workItem from="1607233354131" duration="10273000" />
     </task>
     <servers />
   </component>
@@ -120,21 +143,29 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1607082824330" />
-    <state width="1493" height="333" key="GridCell.Tab.0.bottom" timestamp="1607076976952">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state width="1812" height="205" key="GridCell.Tab.0.bottom" timestamp="1607232851396">
+      <screen x="78" y="0" width="1842" height="1080" />
     </state>
     <state width="1493" height="333" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607076976952" />
-    <state width="1493" height="333" key="GridCell.Tab.0.center" timestamp="1607076976952">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state width="1812" height="205" key="GridCell.Tab.0.bottom/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851396" />
+    <state width="1812" height="205" key="GridCell.Tab.0.center" timestamp="1607232851396">
+      <screen x="78" y="0" width="1842" height="1080" />
     </state>
     <state width="1493" height="333" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607076976952" />
-    <state width="1493" height="333" key="GridCell.Tab.0.left" timestamp="1607076976952">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state width="1812" height="205" key="GridCell.Tab.0.center/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851396" />
+    <state width="1812" height="205" key="GridCell.Tab.0.left" timestamp="1607232851395">
+      <screen x="78" y="0" width="1842" height="1080" />
     </state>
     <state width="1493" height="333" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607076976952" />
-    <state width="1493" height="333" key="GridCell.Tab.0.right" timestamp="1607076976952">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state width="1812" height="205" key="GridCell.Tab.0.left/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851395" />
+    <state width="1812" height="205" key="GridCell.Tab.0.right" timestamp="1607232851396">
+      <screen x="78" y="0" width="1842" height="1080" />
     </state>
     <state width="1493" height="333" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607076976952" />
+    <state width="1812" height="205" key="GridCell.Tab.0.right/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851396" />
+    <state x="543" y="99" key="SettingsEditor" timestamp="1607232374777">
+      <screen x="78" y="0" width="1842" height="1080" />
+    </state>
+    <state x="543" y="99" key="SettingsEditor/78.0.1842.1080@78.0.1842.1080" timestamp="1607232374777" />
   </component>
 </project>
