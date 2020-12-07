@@ -4,7 +4,7 @@ var router = express.Router();
 const bookController = require('../controllers/bookController');
 
 /* GET list of goods. */
-router.get('/', bookController.index);
+router.get('/', bookController.pagination);
 router.get('/:id', bookController.detail);
 
 
