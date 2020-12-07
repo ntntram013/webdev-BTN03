@@ -20,24 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ab11ff8-0445-4e5a-978c-ea75e23988fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bin/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dal/userDal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/userModel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/portfolio/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/user/userModify.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.env" beforeDir="false" afterPath="$PROJECT_DIR$/bin/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dal/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/dal/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/stylesheets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dal/userDal.js" beforeDir="false" afterPath="$PROJECT_DIR$/dal/userDal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/bookModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/bookModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/stylesheets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/profile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/profile.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/store/store.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/store/store.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +114,7 @@
       <workItem from="1607232985592" duration="175000" />
       <workItem from="1607233184935" duration="6000" />
       <workItem from="1607233354131" duration="10273000" />
-      <workItem from="1607318060179" duration="3905000" />
+      <workItem from="1607318060179" duration="7236000" />
     </task>
     <servers />
   </component>
@@ -165,25 +154,25 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1607267564164" />
-    <state width="1493" height="283" key="GridCell.Tab.0.bottom" timestamp="1607323589267">
+    <state width="1493" height="249" key="GridCell.Tab.0.bottom" timestamp="1607327030011">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607323589267" />
+    <state width="1493" height="249" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607327030011" />
     <state width="1812" height="205" key="GridCell.Tab.0.bottom/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851396" />
-    <state width="1493" height="283" key="GridCell.Tab.0.center" timestamp="1607323589267">
+    <state width="1493" height="249" key="GridCell.Tab.0.center" timestamp="1607327030010">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607323589267" />
+    <state width="1493" height="249" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607327030010" />
     <state width="1812" height="205" key="GridCell.Tab.0.center/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851396" />
-    <state width="1493" height="283" key="GridCell.Tab.0.left" timestamp="1607323589267">
+    <state width="1493" height="249" key="GridCell.Tab.0.left" timestamp="1607327030010">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607323589267" />
+    <state width="1493" height="249" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607327030010" />
     <state width="1812" height="205" key="GridCell.Tab.0.left/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851395" />
-    <state width="1493" height="283" key="GridCell.Tab.0.right" timestamp="1607323589267">
+    <state width="1493" height="249" key="GridCell.Tab.0.right" timestamp="1607327030011">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="283" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607323589267" />
+    <state width="1493" height="249" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607327030011" />
     <state width="1812" height="205" key="GridCell.Tab.0.right/78.0.1842.1080@78.0.1842.1080" timestamp="1607232851396" />
     <state x="543" y="99" key="SettingsEditor" timestamp="1607232374777">
       <screen x="78" y="0" width="1842" height="1080" />

@@ -11,6 +11,7 @@ exports.list=async()=>
 exports.detail = async (id)=>
 {
     const booksCollection=db().collection('Product');
+
     const book = await booksCollection.findOne({_id:ObjectId(id)})
     return book;
 }
