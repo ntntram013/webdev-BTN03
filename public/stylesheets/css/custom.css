@@ -12,4 +12,35 @@
 .bg__custom {
     background: #2a9d8f;
 }
+.bio__cover a img{
+    width: 263px;
+    height: 263px;
+    object-fit: contain;
+}
 
+.btn__change__cover {
+    text-align: center;
+    float: left;
+
+}
+.btn__change__cover a {
+    border: 1px solid #191919;
+    color: #191919;
+    border-radius: 5px;
+    display: inline-block;
+    height: 45px;
+    letter-spacing: 1px;
+    line-height: 42px;
+    padding: 0 20px;
+
+    transition: all 0.5s ease 0s;
+}
+.btn__change__cover a:hover {
+    border: 1px solid #2ec4b6;
+    color: #fff;
+    background: #2ec4b6;
+}
+.form__offset__50{
+    margin-left: 50px;
+    margin-right: 50px;
+}

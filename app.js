@@ -1,9 +1,14 @@
-require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongodb=require('mongodb');
+const formidable = require('formidable');
+const cloudinary = require('cloudinary');
+
+console.log(require('dotenv').config())
 
 
 const homeRouter = require('./routes/home');
@@ -29,7 +34,7 @@ app.use('/home', homeRouter);
 app.use('/store', storeRouter);
 app.use('/contact', contactRouter);
 app.use('/cart', cartRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

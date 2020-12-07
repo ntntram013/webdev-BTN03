@@ -1,0 +1,87 @@
+<div class="container bg__gray ">
+    <div class="form__offset__50 mtb--50">
+        <div class="portfolio-description mrg-sm">
+            <h2 class="text-center mb--10">Cập nhật trang cá nhân</h2>
+        </div>
+        {{#user}}
+        <form name="modifyUser" method="post" enctype="multipart/form-data">
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Tên người dùng</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="bookName" value="{{userName}}" readonly>
+                    </div>
+                </div>
+
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="detail" rows="3" readonly>{{detail}}</textarea>
+                    </div>
+                </div>
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Ngày sinh</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="publisher" value="{{dob}}" readonly>
+                    </div>
+                </div>
+
+
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Giới tính</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="price" value="{{gender}}" readonly>
+                    </div>
+                </div>
+
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Điện thoại</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="totalPage" value="{{phoneNum}}" readonly>
+                    </div>
+                </div>
+
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Địa chỉ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="category" value="{{address}}" readonly>
+                    </div>
+                </div>
+
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="coverForm" value="{{email}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row mb--10">
+                    <label class="col-form-label col-sm-2 text-sm-right">Đăng tải hình ảnh</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="imageFile" class="form-control" accept="image/*" >
+                    </div>
+                </div>
+
+
+                <div class="row mb--10">
+                    <div class="col-sm-6 ml-sm-auto">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+
+                    <div class="col-sm-6 ml-sm-auto">
+                        <a href="/user/profile"><button type="button" class="btn btn-primary">Hủy</button></a>
+                    </div>
+                </div>
+
+
+        </form>
+            {{/user}}
+    </div>
+</div>
+

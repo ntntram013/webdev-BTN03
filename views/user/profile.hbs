@@ -1,32 +1,39 @@
-<!-- Start Login Area -->
-<div class="htc__login__register bg__white ptb--130" style="background: rgba(0, 0, 0, 0) url('/../../images/bg/5.jpg') no-repeat scroll center center / cover ;">
+
+<<div class="single-portfolio-area bg__white ptb--100">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <ul class="login__register__menu" role="tablist">
-                    <li role="presentation" class="login active"><a role="tab" data-toggle="tab">HỒ SƠ NGƯỜI DÙNGGGGGGG</a></li>
-                </ul>
+        {{#user}}
+        <div class="row form__offset__50">
+
+            <div class="col-md-5">
+                <div class="single-portfolio-img">
+                    <img src="{{userImage}}" alt="user-image">
+                </div>
+
             </div>
-        </div>
-
-        <!-- Start Login Register Content -->
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="htc__login__register__wrap">
-
-                    <!-- Start Single Content -->
-                    <div role="tabpanel" class="single__tabs__panel tab-pane fade in active">
-
-                        <div class="htc__login__btn mt--30">
-                            <a href="/users/logout">Đăng xuất</a>
-                        </div>
-
+            <div class="col-md-7">
+                <div class="portfolio-description mrg-sm">
+                    <h2>{{userName}}</h2>
+                    <p>{{detail}}</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna</p>
+                    <div class="portfolio-info">
+                        <ul>
+                            <li><span>Ngày sinh:</span>{{dob}}</li>
+                            <li><span>Giới tính:</span>{{gender}}</li>
+                            <li><span>Điện thoại:</span>{{phoneNum}}</li>
+                            <li><span>Địa chỉ:</span>{{address}}</li>
+                            <li><span>Email:</span>{{email}}</li>
+                        </ul>
                     </div>
-                    <!-- End Single Content -->
+                    <div class="btn__change__cover mt--10">
+                        <a href="/user/profile/modify" >Thay đổi ảnh đại diện</a>
+                    </div>
                 </div>
             </div>
+
         </div>
-        <!-- End Login Register Content -->
+        {{/user}}
+        <div class="htc__login__btn mt--30">
+            <a href="/user/logout">Đăng xuất</a>
+        </div>
     </div>
 </div>
-<!-- End Login Area -->

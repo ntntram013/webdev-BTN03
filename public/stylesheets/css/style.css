@@ -1416,7 +1416,9 @@ h3.widget-title-modal {
     margin-right: -15px;
 }
 .pro__thumb a img {
-    width: 100%;
+    width: 263px;
+    height: 263px;
+    object-fit: contain;
 }
 .popular__product--2 .product__action li:first-child::before,
 .product__style--7 .product__action li:first-child::before {
