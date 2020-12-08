@@ -15,16 +15,35 @@ exports.detail = async (id)=>
     return book;
 }
 
-exports.Pagination=async (itemPerPage,currentPage)=>
-{
-    const booksCollection=db().collection('Product');
-    const bookPerPage=await booksCollection.find({isDeleted:false}).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray();
+exports.Pagination=async (itemPerPage,currentPage)=> {
+    const booksCollection = db().collection('Product');
+    const bookPerPage = await booksCollection.find({isDeleted:false}).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray();
     return bookPerPage;
 
 }
 
-exports.TotalProduct=async()=>{
+exports.PaginationFindTitle=async(searchName,itemPerPage,currentPage)=> {
+    const booksCollection = db().collection('Product');
+    const bookPerPage = await booksCollection.find({
+        isDeleted:false,
+        parseBookName:new RegExp(searchName)
+    }).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray();
+    return bookPerPage;
+}
+
+
+exports.TotalProduct = async(filterName)=>{
     const booksCollection=db().collection('Product');
-    const numBook=await booksCollection.find({isDeleted: false}).count();
-    return numBook;
+
+    if (filterName == undefined){
+        const numBook = await booksCollection.find({isDeleted: false}).count();
+        return numBook;
+    }
+    else {
+        const numBook = await booksCollection.find({isDeleted: false,
+            parseBookName:new RegExp(filterName)
+        }).count();
+        return numBook;
+    }
+
 }

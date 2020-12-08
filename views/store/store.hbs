@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="product__details">
-                                <a href="/store/{{_id}}"><h2>{{bookName}}</h2></a>
+                                <a href="/store/{{_id}}"> <h2>{{bookName}}</h2> </a>
                                 <ul class="product__price">
                                     <li class="new__price">{{price}} đ</li>
                                 </ul>
@@ -43,49 +43,67 @@
 
         </div>
 
-        <br>
-        <br>
-        <br>
+        <br><br><br>
 
         <div class="text-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-lg">
-                <li class="page-item">
-                    {{#if IsHasPrev}}
-                        <a class="page-link" href="/store/?page={{previousPage}}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span> <!--screen reader for blind people :v -->
-                        </a>
-                    {{/if}}
-                </li>
+            {{#if dontFindTitle}}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            {{#if IsHasPrev}}
+                                <a class="page-link" href="/store/?page={{previousPage}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            {{/if}}
+                        </li>
+                        {{#if IsHasPrev}}
+                            <li class="page-item"><a class="page-link" href="/store/?page={{previousPage}}">{{previousPage}}</a></li>
+                        {{/if}}
+                        <li class="page-item  active"><a class="page-link" href="/store/?page={{currentPage}}">{{currentPage}}</a></li>
 
-                {{#if IsHasPrev}}
-                    <li class="page-item">
-                        <a class="page-link" href="/store/?page={{previousPage}}"> {{previousPage}} </a>
-                    </li>
-                {{/if}}
+                        {{#if IsHasNext}}
+                            <li class="page-item"><a class="page-link" href="/store/?page={{nextPage}}">{{nextPage}}</a></li>
+                        {{/if}}
+                        <li class="page-item">
+                            {{#if IsHasNext}}
+                                <a class="page-link" href="/store/?page={{nextPage}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            {{/if}}
+                        </li>
+                    </ul>
+                </nav>
+            {{else}}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            {{#if IsHasPrev}}
+                                <a class="page-link" href="/store/?title={{title}}&page={{previousPage}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            {{/if}}
+                        </li>
+                        {{#if IsHasPrev}}
+                            <li class="page-item"><a class="page-link" href="/store/?title={{title}}&page={{previousPage}}">{{previousPage}}</a></li>
+                        {{/if}}
+                        <li class="page-item  active"><a class="page-link" href="/store/?title={{title}}&page={{currentPage}}">{{currentPage}}</a></li>
 
-                <li class="page-item  active">
-                    <a class="page-link" href="/store/?page={{currentPage}}"> {{currentPage}} </a>
-                </li>
+                        {{#if IsHasNext}}
+                            <li class="page-item"><a class="page-link" href="/store/?title={{title}}&page={{nextPage}}">{{nextPage}}</a></li>
+                        {{/if}}
+                        <li class="page-item">
+                            {{#if IsHasNext}}
+                                <a class="page-link" href="/store/?title={{title}}&page={{nextPage}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            {{/if}}
+                        </li>
+                    </ul>
+                </nav>
 
-                {{#if IsHasNext}}
-                    <li class="page-item">
-                        <a class="page-link" href="/store/?page={{nextPage}}"> {{nextPage}} </a>
-                    </li>
-                {{/if}}
+            {{/if}}
 
 
-                <li class="page-item">
-                    {{#if IsHasNext}}
-                        <a class="page-link" href="/store/?page={{nextPage}}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                    {{/if}}
-                </li>
-            </ul>
-        </nav>
         </div>
 
 
