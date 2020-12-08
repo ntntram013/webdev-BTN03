@@ -28,7 +28,7 @@ exports.pagination = async(req,res)=> {
     let productPerPage;
     if (titleSearch !== undefined){
         parseBookName = slugify(titleSearch, {
-            replacement: ' ',  // replace spaces with replacement character, defaults to `-`
+            replacement: '',  // replace spaces with replacement character, defaults to `-`
             remove: undefined, // remove characters that match regex, defaults to `undefined`
             lower: true,      // convert to lower case, defaults to `false`
             strict: false,     // strip special characters except replacement, defaults to `false`
@@ -71,9 +71,19 @@ exports.pagination = async(req,res)=> {
     if (currentPage === totalPage) {
         IsHasNext = false;
     }
-    for (i = 0; i < productPerPage.length; i++) {
-        productPerPage[i].resPerPage = resPerPage;
-        productPerPage[i].currentPage = currentPage;
+
+
+    let isFound = true;
+
+    if(productPerPage){
+        for (i = 0; i < productPerPage.length; i++) {
+            console.log(productPerPage[i]);
+            productPerPage[i].resPerPage = resPerPage;
+            productPerPage[i].currentPage = currentPage;
+        }
+    }
+    else{
+        isFound = false;
     }
 
     res.render('store/store',{
@@ -84,7 +94,8 @@ exports.pagination = async(req,res)=> {
         IsHasPrev,
         IsHasNext,
         currentPage,
-        dontFindTitle
+        dontFindTitle,
+        isFound
     });
 
 

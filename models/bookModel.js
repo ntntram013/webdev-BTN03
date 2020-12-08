@@ -27,7 +27,8 @@ exports.PaginationFindTitle=async(searchName,itemPerPage,currentPage)=> {
     const bookPerPage = await booksCollection.find({
         isDeleted:false,
         parseBookName:new RegExp(searchName)
-    }).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray();
+    }).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray()
+        .catch(e => console.log('Error: ', e.message));
     return bookPerPage;
 }
 
