@@ -18,21 +18,11 @@
                             </div>
                             <div class="category-menu-list">
                                 <ul>
-                                    <li>
-                                        <a href="#">Truyện ngắn <i class="zmdi zmdi-chevron-right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> Tiểu thuyết <i class="zmdi zmdi-chevron-right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Truyện tranh <i class="zmdi zmdi-chevron-right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> Trinh thám <i class="zmdi zmdi-chevron-right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> Cổ tích<i class="zmdi zmdi-chevron-right"></i></a>
-                                    </li>
+                                    {{#each catalog}}
+                                        <li>
+                                            <a href="/store"> {{catalogName}} <i class="zmdi zmdi-chevron-right"></i></a>
+                                        </li>
+                                    {{/each}}
                                 </ul>
                             </div>
                         </div>

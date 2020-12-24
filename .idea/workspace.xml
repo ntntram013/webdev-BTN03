@@ -20,9 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ab11ff8-0445-4e5a-978c-ea75e23988fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/homeController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/bookController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/bookController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dal/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/dal/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dal/userDal.js" beforeDir="false" afterPath="$PROJECT_DIR$/dal/userDal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/bookModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/bookModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/store/store.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/store/store.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +63,8 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="13.14.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="13.13.34" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="javascript.nodejs.core.library.typings.version" value="13.13.36" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -120,6 +125,12 @@
       <workItem from="1607354723918" duration="1789000" />
       <workItem from="1607366197183" duration="3514000" />
       <workItem from="1607406672749" duration="11054000" />
+      <workItem from="1607680571219" duration="307000" />
+      <workItem from="1608472826332" duration="342000" />
+      <workItem from="1608476975201" duration="750000" />
+      <workItem from="1608653487053" duration="269000" />
+      <workItem from="1608653822984" duration="52000" />
+      <workItem from="1608802355945" duration="3894000" />
     </task>
     <servers />
   </component>
@@ -140,51 +151,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607267082719">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1607267082719" />
-    <state x="542" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607073940658">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="542" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1607073940658" />
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607018432357">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1607018432357" />
-    <state x="516" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1607075078898">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="516" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.834@0.0.1536.834" timestamp="1607075078898" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1607267564164">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1607267564164" />
-    <state width="1812" height="205" key="GridCell.Tab.0.bottom" timestamp="1607331224682">
-      <screen x="78" y="0" width="1842" height="1080" />
-    </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607327030011" />
-    <state width="1812" height="205" key="GridCell.Tab.0.bottom/78.0.1842.1080@78.0.1842.1080" timestamp="1607331224682" />
-    <state width="1812" height="205" key="GridCell.Tab.0.center" timestamp="1607331224682">
-      <screen x="78" y="0" width="1842" height="1080" />
-    </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607327030010" />
-    <state width="1812" height="205" key="GridCell.Tab.0.center/78.0.1842.1080@78.0.1842.1080" timestamp="1607331224682" />
-    <state width="1812" height="205" key="GridCell.Tab.0.left" timestamp="1607331224681">
-      <screen x="78" y="0" width="1842" height="1080" />
-    </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607327030010" />
-    <state width="1812" height="205" key="GridCell.Tab.0.left/78.0.1842.1080@78.0.1842.1080" timestamp="1607331224681" />
-    <state width="1812" height="205" key="GridCell.Tab.0.right" timestamp="1607331224682">
-      <screen x="78" y="0" width="1842" height="1080" />
-    </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607327030011" />
-    <state width="1812" height="205" key="GridCell.Tab.0.right/78.0.1842.1080@78.0.1842.1080" timestamp="1607331224682" />
-    <state x="543" y="99" key="SettingsEditor" timestamp="1607232374777">
-      <screen x="78" y="0" width="1842" height="1080" />
-    </state>
-    <state x="543" y="99" key="SettingsEditor/78.0.1842.1080@78.0.1842.1080" timestamp="1607232374777" />
   </component>
 </project>

@@ -7,13 +7,15 @@ exports.index = async (req, res, next) => {
     res.render('store/store',{title:'Cửa hàng',book});
 
 };
-exports.detail = async (req,res,next)=>
-{
+
+
+exports.detail = async (req,res,next) => {
     const book = await bookModel.detail(req.params.id);
     res.render('store/book',{title:'Chi tiết',book});
 }
 
-exports.pagination = async(req,res)=> {
+
+exports.pagination = async(req,res) => {
 
     const resPerPage = 4;
 

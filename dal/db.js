@@ -6,7 +6,7 @@ async function connectDb()
 {
     await client.connect();
     database=await client.db("Store");
-    console.log('Db connected');
+    console.log('Book db connected');
 }
 
 connectDb();

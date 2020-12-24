@@ -1,28 +1,26 @@
 const {ObjectId} = require('mongodb');
-const {db}=require("../dal/db");
+const {db} = require("../dal/db");
 
-exports.list=async()=>
-{
-    const bookCollection=db().collection("Product");
-    const bookList=await bookCollection.find({isDeleted:false}).toArray();
+
+exports.list = async() => {
+    const bookCollection = db().collection('Product');
+    const bookList = await bookCollection.find({isDeleted:false}).toArray();
     return bookList;
 }
 
-exports.detail = async (id)=>
-{
-    const booksCollection=db().collection('Product');
+exports.detail = async (id) => {
+    const booksCollection = db().collection('Product');
     const book = await booksCollection.findOne({_id:ObjectId(id), isDeleted:false});
     return book;
 }
 
-exports.Pagination=async (itemPerPage,currentPage)=> {
+exports.Pagination = async (itemPerPage,currentPage) => {
     const booksCollection = db().collection('Product');
     const bookPerPage = await booksCollection.find({isDeleted:false}).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray();
     return bookPerPage;
-
 }
 
-exports.PaginationFindTitle=async(searchName,itemPerPage,currentPage)=> {
+exports.PaginationFindTitle = async(searchName,itemPerPage,currentPage) => {
     const booksCollection = db().collection('Product');
     const bookPerPage = await booksCollection.find({
         isDeleted:false,
@@ -33,10 +31,10 @@ exports.PaginationFindTitle=async(searchName,itemPerPage,currentPage)=> {
 }
 
 
-exports.TotalProduct = async(filterName)=>{
-    const booksCollection=db().collection('Product');
+exports.TotalProduct = async(filterName) => {
+    const booksCollection = db().collection('Product');
 
-    if (filterName == undefined){
+    if (filterName == undefined) {
         const numBook = await booksCollection.find({isDeleted: false}).count();
         return numBook;
     }
@@ -47,4 +45,10 @@ exports.TotalProduct = async(filterName)=>{
         return numBook;
     }
 
+}
+
+module.exports.listCatalog = async() => {
+    const catalogCollection = db().collection('Catalog');
+    const catalogList = await catalogCollection.find({isDeleted:false}).toArray();
+    return catalogList;
 }
