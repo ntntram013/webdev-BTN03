@@ -20,15 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ab11ff8-0445-4e5a-978c-ea75e23988fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/homeController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/bookController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/bookController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/dal/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/userDal.js" beforeDir="false" afterPath="$PROJECT_DIR$/dal/userDal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/bookModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/bookModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/store/store.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/store/store.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +126,7 @@
       <workItem from="1608476975201" duration="750000" />
       <workItem from="1608653487053" duration="269000" />
       <workItem from="1608653822984" duration="52000" />
-      <workItem from="1608802355945" duration="3894000" />
+      <workItem from="1608802355945" duration="12902000" />
     </task>
     <servers />
   </component>

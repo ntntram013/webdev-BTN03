@@ -8,18 +8,16 @@ exports.index = async (req, res, next) => {
 
 };
 
-
 exports.detail = async (req,res,next) => {
     const book = await bookModel.detail(req.params.id);
     res.render('store/book',{title:'Chi tiết',book});
 }
 
-
 exports.pagination = async(req,res) => {
-
-    const resPerPage = 4;
+    const resPerPage = 8;
 
     let titleSearch = req.query.title;
+    let catId = req.query.catId;
 
     const slugify = require('slugify');
     let parseBookName;
@@ -28,7 +26,9 @@ exports.pagination = async(req,res) => {
 
     let dontFindTitle;
     let productPerPage;
-    if (titleSearch !== undefined){
+    let totalPage;
+
+    if (titleSearch) {
         parseBookName = slugify(titleSearch, {
             replacement: '',  // replace spaces with replacement character, defaults to `-`
             remove: undefined, // remove characters that match regex, defaults to `undefined`
@@ -37,29 +37,33 @@ exports.pagination = async(req,res) => {
             locale: 'vi'       // language code of the locale to use
         });
         dontFindTitle = false;
+        totalPage = Math.ceil(await bookModel.TotalProduct(parseBookName)/resPerPage);
+    }
+    else if (catId) {
+        totalPage = Math.ceil(await bookModel.totalProductById(catId)/resPerPage);
     }
     else {
         parseBookName = undefined;
         dontFindTitle = true;
+        totalPage = Math.ceil(await bookModel.TotalProduct(parseBookName)/resPerPage);
     }
 
-    const totalPage = Math.ceil(await bookModel.TotalProduct(parseBookName)/resPerPage);
-
-    if(page < 1){
+    if (page < 1) {
         page = 1
     }
-    else if(page > totalPage){
+    else if (page > totalPage) {
         page = totalPage;
     }
 
-    if(titleSearch !== undefined){
+    if (titleSearch) {
         productPerPage = await bookModel.PaginationFindTitle(parseBookName,resPerPage,page);
     }
-    else{
+    else if (catId) {
+        productPerPage = await bookModel.PaginationCatalog(catId,resPerPage,page);
+    }
+    else {
         productPerPage = await bookModel.Pagination(resPerPage, page);
     }
-
-
 
     let currentPage = page;
     let nextPage = currentPage + 1;
@@ -74,33 +78,38 @@ exports.pagination = async(req,res) => {
         IsHasNext = false;
     }
 
-
     let isFound = true;
 
-    if(productPerPage){
+    if (productPerPage) {
         for (i = 0; i < productPerPage.length; i++) {
-            console.log(productPerPage[i]);
+            //console.log(productPerPage[i]);
             productPerPage[i].resPerPage = resPerPage;
             productPerPage[i].currentPage = currentPage;
         }
     }
-    else{
+    else {
         isFound = false;
     }
 
-    res.render('store/store',{
-        title: titleSearch ? 'Tìm kiếm | '+ titleSearch : 'Cửa hàng',
-        book:productPerPage,
-        previousPage:previousPage,
-        nextPage:nextPage,
+    let title = 'Cửa hàng'
+    if (titleSearch) {
+        title = 'Tìm kiếm | ' + titleSearch;
+    }
+    else if (catId) {
+        const catalogName = await bookModel.getCatalogName(catId);
+        title = 'Bộ Sưu Tập | ' + catalogName;
+    }
+
+    res.render('store/store', {
+        title: title,
+        book: productPerPage,
+        previousPage: previousPage,
+        nextPage: nextPage,
         IsHasPrev,
         IsHasNext,
         currentPage,
         dontFindTitle,
         isFound
     });
-
-
-
 
 }
