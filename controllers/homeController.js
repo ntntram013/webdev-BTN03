@@ -1,9 +1,11 @@
 const bookModel = require('../models/bookModel');
 
-exports.getCatalog = async (req, res, next) => {
-    const catalog = await bookModel.listCatalog();
+exports.getCollections = async (req, res, next) => {
+    const catalog = await bookModel.listDocuments('Catalog');
+    const publisher = await bookModel.listDocuments('Publisher');
     res.render('home', {
         title: 'Trang chủ',
-        catalog: catalog
+        catalog: catalog,
+        publisher: publisher
     });
 };

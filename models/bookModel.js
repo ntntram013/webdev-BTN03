@@ -46,48 +46,54 @@ exports.TotalProduct = async (filterName) => {
     }
 }
 
-module.exports.listCatalog = async () => {
-    const catalogCollection = db().collection('Catalog');
+module.exports.listDocuments = async (collectionName) => {
+    const catalogCollection = db().collection(collectionName);
     const catalogList = await catalogCollection.find({isDeleted:false}).toArray();
     return catalogList;
 }
 
-module.exports.getCatalogName = async (catId) => {
-    const catalogCollection = db().collection('Catalog');
-    const projection = { _id: 0, catalogName: 1 };
-    const catName = await catalogCollection.find({
-        isDeleted: false,
-        _id: ObjectId(catId)
-    }).project(projection);
+module.exports.getKeyNameOfId = async (Id,keyName,collectionName) => {
+    const catalogCollection = db().collection(collectionName);
 
-    for await (const doc of catName) {
-        return doc.catalogName;
+    let query = {};
+    query["isDeleted"] = false;
+    query["_id"] = ObjectId(Id);
+
+    let projection = {};
+    projection["_id"] = 0;
+    projection[keyName] = 1;
+
+    const name = await catalogCollection.find(query).project(projection);
+
+    for await (const doc of name) {
+        return doc[keyName];
     }
 }
 
-module.exports.totalProductById = async (filterId) => {
+module.exports.totalProductById = async (queryField,filterId) => {
     const booksCollection = db().collection('Product');
-
+    let query = {};
     if (!filterId) {
-        const numBook = await booksCollection.find({isDeleted: false}).count();
+        query["isDeleted"] = false;
+        const numBook = await booksCollection.find(query).count();
         return numBook;
     }
     else {
-        const numBook = await booksCollection.find({
-            isDeleted: false,
-            categoryID: ObjectId(filterId)
-        }).count();
+        query["isDeleted"] = false;
+        query[queryField] = ObjectId(filterId);
+        const numBook = await booksCollection.find(query).count();
         return numBook;
     }
 }
 
-module.exports.PaginationCatalog = async (filterId,itemPerPage,currentPage) => {
+module.exports.PaginationQuery = async (queryField,filterId,itemPerPage,currentPage) => {
     const booksCollection = db().collection('Product');
-    const bookPerPage = await booksCollection.find({
-        isDeleted:false,
-        categoryID: ObjectId(filterId)
-    }).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray()
+
+    let query = {};
+    query["isDeleted"] = false;
+    query[queryField] = ObjectId(filterId);
+
+    const bookPerPage = await booksCollection.find(query).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray()
         .catch(e => console.log('Error: ', e.message));
     return bookPerPage;
 }
-
