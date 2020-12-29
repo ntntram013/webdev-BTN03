@@ -8,7 +8,6 @@
                 </ul>
             </div>
         </div>
-
         <!-- Start Login Register Content -->
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -24,42 +23,24 @@
                         {{/each}}
                     {{/if}}
 
-
                     <!-- Start Single Content -->
                     <div id="login" role="tabpanel" class="single__tabs__panel tab-pane fade in active">
-
-
-                        <form class="login" id="loginForm" method="POST">
+                        <form class="login" id="theForm" method="POST">
                             <input type="text"  name="email" placeholder="Email hoặc tên tài khoản*" >
                             <input type="password" name="password" placeholder="Mật khẩu*" >
                         </form>
-
                         <div class="tabs__checkbox">
                             <input type="checkbox">
                             <span> Lưu tài khoản của tôi</span>
                             <span class="forget"><a href="#">Quên mật khẩu?</a></span>
                         </div>
-
                         <div class="htc__login__btn mt--30">
-                            <a id ="loginButton">Đăng nhập</a>
+                            <a id ="theButton">Đăng nhập</a>
                         </div>
 
-
-
-                        <div class="htc__social__connect">
-                            <h2>Hoặc đăng nhập với</h2>
-                            <ul class="htc__soaial__list">
-                                <li><a class="bg--twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-
-                                <li><a class="bg--instagram" href="#"><i class="zmdi zmdi-instagram"></i></a></li>
-
-                                <li><a class="bg--facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-
-                                <li><a class="bg--googleplus" href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
-                            </ul>
-                        </div>
                         <div class="text-center mt--10">
-                            <h5>Chưa có tài khoản? <a href="/users/register"><span>Đăng kí ngay</span></a></h5>
+                            <br><br>
+                            <h5>Chưa có tài khoản? <a href="/user/register"><span>ĐĂNG KÍ NGAY</span></a></h5>
                         </div>
                     </div>
                     <!-- End Single Content -->

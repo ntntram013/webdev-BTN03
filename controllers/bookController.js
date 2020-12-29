@@ -95,7 +95,7 @@ exports.pagination = async(req,res) => {
     let isFound = true;
     if (productPerPage) {
         for (i = 0; i < productPerPage.length; i++) {
-            console.log(productPerPage[i]);
+            //console.log(productPerPage[i]);
             productPerPage[i].resPerPage = resPerPage;
             productPerPage[i].currentPage = currentPage;
         }

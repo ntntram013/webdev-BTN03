@@ -1,15 +1,13 @@
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongodb=require('mongodb');
+const mongodb = require('mongodb');
 const formidable = require('formidable');
 const cloudinary = require('cloudinary');
 
 console.log(require('dotenv').config())
-
 
 const homeRouter = require('./routes/home');
 const usersRouter = require('./routes/users');
@@ -28,13 +26,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+// Routes
 app.use('/', homeRouter);
 app.use('/home', homeRouter);
 app.use('/store', storeRouter);
 app.use('/contact', contactRouter);
 app.use('/cart', cartRouter);
 app.use('/user', usersRouter);
+// Passport middlewares
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

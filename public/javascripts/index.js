@@ -1,3 +1,4 @@
-document.getElementById("loginButton").onclick = function() {
-    document.getElementById("loginForm").submit();
+document.getElementById("theButton").onclick = function() {
+    document.getElementById("theForm").submit();
 }
+

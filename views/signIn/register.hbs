@@ -4,8 +4,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <ul class="login__register__menu" role="tablist">
-
-                    <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">Đăng ký</a></li>
+                    <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">ĐĂNG KÝ</a></li>
                 </ul>
             </div>
         </div>
@@ -13,28 +12,42 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="htc__login__register__wrap">
+
+                    {{#if errors}}
+                        {{#each errors}}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <div class="alert-message">
+                                    <strong> {{this}} </strong> Vui lòng nhập lại!
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{/if}}
+
+                    {{#if success}}
+                        <div class="alert alert-success text-center" role="alert">
+                            {{success}} <a href="/user/login" class="alert-link">Đăng nhập</a>.
+                        </div>
+                    {{/if}}
+
                     <!-- Start Single Content -->
                     <div id="register" role="tabpanel" class="single__tabs__panel tab-pane fade in active">
-                        <form class="login" method="post">
-                            <input type="text" placeholder="Tên*">
-                            <input type="email" placeholder="Email*">
-                            <input type="password" placeholder="Mật khẩu*">
+                        <form class="login" id="theForm" method="POST">
+                            <input type="text" name="username" placeholder="Tên đăng nhập*" value = {{username}}>
+                            <input type="email" name="email" placeholder="Email*" value = {{email}}>
+                            <input type="password" name="password" placeholder="Mật khẩu (phải có ít nhất 6 ký tự)*">
+                            <input type="password" name="retypePassword" placeholder="Nhập lại mật khẩu*">
                         </form>
                         <div class="tabs__checkbox">
                             <input type="checkbox">
                             <span> Lưu tài khoản của tôi</span>
                         </div>
                         <div class="htc__login__btn">
-                            <a href="#">Đăng ký</a>
+                            <a id ="theButton">Đăng ký</a>
                         </div>
-                        <div class="htc__social__connect">
-                            <h2>Hoặc đăng nhập bằng</h2>
-                            <ul class="htc__soaial__list">
-                                <li><a class="bg--twitter" href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                                <li><a class="bg--instagram" href="#"><i class="zmdi zmdi-instagram"></i></a></li>
-                                <li><a class="bg--facebook" href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                <li><a class="bg--googleplus" href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
-                            </ul>
+
+                        <div class="text-center mt--10">
+                            <br><br>
+                            <h5>Đã có tài khoản? <a href="/user/login"><span>ĐĂNG NHẬP</span></a></h5>
                         </div>
                     </div>
                     <!-- End Single Content -->
