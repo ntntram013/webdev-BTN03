@@ -8,51 +8,16 @@ cloudinary.config({
 
 })
 
-
 const userModel = require('../models/userModel');
 const id = '5fcdcd6e4fa7af1f08ba7125';
 
 module.exports.login = (req,res,next) => {
-    if(req.signedCookies.cookieID === 'abcxyz'){
-        res.redirect('/user/profile');
-        return;
-    }
     res.render('signIn/login',{
         title:'Đăng nhập'
     });
 }
 
-module.exports.postLogin = (req,res) => {
-    const email = req.body.email;
-    const pass = req.body.password;
 
-    if(email !== 'user@gmail.com'){
-        res.render('signIn/login',{
-            title:'Đăng nhập',
-            errors: [
-                'Người dùng không tồn tại!'
-            ]
-        });
-        return;
-    }
-
-    if(pass !== 'user'){
-        res.render('signIn/login',{
-            title:'Đăng nhập',
-            errors: [
-                'Mật khẩu không đúng!'
-            ]
-        });
-        return;
-    }
-
-    res.cookie('cookieID','abcxyz',{
-        signed:true,
-        maxAge: 60*60*1000 // 60 minutes
-    });
-
-    res.redirect('/home');
-}
 
 module.exports.register = (req,res,next) => {
     res.render('signIn/register', {
@@ -63,7 +28,6 @@ module.exports.register = (req,res,next) => {
 module.exports.postRegister = async (req,res) => {
     const {username,email,password,retypePassword} = req.body;
     let errors = [];
-
     // validate
     if (!username || !email || !password || !retypePassword) {
         errors.push('Vui lòng điền đầy đủ thông tin!');
@@ -84,7 +48,6 @@ module.exports.postRegister = async (req,res) => {
             errors: errors
         });
         return;
-
     }
     else {
         const userByEmail = await userModel.queryUser('email',email);
@@ -95,7 +58,6 @@ module.exports.postRegister = async (req,res) => {
         if (userByUsername) {
             errors.push('Tên đăng nhập đã được đăng ký!');
         }
-
         // username or email exists
         const existedUser = userByEmail || userByUsername;
         if (existedUser) {
@@ -107,21 +69,14 @@ module.exports.postRegister = async (req,res) => {
             return;
         }
         else {
-            // hash password
-            const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-            const newUser = {username, email, password: hashedPassword, isDeleted: false, isActivated: true};
+            const newUser = {username, email, password};
             await userModel.add(newUser);
             res.render('signIn/register',{
                 title: 'Đăng ký',
-                success: 'Đăng ký thành công (◕‿↼) '
+                success: 'Đăng ký thành công (◕‿↼). '
             });
-
         }
-
     }
-
 }
 
 module.exports.logout =  (req,res) => {

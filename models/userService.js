@@ -1,22 +1,26 @@
-const {ObjectId} = require('mongodb');
+const bcrypt = require('bcryptjs');
+const userModel = require('../models/userModel');
 
-const {db} = require("../dal/userDal");
+module.exports.checkCredential = async (loginInfo,password) => {
+    let err = "";
 
+    const userByUsername = await userModel.queryUser('username', loginInfo);
 
-// module.exports.auth = async (userInfo, pass) => {
-//     let err = "";
-//     // find
-//     // let hasUsername = findone with username
-//     // let hasEmail = findone with email
-//     // let user = hasUsername || hasEmail
-//     // if(user) {
-//     // let checkPassword = await bcrypt,compare(pass,user.pass);
-//     // if (!checkPassword){
-//     //    err = "usernam pass not match";
-//     // }
-//     // else if( user.isActive == false){
-//     //     err = "bi block roi conloz"
-//     // }
-//     // return err;
-//
-// }
+    if (userByUsername) {
+        let checkPassword = await bcrypt.compare(password,userByUsername.password);
+        if (!checkPassword) {
+            err = "sai mat khau!";
+            return false;
+        }
+        return userByUsername;
+    }
+    // else if (userByUsername.isActivated === false) {
+    //     err = "acc bi block roi!";
+    //     return false;
+    // }
+    return false;
+}
+
+exports.getUser = (id) => {
+    return userModel.queryUser('_id',id);
+}

@@ -1,4 +1,5 @@
 const {ObjectId} = require('mongodb');
+const bcrypt = require('bcryptjs');
 
 const {db} = require("../dal/userDal");
 
@@ -26,5 +27,16 @@ module.exports.queryUser = async (queryField, fieldInfo) => {
 
 module.exports.add = async (user) => {
     const userCollection = db().collection('User');
-    const result = await userCollection.insertOne(user);
+    const {username,email,password} = user;
+    // hash password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const newUser = {
+        username,
+        email,
+        password: hashedPassword,
+        isDeleted: false,
+        isActivated: true};
+    await userCollection.insertOne(newUser);
 }
+

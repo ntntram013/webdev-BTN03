@@ -6,14 +6,16 @@ const logger = require('morgan');
 const mongodb = require('mongodb');
 const formidable = require('formidable');
 const cloudinary = require('cloudinary');
-
+const session = require('express-session');
 console.log(require('dotenv').config())
 
+const passport = require('./passport');
 const homeRouter = require('./routes/home');
 const usersRouter = require('./routes/users');
 const storeRouter = require('./routes/store');
 const contactRouter = require('./routes/contact');
 const cartRouter = require('./routes/cart');
+
 const app = express();
 
 // view engine setup
@@ -22,19 +24,24 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(express.urlencoded({ extended: false }));   // body parser
+app.use(cookieParser());                                   // cookie parser
 app.use(express.static(path.join(__dirname, 'public')));
+//Express session
+//app.use(session({secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(session({secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
+//Passport middlewares
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Routes
+
+// routes
 app.use('/', homeRouter);
 app.use('/home', homeRouter);
 app.use('/store', storeRouter);
 app.use('/contact', contactRouter);
 app.use('/cart', cartRouter);
 app.use('/user', usersRouter);
-// Passport middlewares
-
 
 
 // catch 404 and forward to error handler
