@@ -31,7 +31,6 @@ exports.PaginationFindTitle = async (searchName,itemPerPage,currentPage) => {
     return bookPerPage;
 }
 
-
 exports.TotalProduct = async (filterName) => {
     const booksCollection = db().collection('Product');
 
@@ -46,13 +45,13 @@ exports.TotalProduct = async (filterName) => {
         return numBook;
     }
 }
-
+// liệt kê danh sách các nxb, các thể loại, v.v từ collectionName
 module.exports.listDocuments = async (collectionName) => {
     const catalogCollection = db().collection(collectionName);
     const catalogList = await catalogCollection.find({isDeleted:false}).toArray();
     return catalogList;
 }
-
+// lấy tên của 1 nxb, thể loại cụ thể từ collectionName dựa theo Id & keyName (để hiện title khi search)
 module.exports.getKeyNameOfId = async (Id,keyName,collectionName) => {
     const catalogCollection = db().collection(collectionName);
 
@@ -70,7 +69,7 @@ module.exports.getKeyNameOfId = async (Id,keyName,collectionName) => {
         return doc[keyName];
     }
 }
-
+// tổng số sản phẩm theo queryField & filterId
 module.exports.totalProductById = async (queryField,filterId) => {
     const booksCollection = db().collection('Product');
     let query = {};
@@ -86,7 +85,7 @@ module.exports.totalProductById = async (queryField,filterId) => {
         return numBook;
     }
 }
-
+// phân trang dựa theo queryField & filterId
 module.exports.PaginationQuery = async (queryField,filterId,itemPerPage,currentPage) => {
     const booksCollection = db().collection('Product');
 

@@ -2,25 +2,26 @@ const bcrypt = require('bcryptjs');
 const userModel = require('../models/userModel');
 
 module.exports.checkCredential = async (loginInfo,password) => {
-    let err = "";
-
     const userByUsername = await userModel.queryUser('username', loginInfo);
+    const userByEmail = await userModel.queryUser('email', loginInfo);
 
-    if (userByUsername) {
-        let checkPassword = await bcrypt.compare(password,userByUsername.password);
-        if (!checkPassword) {
-            err = "sai mat khau!";
+    const existedUser = userByEmail || userByUsername;
+
+    if (existedUser) {
+        if (await userModel.checkActivatedUser(existedUser._id) === false ) {
             return false;
         }
-        return userByUsername;
+        else {
+            let checkPassword = await bcrypt.compare(password, existedUser.password);
+            if (!checkPassword) {
+                return false;
+            }
+            return existedUser;
+        }
     }
-    // else if (userByUsername.isActivated === false) {
-    //     err = "acc bi block roi!";
-    //     return false;
-    // }
     return false;
 }
 
 exports.getUser = (id) => {
-    return userModel.queryUser('_id',id);
+    return userModel.detail(id);
 }

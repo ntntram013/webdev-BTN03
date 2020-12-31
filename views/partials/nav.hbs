@@ -1,0 +1,55 @@
+<div id="sticky-header-with-topbar" class="mainmenu__area mainmenu__nav sticky__header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/images/logo/logo.png" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <!-- Start MAinmenu Ares -->
+            <div class="col-md-8 col-lg-8 col-sm-6 col-xs-6">
+                <nav class="mainmenu__nav hidden-xs hidden-sm">
+                    <ul class="main__menu">
+                        <li class="drop"><a href="/">TRANG CHỦ</a></li>
+                        <li class="drop"><a href="/store">CỬA HÀNG</a></li>
+                        <li class="drop"><a href="/contact">LIÊN HỆ</a></li>
+
+                    </ul>
+                </nav>
+                <div class="mobile-menu clearfix visible-xs visible-sm">
+                    <nav id="mobile_dropdown">
+                        <ul>
+                            <li><a href="/">TRANG CHỦ</a></li>
+                            <li><a href="/store">CỬA HÀNG</a></li>
+                            <li><a href="/contact">LIÊN HỆ</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End MAinmenu Ares -->
+
+            <div class="col-md-2 col-sm-4 col-xs-4">
+                <ul class="menu-extra">
+                    <li class="search search__open hidden-xs"><span class="ti-search"> </span></li>
+                    {{#if user}}
+                        <ul class="main__menu hidden-xs hidden-sm">
+                            <li class="drop"><a href="/user/login"><span class="ti-user"></span> </a>
+                                <ul class="dropdown">
+                                    <li><a href="/user/profile"><b>{{user.username}}</b></a></li>
+                                    <li><a href="/user/profile">Hồ sơ</a></li>
+                                    <li><a href="/user/logout">Đăng Xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {{else }}
+                        <li> <a href="/user/login" >Đăng nhập </a> </li>
+                    {{/if}}
+                    <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mobile-menu-area"></div>
+    </div>
+</div>

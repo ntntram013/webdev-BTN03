@@ -8,6 +8,7 @@ const formidable = require('formidable');
 const cloudinary = require('cloudinary');
 const session = require('express-session');
 console.log(require('dotenv').config())
+const exphbs = require('express-handlebars');
 
 const passport = require('./passport');
 const homeRouter = require('./routes/home');
@@ -20,20 +21,30 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', exphbs({
+  extname: '.hbs',
+  defaultLayout: 'layout',
+}));
 app.set('view engine', 'hbs');
+
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));   // body parser
-app.use(cookieParser());                                   // cookie parser
+// body parser
+app.use(express.urlencoded({ extended: false }));
+// cookie parser
+app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
-//Express session
-//app.use(session({secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+// Express session
 app.use(session({secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
-//Passport middlewares
+// Passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
-
+// make global variable for views layout
+app.use( (req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 // routes
 app.use('/', homeRouter);

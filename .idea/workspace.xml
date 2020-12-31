@@ -20,16 +20,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ab11ff8-0445-4e5a-978c-ea75e23988fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/passport/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middlewares/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/layouts/layout.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/partials/cart.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/partials/footer.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/partials/nav.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/partials/search.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/bookModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/bookModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/userModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/userModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/userService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passport/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/passport/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/signIn/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/signIn/login.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/profile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/profile.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/userModify.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/userModify.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,15 +83,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\HK1_20_21\Lap trinh web\Trial\webdev-BTN03\public\images\portfolio" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\My Documents\Desktop\webdev-store\views\layouts" />
       <recent name="D:\HK1_20_21\Lap trinh web\Trial\webdev-BTN03\bin" />
       <recent name="D:\HK1_20_21\Lap trinh web\Trial\webdev-BTN03" />
       <recent name="E:\My Documents\Desktop\webdev-store\views\signIn" />
       <recent name="E:\My Documents\Desktop\webdev-store\views\user" />
-      <recent name="D:\HK1_20_21\Lap trinh web\Trial\webdev-BTN03\views\store" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\HK1_20_21\Lap trinh web\Trial\webdev-BTN03\public\images\portfolio" />
     </key>
   </component>
   <component name="RunManager">
@@ -136,7 +146,9 @@
       <workItem from="1609071735580" duration="12000" />
       <workItem from="1609166131313" duration="3517000" />
       <workItem from="1609215374348" duration="20477000" />
-      <workItem from="1609335401196" duration="1005000" />
+      <workItem from="1609335401196" duration="2141000" />
+      <workItem from="1609346266860" duration="5870000" />
+      <workItem from="1609390681505" duration="8963000" />
     </task>
     <servers />
   </component>

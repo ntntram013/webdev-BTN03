@@ -1,7 +1,4 @@
-# Store & User Page 
+﻿# Store & User Page 
 
 ---
-
-Log onto the store as *a temporary user* with:
- - **Email:**  ```user@gmail.com```
- - **Password:** ```user``` 
+Note: For easy testing, all the users should have *the same password*. Password will be encrypted in database (you can't read it). The user has password of ```12345``` ( ͡~ ͜ʖ ͡°). 

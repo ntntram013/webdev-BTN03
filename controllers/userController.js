@@ -9,15 +9,25 @@ cloudinary.config({
 })
 
 const userModel = require('../models/userModel');
-const id = '5fcdcd6e4fa7af1f08ba7125';
+
 
 module.exports.login = (req,res,next) => {
-    res.render('signIn/login',{
-        title:'Đăng nhập'
-    });
+    if (req.user) {
+        res.redirect('/user/profile');
+        return;
+    }
+    else {
+        let errors = [];
+        const err = req.query.q;
+        if (err === 'err') {
+            errors.push('Thông tin đăng nhập không đúng!');
+        }
+        res.render('signIn/login',{
+            title:'Đăng nhập',
+            errors: errors
+        });
+    }
 }
-
-
 
 module.exports.register = (req,res,next) => {
     res.render('signIn/register', {
@@ -36,12 +46,12 @@ module.exports.postRegister = async (req,res) => {
         if (password !== retypePassword) {
             errors.push('Mật khẩu không khớp!');
         }
-        if (password.length < 1) {
-            errors.push('Mật khẩu phải ít nhất 6 ký tự!');
+        if (password.length < 5) {
+            errors.push('Mật khẩu phải ít nhất 5 ký tự!');
         }
     }
     // check errors
-    if (errors.length >0) {
+    if (errors.length > 0) {
         res.render('signIn/register',{
             title:'Đăng ký',
             username: username, email: email,
@@ -80,25 +90,25 @@ module.exports.postRegister = async (req,res) => {
 }
 
 module.exports.logout =  (req,res) => {
-    res.clearCookie('cookieID');
+    req.logout();
     res.redirect('/home');
 }
 
-
 module.exports.profile = async (req,res) => {
-    if (req.signedCookies.cookieID === 'abcxyz') {
-        const user =  await userModel.detail(id);
-        res.render('user/profile', {title:'Profile', user});
-    }
-    else {
-        res.redirect('/user/login');
-    }
+    const user = await userModel.detail(req.user._id);
+    res.render('user/profile', {
+        title: 'Profile',
+        user
+    });
 }
 module.exports.modify = async (req,res,next) => {
     console.log(req.params.id);
-    const user = await userModel.detail(id);
+    const user = await userModel.detail(req.user._id);
 
-    res.render('user/userModify', {title: 'Chỉnh sửa', user});
+    res.render('user/userModify', {
+        title: 'Chỉnh sửa',
+        user
+    });
 }
 exports.postModify = async(req,res,next) => {
     const form = formidable({multiple: true});

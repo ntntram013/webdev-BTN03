@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <!-- All css files are included here. -->
+    <!-- Bootstrap fremwork main css -->
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+    <!-- Owl Carousel main css -->
+    <link rel="stylesheet" href="/stylesheets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/stylesheets/css/owl.theme.default.min.css">
+    <!-- This core.css file contents all plugings css file. -->
+    <link rel="stylesheet" href="/stylesheets/css/core.css">
+    <!-- Theme shortcodes/elements style -->
+    <link rel="stylesheet" href="/stylesheets/css/shortcode/shortcodes.css">
+    <!-- Theme main style -->
+    <link rel="stylesheet" href="/stylesheets/css/style.css">
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="/stylesheets/css/responsive.css">
+    <!-- User style -->
+    <link rel="stylesheet" href="/stylesheets/css/custom.css">
+
+
+    <!-- Modernizr JS -->
+    <script src="/javascripts/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<!-- Body main wrapper start -->
+<div class="wrapper fixed__footer ">
+    <!-- Start Header Style -->
+    <header id="header" class="htc-header header--3 bg__white">
+        <!-- Start Main menu Area -->
+        {{> nav}}
+        <!-- End Main menu Area -->
+    </header>
+    <!-- End Header Style -->
+
+    <!-- Start Offset Wrapper -->
+    <div class="offset__wrapper">
+        <!-- Start Search Popup -->
+        {{> search}}
+        <!-- End Search Popup -->
+        <!-- Start Cart Panel -->
+        {{> cart}}
+        <!-- End Cart Panel -->
+    </div>
+    <div class="wrapper fixed__footer bg__darkgray">
+        <div class="container">
+            <div class="row">
+                {{{body}}}
+            </div>
+        </div>
+        <!-- Start Footer -->
+        {{> footer}}
+        <!-- End Footer -->
+    </div>
+
+</div>
+</body>
+<!-- jquery latest version -->
+<script src="/javascripts/vendor/jquery-1.12.0.min.js"></script>
+<!-- Bootstrap framework js -->
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- All js plugins included in this file. -->
+<script src="/javascripts/plugins.js"></script>
+<script src="/javascripts/slick.min.js"></script>
+<script src="/javascripts/owl.carousel.min.js"></script>
+
+<!--customize js-->
+<script src="/javascripts/index.js"></script>
+
+<!-- Waypoints.min.js. -->
+<script src="/javascripts/waypoints.min.js"></script>
+<!-- Main js file that contents all jQuery plugins activation. -->
+<script src="/javascripts/main.js"></script>
+
+</html>

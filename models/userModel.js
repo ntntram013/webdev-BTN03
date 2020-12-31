@@ -6,9 +6,9 @@ const {db} = require("../dal/userDal");
 exports.detail = async (id) => {
     const userCollection = db().collection('User');
     const user = await userCollection.findOne({_id:ObjectId(id)});
-    console.log(user);
     return user;
 }
+
 exports.update = async (id,fields) => {
     const userCollection = db().collection('User');
     await userCollection.updateOne({"_id":ObjectId(id)},{$set: {'userImage': fields}});
@@ -25,6 +25,18 @@ module.exports.queryUser = async (queryField, fieldInfo) => {
     return user;
 }
 
+module.exports.checkActivatedUser = async (id) => {
+    const userCollection = db().collection('User');
+    const user = await userCollection.findOne({
+        _id: id,
+        isActivated: true
+    });
+    if (user) {
+        return true;
+    }
+    return false;
+}
+
 module.exports.add = async (user) => {
     const userCollection = db().collection('User');
     const {username,email,password} = user;
@@ -36,7 +48,15 @@ module.exports.add = async (user) => {
         email,
         password: hashedPassword,
         isDeleted: false,
-        isActivated: true};
+        isActivated: true,
+        address: "",
+        dob: "",
+        gender: "",
+        detail: "",
+        userImage: "https://res.cloudinary.com/webdevteam468/image/upload/v1607323611/dqvskwss8c2g1pbavl31.jpg",
+        phone: "",
+        name: username
+    };
     await userCollection.insertOne(newUser);
 }
 

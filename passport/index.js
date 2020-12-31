@@ -13,10 +13,12 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser((user, done) => {
+    // save _id to session
     done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
+    // get user from _id that is saved in session
     userService.getUser(id).then((user)=>{
         done(null, user);
     })
