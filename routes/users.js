@@ -6,20 +6,20 @@ const passport = require('../passport');
 const authMiddleware = require('../middlewares/auth');
 
 router.get('/login', userController.login);
-router.post('/login', passport.authenticate('local',{
+router.post('/login', passport.authenticate('local', {
     successRedirect: '/home',
-    failureRedirect: '/user/login?q=err'
+    failureRedirect: '/user/login',
+    failureFlash: true
 }));
 
 router.get('/register', userController.register);
-router.post('/register',userController.postRegister);
+router.post('/register', userController.postRegister);
 router.get('/logout', userController.logout);
 
 
-router.get('/profile/modify',authMiddleware.requireAuth,userController.modify);
-router.post('/profile/modify',authMiddleware.requireAuth,userController.postModify);
-router.get('/profile', authMiddleware.requireAuth,userController.profile);
-
+router.get('/profile/modify', authMiddleware.requireAuth, userController.modify);
+router.post('/profile/modify', authMiddleware.requireAuth, userController.postModify);
+router.get('/profile', authMiddleware.requireAuth, userController.profile);
 
 
 module.exports = router;

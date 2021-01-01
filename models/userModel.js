@@ -5,13 +5,13 @@ const {db} = require("../dal/userDal");
 
 exports.detail = async (id) => {
     const userCollection = db().collection('User');
-    const user = await userCollection.findOne({_id:ObjectId(id)});
+    const user = await userCollection.findOne({_id: ObjectId(id)});
     return user;
 }
 
-exports.update = async (id,fields) => {
+exports.update = async (id, fields) => {
     const userCollection = db().collection('User');
-    await userCollection.updateOne({"_id":ObjectId(id)},{$set: {'userImage': fields}});
+    await userCollection.updateOne({"_id": ObjectId(id)}, {$set: {'userImage': fields}});
 }
 
 module.exports.queryUser = async (queryField, fieldInfo) => {
@@ -37,9 +37,21 @@ module.exports.checkActivatedUser = async (id) => {
     return false;
 }
 
+module.exports.checkBlockedUser = async (id) => {
+    const userCollection = db().collection('User');
+    const user = await userCollection.findOne({
+        _id: id,
+        isBlocked: true
+    });
+    if (user) {
+        return true;
+    }
+    return false;
+}
+
 module.exports.add = async (user) => {
     const userCollection = db().collection('User');
-    const {username,email,password} = user;
+    const {username, email, password} = user;
     // hash password
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -48,7 +60,8 @@ module.exports.add = async (user) => {
         email,
         password: hashedPassword,
         isDeleted: false,
-        isActivated: true,
+        isActivated: false,
+        isBlocked: false,
         address: "",
         dob: "",
         gender: "",

@@ -1,3 +1,4 @@
+// set up ======================================================================
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -9,6 +10,7 @@ const cloudinary = require('cloudinary');
 const session = require('express-session');
 console.log(require('dotenv').config())
 const exphbs = require('express-handlebars');
+const flash = require('connect-flash');
 
 const passport = require('./passport');
 const homeRouter = require('./routes/home');
@@ -19,34 +21,38 @@ const cartRouter = require('./routes/cart');
 
 const app = express();
 
+// configuration ===============================================================
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', exphbs({
-  extname: '.hbs',
-  defaultLayout: 'layout',
+    extname: '.hbs',
+    defaultLayout: 'layout',
 }));
 app.set('view engine', 'hbs');
-
 
 app.use(logger('dev'));
 app.use(express.json());
 // body parser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 // cookie parser
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 // Express session
-app.use(session({secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
+app.use(session({secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true}));
 // Passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
-// make global variable for views layout
-app.use( (req, res, next) => {
-  res.locals.user = req.user;
-  next();
+// flash messages stored in session
+app.use(flash());
+// global variables (for views layout)
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    res.locals.err = req.flash('err');
+    next();
 });
 
-// routes
+
+// routes ======================================================================
 app.use('/', homeRouter);
 app.use('/home', homeRouter);
 app.use('/store', storeRouter);
@@ -56,19 +62,19 @@ app.use('/user', usersRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

@@ -11,38 +11,36 @@ cloudinary.config({
 const userModel = require('../models/userModel');
 
 
-module.exports.login = (req,res,next) => {
+module.exports.login = (req, res, next) => {
     if (req.user) {
         res.redirect('/user/profile');
         return;
-    }
-    else {
+    } else {
         let errors = [];
-        const err = req.query.q;
-        if (err === 'err') {
-            errors.push('Thông tin đăng nhập không đúng!');
+        if (res.locals.err.length > 0) {
+            errors.push(res.locals.err);
         }
-        res.render('signIn/login',{
-            title:'Đăng nhập',
+
+        res.render('signIn/login', {
+            title: 'Đăng nhập',
             errors: errors
         });
     }
 }
 
-module.exports.register = (req,res,next) => {
+module.exports.register = (req, res, next) => {
     res.render('signIn/register', {
-        title:'Đăng ký'
+        title: 'Đăng ký'
     });
 }
 
-module.exports.postRegister = async (req,res) => {
-    const {username,email,password,retypePassword} = req.body;
+module.exports.postRegister = async (req, res) => {
+    const {username, email, password, retypePassword} = req.body;
     let errors = [];
     // validate
     if (!username || !email || !password || !retypePassword) {
         errors.push('Vui lòng điền đầy đủ thông tin!');
-    }
-    else {
+    } else {
         if (password !== retypePassword) {
             errors.push('Mật khẩu không khớp!');
         }
@@ -52,15 +50,14 @@ module.exports.postRegister = async (req,res) => {
     }
     // check errors
     if (errors.length > 0) {
-        res.render('signIn/register',{
-            title:'Đăng ký',
+        res.render('signIn/register', {
+            title: 'Đăng ký',
             username: username, email: email,
             errors: errors
         });
         return;
-    }
-    else {
-        const userByEmail = await userModel.queryUser('email',email);
+    } else {
+        const userByEmail = await userModel.queryUser('email', email);
         const userByUsername = await userModel.queryUser('username', username);
         if (userByEmail) {
             errors.push('Email đã được đăng ký!');
@@ -71,37 +68,36 @@ module.exports.postRegister = async (req,res) => {
         // username or email exists
         const existedUser = userByEmail || userByUsername;
         if (existedUser) {
-            res.render('signIn/register',{
-                title:'Đăng ký',
+            res.render('signIn/register', {
+                title: 'Đăng ký',
                 username: username, email: email,
                 errors: errors
             });
             return;
-        }
-        else {
+        } else {
             const newUser = {username, email, password};
             await userModel.add(newUser);
-            res.render('signIn/register',{
+            res.render('signIn/register', {
                 title: 'Đăng ký',
-                success: 'Đăng ký thành công (◕‿↼). '
+                success: 'Đăng ký thành công (◕‿↼). Vui lòng xác thực email để '
             });
         }
     }
 }
 
-module.exports.logout =  (req,res) => {
+module.exports.logout = (req, res) => {
     req.logout();
     res.redirect('/home');
 }
 
-module.exports.profile = async (req,res) => {
+module.exports.profile = async (req, res) => {
     const user = await userModel.detail(req.user._id);
     res.render('user/profile', {
         title: 'Profile',
         user
     });
 }
-module.exports.modify = async (req,res,next) => {
+module.exports.modify = async (req, res, next) => {
     console.log(req.params.id);
     const user = await userModel.detail(req.user._id);
 
@@ -110,7 +106,7 @@ module.exports.modify = async (req,res,next) => {
         user
     });
 }
-exports.postModify = async(req,res,next) => {
+exports.postModify = async (req, res, next) => {
     const form = formidable({multiple: true});
 
     await form.parse(req, (err, fields, files) => {
@@ -118,15 +114,14 @@ exports.postModify = async(req,res,next) => {
             next(err);
             return;
         }
-        if (files.imageFile && files.imageFile.size> 0) {
+        if (files.imageFile && files.imageFile.size > 0) {
             cloudinary.uploader.upload(files.imageFile.path,
-                function(error, result) {
+                function (error, result) {
                     console.log(result, error);
                     fields.userImage = result.secure_url;
                     userModel.update(id, fields.userImage).then(res.redirect("/user/profile"));
                 });
-        }
-        else {
+        } else {
             res.redirect("/user/profile");
         }
     });
