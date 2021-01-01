@@ -27,8 +27,8 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    // get user from _id that is saved in session
     userService.getUser(id).then((user) => {
+        // get user from _id that is saved in session
         done(null, user);
     })
 });

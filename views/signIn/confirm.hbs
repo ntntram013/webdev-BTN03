@@ -1,0 +1,28 @@
+<!-- Start Register Area -->
+<div class="htc__login__register bg__white ptb--130" style="background: rgba(0, 0, 0, 0) url('/../../images/bg/5.jpg') no-repeat scroll center center / cover ;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <ul class="login__register__menu" role="tablist">
+                    <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">CHÚC MỪNG</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Start Login Register Content -->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="htc__login__register__wrap">
+
+                    {{#if success}}
+                        <div class="alert alert-success text-center" role="alert">
+                            {{success}} <a href="/user/login" class="alert-link">Đăng nhập</a> nào!
+                        </div>
+                    {{/if}}
+
+                </div>
+            </div>
+        </div>
+        <!-- End Login Register Content -->
+    </div>
+</div>
+<!-- End Register Area -->

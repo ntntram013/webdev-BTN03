@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+
 const userModel = require('../models/userModel');
 
 
@@ -26,6 +28,23 @@ module.exports.checkCredential = async (loginInfo, password) => {
     return 0;
 }
 
-exports.getUser = (id) => {
+module.exports.getUser = (id) => {
     return userModel.detail(id);
+}
+
+//  wrapper function to await nodemailer
+module.exports.sendMail = async (config, mailOptions) => {
+    return new Promise((resolve, reject) => {
+        let transporter = nodemailer.createTransport(config);
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log("error is " + error);
+                resolve(false); // or use rejcet(false) but then you will have to handle errors
+            } else {
+                console.log('Email sent: ' + info.response);
+                resolve(true);
+            }
+        });
+    });
 }

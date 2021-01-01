@@ -25,6 +25,16 @@ module.exports.queryUser = async (queryField, fieldInfo) => {
     return user;
 }
 
+module.exports.activateUser = async (id) => {
+    const userCollection = db().collection('User');
+    await userCollection.updateOne({
+        "_id": ObjectId(id)},{
+        $set: {
+            'isActivated': true
+        }
+    });
+}
+
 module.exports.checkActivatedUser = async (id) => {
     const userCollection = db().collection('User');
     const user = await userCollection.findOne({
@@ -70,6 +80,7 @@ module.exports.add = async (user) => {
         phone: "",
         name: username
     };
-    await userCollection.insertOne(newUser);
+    const result = await userCollection.insertOne(newUser);
+    return result;
 }
 

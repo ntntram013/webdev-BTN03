@@ -8,10 +8,11 @@ cloudinary.config({
 
 })
 
+
 const userModel = require('../models/userModel');
+const userService = require('../models/userService');
 
-
-module.exports.login = (req, res, next) => {
+module.exports.login = (req, res) => {
     if (req.user) {
         res.redirect('/user/profile');
         return;
@@ -28,7 +29,7 @@ module.exports.login = (req, res, next) => {
     }
 }
 
-module.exports.register = (req, res, next) => {
+module.exports.register = (req, res) => {
     res.render('signIn/register', {
         title: 'Đăng ký'
     });
@@ -76,11 +77,44 @@ module.exports.postRegister = async (req, res) => {
             return;
         } else {
             const newUser = {username, email, password};
-            await userModel.add(newUser);
+            const addedUser = await userModel.add(newUser);
+
             res.render('signIn/register', {
                 title: 'Đăng ký',
                 success: 'Đăng ký thành công (◕‿↼). Vui lòng xác thực email để '
             });
+
+            // create confirmation link
+            const url = 'http://localhost:5000/user/confirm/' + addedUser.insertedId;
+            let content = '';
+            content += `
+               <div style="padding: 10px; background-color: #b1bb88">
+                    <div style="padding: 10px; background-color: #e8eae6;">
+                        <h4 style="color: #576e4c">Konichiwa ~ (◕‿↼) . Cảm ơn bạn đã đến với TEAM 468 BOOKSTORE 🎉️</h4>
+                        <span style="color: black">Ohlala, ai đó vừa tạo tài khoản phải không? Nhấn </span><a href="${url}">vào đây</a> để kích hoạt tài khoản nha.
+                        <br><br><br>
+                        <span style="color: #323232"><i>Nếu bạn không tạo tài khoản bằng địa chỉ này, xin hãy bỏ qua email này.</i><br>Thân ái.</span>
+                         <br><br><br>
+                        <span style="color: #8d8d8b">Gửi với ❤ từ TEAM 468 BOOKSTORE.</span>
+                    </div>
+               </div>
+            `;
+            let mainOptions = {
+                from: '468-BOOKSTORE',
+                to: email,
+                subject: 'Xác Thực Tài Khoản Cho TEAM 468 BOOKSTORE',
+                text: '',
+                html: content
+            }
+            let config = {
+                service: 'Gmail',
+                auth: {
+                    user: process.env.EMAIL_SERVER,
+                    pass: process.env.EMAIL_PASS
+                }
+            };
+            await userService.sendMail(config, mainOptions);
+
         }
     }
 }
@@ -97,6 +131,7 @@ module.exports.profile = async (req, res) => {
         user
     });
 }
+
 module.exports.modify = async (req, res, next) => {
     console.log(req.params.id);
     const user = await userModel.detail(req.user._id);
@@ -106,6 +141,7 @@ module.exports.modify = async (req, res, next) => {
         user
     });
 }
+
 exports.postModify = async (req, res, next) => {
     const form = formidable({multiple: true});
 
@@ -125,4 +161,15 @@ exports.postModify = async (req, res, next) => {
             res.redirect("/user/profile");
         }
     });
+}
+
+module.exports.confirm = async (req,res) => {
+    let userId = req.params.token;
+    await userModel.activateUser(userId);
+
+    res.render('signIn/confirm', {
+        title: 'Xác thực email',
+        success: 'Bạn đã xác thực email thành công. Hãy bắt đầu '
+    });
+
 }

@@ -12,6 +12,8 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true
 }));
 
+router.get('/confirm/:token',userController.confirm);
+
 router.get('/register', userController.register);
 router.post('/register', userController.postRegister);
 router.get('/logout', userController.logout);
