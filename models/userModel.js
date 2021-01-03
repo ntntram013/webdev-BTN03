@@ -2,6 +2,7 @@ const {ObjectId} = require('mongodb');
 const bcrypt = require('bcryptjs');
 
 const {db} = require("../dal/userDal");
+const userService = require('../models/userService');
 
 exports.detail = async (id) => {
     const userCollection = db().collection('User');
@@ -12,6 +13,18 @@ exports.detail = async (id) => {
 exports.update = async (id, fields) => {
     const userCollection = db().collection('User');
     await userCollection.updateOne({"_id": ObjectId(id)}, {$set: {'userImage': fields}});
+}
+
+exports.updateByQuery = async (id, field, fieldValue) => {
+    const userCollection = db().collection('User');
+    let updateVal = {};
+    updateVal[field] = fieldValue;
+    const result = await userCollection.updateOne({
+        "_id": ObjectId(id)
+    }, {
+        $set: updateVal
+    });
+    return result;
 }
 
 module.exports.queryUser = async (queryField, fieldInfo) => {
@@ -27,12 +40,14 @@ module.exports.queryUser = async (queryField, fieldInfo) => {
 
 module.exports.activateUser = async (id) => {
     const userCollection = db().collection('User');
-    await userCollection.updateOne({
-        "_id": ObjectId(id)},{
+    const result = await userCollection.updateOne({
+        "_id": ObjectId(id)
+    }, {
         $set: {
             'isActivated': true
         }
     });
+    return result;
 }
 
 module.exports.checkActivatedUser = async (id) => {
@@ -59,12 +74,12 @@ module.exports.checkBlockedUser = async (id) => {
     return false;
 }
 
+
 module.exports.add = async (user) => {
     const userCollection = db().collection('User');
     const {username, email, password} = user;
     // hash password
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await userService.hashPass(password);
     const newUser = {
         username,
         email,

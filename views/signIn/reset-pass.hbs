@@ -1,0 +1,56 @@
+<div class="htc__login__register bg__white ptb--130"
+     style="background: rgba(0, 0, 0, 0) url('/../../images/bg/5.jpg') no-repeat scroll center center / cover ;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <ul class="login__register__menu" role="tablist">
+                    <li role="presentation" class="login active"><a role="tab" data-toggle="tab">ĐẶT LẠI MẬT KHẨU</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="htc__login__register__wrap">
+                    {{#if errors}}
+                        <div class="alert alert-danger alert-dismissible text-center" role="alert">
+                            <div class="alert-message text-center">
+                                <strong> {{errors}} </strong>
+                            </div>
+                        </div>
+                    {{else}}
+                        {{#if validateErrors}}
+                            <div class="alert alert-danger alert-dismissible text-center" role="alert">
+                                <div class="alert-message text-center">
+                                    <strong> {{validateErrors}} </strong>
+                                </div>
+                            </div>
+                        {{/if}}
+
+                        {{#if isGet}}
+                            <div id="login" role="tabpanel" class="single__tabs__panel tab-pane fade in active">
+                                <form class="login" id="theForm" method="POST">
+                                    <div class="text-center mt--10"><h5>Nhập mật khẩu mới:</h5></div>
+                                    <input type="password" required name="password">
+                                    <br><br>
+                                    <div class="text-center mt--10"><h5>Nhập lại mật khẩu:</h5></div>
+                                    <input type="password" required name="retypePassword">
+                                </form>
+                                <div class="htc__login__btn mt--30">
+                                    <a class="resetpass" id="theButton">Đặt lại mật khẩu</a>
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="alert alert-success text-center" role="alert">
+                                <strong>Thay đổi mật khẩu thành công.</strong> <a href="/user/login" class="alert-link">Đăng
+                                nhập</a>.
+                            </div>
+                        {{/if}}
+
+                    {{/if}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

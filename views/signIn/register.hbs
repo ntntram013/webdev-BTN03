@@ -15,7 +15,7 @@
 
                     {{#if errors}}
                         {{#each errors}}
-                            <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert alert-danger alert-dismissible text-center" role="alert">
                                 <div class="alert-message">
                                     <strong> {{this}} </strong> Vui lòng nhập lại!
                                 </div>
@@ -34,13 +34,12 @@
                         <form class="login" id="theForm" method="POST">
                             <input type="text" name="username" placeholder="Tên đăng nhập*" value = {{username}}>
                             <input type="email" name="email" placeholder="Email*" value = {{email}}>
-                            <input type="password" name="password" placeholder="Mật khẩu (phải có ít nhất 6 ký tự)*">
+                            <input type="password" name="password" placeholder="Mật khẩu (phải có ít nhất 5 ký tự)*">
                             <input type="password" name="retypePassword" placeholder="Nhập lại mật khẩu*">
                         </form>
-                        <div class="tabs__checkbox">
-                            <input type="checkbox">
-                            <span> Lưu tài khoản của tôi</span>
-                        </div>
+
+                        <br><br>
+
                         <div class="htc__login__btn">
                             <a id ="theButton">Đăng ký</a>
                         </div>

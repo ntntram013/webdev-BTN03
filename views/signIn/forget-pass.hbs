@@ -1,0 +1,50 @@
+<div class="htc__login__register bg__white ptb--130" style="background: rgba(0, 0, 0, 0) url('/../../images/bg/5.jpg') no-repeat scroll center center / cover ;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <ul class="login__register__menu" role="tablist">
+                    <li role="presentation" class="login active"><a role="tab" data-toggle="tab">QUÊN MẬT KHẨU</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Start Content -->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="htc__login__register__wrap">
+
+                    {{#if isGet}}
+                        {{#unless userFound}}
+                            <div class="alert alert-danger alert-dismissible text-center" role="alert">
+                                Không tìm thấy tài khoản. Vui lòng nhập lại.
+                            </div>
+                        {{/unless}}
+                        <div id="login" role="tabpanel" class="single__tabs__panel tab-pane fade in active">
+                            <div class="text-center mt--10">
+                                <br>
+                                <h5>Vui lòng nhập email đã đăng ký</h5>
+                                <br>
+                            </div>
+                            <form class="login" id="theForm" method="POST">
+                                <input type="email" required name="email" placeholder="Email của bạn*">
+                            </form>
+                            <div class="htc__login__btn mt--30">
+                                <a class="resetpass" id="theButton">Đặt lại mật khẩu</a>
+                            </div>
+                        </div>
+                    {{else if userFound}}
+                        <div class="alert alert-success text-center" role="alert">
+                            Chúng tôi đã gửi cho bạn 1 email. <strong>Xin hãy kiểm tra hộp thư của mình.</strong>
+                        </div>
+                        <div class="text-center mt--10">
+                            <br>
+                            <h5>Bỗng nhiên nhớ ra mật khẩu?<a href="/user/login"><span> ĐĂNG NHẬP</span></a></h5>
+                        </div>
+                    {{/if}}
+
+
+                </div>
+            </div>
+        </div>
+        <!-- End Content -->
+    </div>
+</div>

@@ -12,10 +12,16 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true
 }));
 
-router.get('/confirm/:token',userController.confirm);
+router.get('/confirm/:token', userController.confirm);
+
+router.get('/forget', userController.forgetPass);
+router.post('/forget', userController.postForgetPass);
+router.get('/forget/:token', userController.resetPass);
+router.post('/forget/:token', userController.postResetPass);
 
 router.get('/register', userController.register);
 router.post('/register', userController.postRegister);
+
 router.get('/logout', userController.logout);
 
 

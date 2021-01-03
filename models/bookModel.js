@@ -5,28 +5,28 @@ const {db} = require("../dal/db");
 
 exports.list = async () => {
     const bookCollection = db().collection('Product');
-    const bookList = await bookCollection.find({isDeleted:false}).toArray();
+    const bookList = await bookCollection.find({isDeleted: false}).toArray();
     return bookList;
 }
 
 exports.detail = async (id) => {
     const booksCollection = db().collection('Product');
-    const book = await booksCollection.findOne({_id:ObjectId(id), isDeleted:false});
+    const book = await booksCollection.findOne({_id: ObjectId(id), isDeleted: false});
     return book;
 }
 
-exports.Pagination = async (itemPerPage,currentPage) => {
+exports.Pagination = async (itemPerPage, currentPage) => {
     const booksCollection = db().collection('Product');
-    const bookPerPage = await booksCollection.find({isDeleted:false}).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray();
+    const bookPerPage = await booksCollection.find({isDeleted: false}).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray();
     return bookPerPage;
 }
 
-exports.PaginationFindTitle = async (searchName,itemPerPage,currentPage) => {
+exports.PaginationFindTitle = async (searchName, itemPerPage, currentPage) => {
     const booksCollection = db().collection('Product');
     const bookPerPage = await booksCollection.find({
         isDeleted: false,
         parseBookName: new RegExp(searchName)
-    }).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray()
+    }).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
         .catch(e => console.log('Error: ', e.message));
     return bookPerPage;
 }
@@ -37,10 +37,10 @@ exports.TotalProduct = async (filterName) => {
     if (!filterName) {
         const numBook = await booksCollection.find({isDeleted: false}).count();
         return numBook;
-    }
-    else {
-        const numBook = await booksCollection.find({isDeleted: false,
-            parseBookName:new RegExp(filterName)
+    } else {
+        const numBook = await booksCollection.find({
+            isDeleted: false,
+            parseBookName: new RegExp(filterName)
         }).count();
         return numBook;
     }
@@ -48,11 +48,11 @@ exports.TotalProduct = async (filterName) => {
 // liệt kê danh sách các nxb, các thể loại, v.v từ collectionName
 module.exports.listDocuments = async (collectionName) => {
     const catalogCollection = db().collection(collectionName);
-    const catalogList = await catalogCollection.find({isDeleted:false}).toArray();
+    const catalogList = await catalogCollection.find({isDeleted: false}).toArray();
     return catalogList;
 }
 // lấy tên của 1 nxb, thể loại cụ thể từ collectionName dựa theo Id & keyName (để hiện title khi search)
-module.exports.getKeyNameOfId = async (Id,keyName,collectionName) => {
+module.exports.getKeyNameOfId = async (Id, keyName, collectionName) => {
     const catalogCollection = db().collection(collectionName);
 
     let query = {};
@@ -70,15 +70,14 @@ module.exports.getKeyNameOfId = async (Id,keyName,collectionName) => {
     }
 }
 // tổng số sản phẩm theo queryField & filterId
-module.exports.totalProductById = async (queryField,filterId) => {
+module.exports.totalProductById = async (queryField, filterId) => {
     const booksCollection = db().collection('Product');
     let query = {};
     if (!filterId) {
         query["isDeleted"] = false;
         const numBook = await booksCollection.find(query).count();
         return numBook;
-    }
-    else {
+    } else {
         query["isDeleted"] = false;
         query[queryField] = ObjectId(filterId);
         const numBook = await booksCollection.find(query).count();
@@ -86,14 +85,14 @@ module.exports.totalProductById = async (queryField,filterId) => {
     }
 }
 // phân trang dựa theo queryField & filterId
-module.exports.PaginationQuery = async (queryField,filterId,itemPerPage,currentPage) => {
+module.exports.PaginationQuery = async (queryField, filterId, itemPerPage, currentPage) => {
     const booksCollection = db().collection('Product');
 
     let query = {};
     query["isDeleted"] = false;
     query[queryField] = ObjectId(filterId);
 
-    const bookPerPage = await booksCollection.find(query).limit(itemPerPage).skip(itemPerPage*(currentPage-1)).toArray()
+    const bookPerPage = await booksCollection.find(query).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
         .catch(e => console.log('Error: ', e.message));
     return bookPerPage;
 }

@@ -32,6 +32,12 @@ module.exports.getUser = (id) => {
     return userModel.detail(id);
 }
 
+module.exports.hashPass = async (password) => {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    return hashedPassword;
+}
+
 //  wrapper function to await nodemailer
 module.exports.sendMail = async (config, mailOptions) => {
     return new Promise((resolve, reject) => {

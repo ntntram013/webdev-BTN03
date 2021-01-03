@@ -723,6 +723,20 @@
     color: #4b4b4b;
     text-transform: uppercase;
 }
+.htc__login__btn .resetpass {
+    border: 1px solid #d5d5d5;
+    display: inline-block;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;
+    width: 150px;
+    color: #4b4b4b;
+    text-transform: uppercase;
+}
+
 .htc__login__btn {
     text-align: center;
 }

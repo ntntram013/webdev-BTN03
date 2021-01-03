@@ -15,7 +15,7 @@
 
                     {{#if errors}}
                         {{#each errors}}
-                            <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert alert-danger alert-dismissible text-center" role="alert">
                                 <div class="alert-message">
                                     <strong> {{this}} </strong> Vui lòng nhập lại!
                                 </div>
@@ -30,9 +30,7 @@
                             <input type="password" required name="password" placeholder="Mật khẩu*" >
                         </form>
                         <div class="tabs__checkbox">
-                            <input type="checkbox">
-                            <span> Lưu tài khoản của tôi</span>
-                            <span class="forget"><a href="#">Quên mật khẩu?</a></span>
+                            <span class="forget"><a href="/user/forget">Quên mật khẩu?</a></span>
                         </div>
                         <div class="htc__login__btn mt--30">
                             <a id ="theButton">Đăng nhập</a>
