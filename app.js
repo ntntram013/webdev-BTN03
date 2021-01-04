@@ -8,7 +8,7 @@ const mongodb = require('mongodb');
 const formidable = require('formidable');
 const cloudinary = require('cloudinary');
 const session = require('express-session');
-console.log(require('dotenv').config())
+console.log(require('dotenv').config());
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 
@@ -50,7 +50,6 @@ app.use((req, res, next) => {
     res.locals.err = req.flash('err');
     next();
 });
-
 
 // routes ======================================================================
 app.use('/', homeRouter);
