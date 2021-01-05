@@ -44,3 +44,8 @@
     margin-left: 50px;
     margin-right: 50px;
 }
+.product-page{
+    margin: auto;
+    display: block;
+    align-items: center;
+}

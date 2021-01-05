@@ -4,18 +4,47 @@
     {{# book}}
     <div class="container">
         <div class="">
-            <div class="col-md-4 col-lg-4 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <div class="col-md-5 col-lg-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 
                 <div class="product__details__container">
+                    <!--old image
+                    col-md-offset-1 col-sm-offset-1 col-xs-offset-1
                     <div class="product__big__images">
                         <div class="portfolio-full-image tab-content">
-                                <img src="{{bookImage}}" alt="full-image">
+                            <img src="{0{bookImage}}" alt="full-image">
+                        </div>
+                    </div>
+                    -->
+                    <!-- Start Small images -->
+
+                    <ul class="product__small__images" role="tablist">
+                    {{# each bookImage as | item | }}
+                        <li role="presentation" class="pot-small-img">
+                            <a href="#img-tab-{{@index}}" role="tab" data-toggle="tab">
+                                <img src="{{item}}" alt="small-image">
+                            </a>
+                        </li>
+                    {{/each}}
+                    </ul>
+
+                    <!-- End Small images -->
+                    <div class="product__big__images">
+                        <div class="portfolio-full-image tab-content">
+                            <div role="tabpanel" class="tab-pane active">
+                                <img src="{{bookImage.[0]}}" alt="full-image">
+                            </div>
+                            {{# each bookImage as | item | }}
+                            <div role="tabpanel" class="tab-pane" id="img-tab-{{@index}}">
+                                <img src="{{item}}" alt="full-image">
+                            </div>
+                            {{/each}}
+
                         </div>
                     </div>
                 </div>
 
             </div>
-            <div class="col-md-6 col-lg-6 col-sm-5 col-xs-12 xmt-30">
+            <div class="col-md-5 col-lg-5 col-sm-7 col-xs-12 xmt-30">
                 <div class="htc__product__details__inner">
                     <div class="pro__detl__title">
                         <h2>{{bookName}}</h2>
