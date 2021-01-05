@@ -17,56 +17,50 @@
                                 <h3><strong>Bộ sưu tập</strong></h3>
                             </div>
                             <div class="category-menu-list">
-                                    <ul>
-
-                                        <li><a href="#"><img alt="" src="images/icons/book-25.png"> Thể loại <i class="zmdi zmdi-chevron-right"></i></a>
-                                            <div class="category-menu-dropdown">
-                                                <div class="category-common mb--10">
-                                                    <h4 class="categories-subtitle"> Thể loại </h4>
-                                                    <ul>
-                                                        {{#each catalog}}
-                                                            <li><a href="/store/?catId={{_id}}"> {{catalogName}} </a></li>
-                                                        {{/each}}
-                                                    </ul>
-                                                </div>
+                                <ul>
+                                    <li><a href="#"><img alt="" src="images/icons/book-25.png"> Thể loại <i class="zmdi zmdi-chevron-right"></i></a>
+                                        <div class="category-menu-dropdown">
+                                            <div class="category-common">
+                                                <ul>
+                                                    {{#each catalog}}
+                                                        <li class="mt--0 mb--10">
+                                                            <a href="/store/?catId={{_id}}"> {{catalogName}}</a>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
                                             </div>
-                                        </li>
+                                        </div>
+                                    </li>
 
-                                        <li><a href="#"><img alt="" src="images/icons/publisher-25.png"> Nhà xuất bản <i class="zmdi zmdi-chevron-right"></i></a>
-                                            <div class="category-menu-dropdown">
-                                                <div class="category-common mb--10">
-                                                    <h4 class="categories-subtitle"> Nhà xuất bản </h4>
-                                                    <ul>
-                                                        {{#each publisher}}
-                                                            <li><a href="/store/?pubId={{_id}}"> {{publisherName}} </a></li>
-                                                        {{/each}}
-                                                    </ul>
-                                                </div>
+                                    <li><a href="#"><img alt="" src="images/icons/publisher-25.png"> Nhà xuất bản <i class="zmdi zmdi-chevron-right"></i></a>
+                                        <div class="category-menu-dropdown">
+                                            <div class="category-common mb--10">
+                                                <ul class="dropdown">
+                                                    {{#each publisher}}
+                                                        <li class="mt--0 mb--10">
+                                                            <a href="/store/?pubId={{_id}}"> {{publisherName}}</a>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
                                             </div>
-                                        </li>
+                                        </div>
+                                    </li>
 
-                                        <li><a href="#"><img alt="" src="images/icons/medals-25.png"> Best sellers <i class="zmdi zmdi-chevron-right"></i></a>
-                                            <div class="category-menu-dropdown">
-                                                <div class="category-common mb--10">
-                                                    <h4 class="categories-subtitle"> Bán chạy nhất </h4>
-                                                    <ul>
-                                                        <li>Nguyễn Huy Tú</li>
-                                                    </ul>
-                                                </div>
+                                    <li><a href="#"><img alt="" src="images/icons/medals-25.png"> Best sellers <i class="zmdi zmdi-chevron-right"></i></a>
+                                        <div class="category-menu-dropdown">
+                                            <div class="category-common mb--10">
+                                                <h4 class="categories-subtitle"> Bán chạy nhất </h4>
+                                                <ul>
+                                                    <li>Nguyễn Huy Tú</li>
+                                                </ul>
                                             </div>
-                                        </li>
-
-
-
-
-
-
-
-
-
-
-                                    </ul>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
+
+
+
                         </div>
                     </div>
                     <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style pb--50">
@@ -120,11 +114,7 @@
                     </div>
                 </div>
 
-
-
                 <!-- End Left Feature -->
-
-
 
 
 

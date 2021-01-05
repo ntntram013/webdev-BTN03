@@ -3,37 +3,88 @@
     <div class="container">
 
         <div class="htc__product__container">
-            <div class="row mtb--50">
-                <div class="product__list another-product-style">
+            <div class="row mb--50">
+                <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12 float-right-style">
+                    <div class="categories-menu mrg-xs mt--100">
+                        <div class="product-categories-title">
+                            <h3><strong>Bộ sưu tập</strong></h3>
+                        </div>
+                        <div class="category-menu-list">
+                            <ul>
+                                <li><a href="#"><img alt="" src="images/icons/book-25.png"> Thể loại <i class="zmdi zmdi-chevron-right"></i></a>
+                                    <div class="category-menu-dropdown">
+                                        <div class="category-common">
+                                            <ul>
+                                                {{#each catalog}}
+                                                    <li class="mt--0 mb--10">
+                                                        <a href="/store/?catId={{_id}}"> {{catalogName}}</a>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
 
-                    {{#each book}}
-                    <!-- Start Single Product -->
-                    <div class="col-md-3 single__pro col-lg-3 col-sm-4 col-xs-12 p--20 mb--10">
-                        <div class="product foo">
-                            <div class="product__inner">
-                                <div class="pro__thumb">
-                                    <a href="/store/{{_id}}">
-                                        <img src="{{bookImage}}" alt="product images">
-                                    </a>
-                                </div>
-                                <div class="product__hover__info">
-                                    <ul class="product__action">
-                                        <li><a title="Add TO Cart" href="cart"><span class="ti-shopping-cart"></span></a></li>
-                                        <li><a title="Wishlist" href=""><span class="ti-heart"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product__details">
-                                <a href="/store/{{_id}}"> <h2>{{bookName}}</h2> </a>
-                                <ul class="product__price">
-                                    <li class="new__price">{{price}} đ</li>
-                                </ul>
-                            </div>
+                                <li><a href="#"><img alt="" src="images/icons/publisher-25.png"> Nhà xuất bản <i class="zmdi zmdi-chevron-right"></i></a>
+                                    <div class="category-menu-dropdown">
+                                        <div class="category-common mb--10">
+                                            <ul class="dropdown">
+                                                {{#each publisher}}
+                                                    <li class="mt--0 mb--10">
+                                                        <a href="/store/?pubId={{_id}}"> {{publisherName}}</a>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li><a href="#"><img alt="" src="images/icons/medals-25.png"> Best sellers <i class="zmdi zmdi-chevron-right"></i></a>
+                                    <div class="category-menu-dropdown">
+                                        <div class="category-common mb--10">
+                                            <h4 class="categories-subtitle"> Bán chạy nhất </h4>
+                                            <ul>
+                                                <li>Nguyễn Huy Tú</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- End Single Product -->
-                    {{/each}}
                 </div>
+                <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style pb--50">
+                    <div class="product__list another-product-style">
+                        {{#each book}}
+                            <!-- Start Single Product -->
+                            <div class="col-md-3 single__pro col-lg-3 col-sm-4 col-xs-12 p--20 mb--10">
+                                <div class="product foo">
+                                    <div class="product__inner">
+                                        <div class="pro__thumb">
+                                            <a href="/store/{{_id}}">
+                                                <img src="{{bookImage}}" alt="product images">
+                                            </a>
+                                        </div>
+                                        <div class="product__hover__info">
+                                            <ul class="product__action">
+                                                <li><a title="Add To Cart" href="/store/add-to-cart/{{_id}}"><span class="ti-shopping-cart"></span></a></li>
+                                                <li><a title="Wishlist" href=""><span class="ti-heart"></span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product__details">
+                                        <a href="/store/{{_id}}"> <h2>{{bookName}}</h2> </a>
+                                        <ul class="product__price">
+                                            <li class="new__price">{{price}} đ</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Product -->
+                        {{/each}}
+                    </div>
+                </div>
+
             </div>
 
         </div>

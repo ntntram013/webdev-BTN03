@@ -46,7 +46,10 @@
                     {{else}}
                         <li> <a href="/user/login" >Đăng nhập </a> </li>
                     {{/if}}
-                    <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
+                    <li class="cart__menu">
+                        <span class="ti-shopping-cart"> </span>
+                        <span class="badge" >{{session.cart.totalQty}}</span>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -32,22 +32,23 @@
                     <!-- Start Single Content -->
                     <div id="register" role="tabpanel" class="single__tabs__panel tab-pane fade in active">
                         <form class="login" id="theForm" method="POST">
-                            <input type="text" name="username" placeholder="Tên đăng nhập*" value = {{username}}>
-                            <input type="email" name="email" placeholder="Email*" value = {{email}}>
-                            <input type="password" name="password" placeholder="Mật khẩu (phải có ít nhất 5 ký tự)*">
-                            <input type="password" name="retypePassword" placeholder="Nhập lại mật khẩu*">
-                        </form>
-
-                        <br><br>
-
-                        <div class="htc__login__btn">
-                            <a id ="theButton">Đăng ký</a>
-                        </div>
-
-                        <div class="text-center mt--10">
+                            <input type="text" name="username" required placeholder="Tên đăng nhập*" value = {{username}}>
+                            <input type="email" name="email" required placeholder="Email*" value = {{email}}>
+                            <input type="password" name="password" required minlength="5" placeholder="Mật khẩu (phải có ít nhất 5 ký tự)*">
+                            <input type="password" name="retypePassword" required minlength="5" placeholder="Nhập lại mật khẩu*">
                             <br><br>
-                            <h5>Đã có tài khoản? <a href="/user/login"><span>ĐĂNG NHẬP</span></a></h5>
-                        </div>
+
+                            <div class="htc__login__btn">
+                                <a  id ="theButton">Đăng ký</a>
+                            </div>
+
+                            <div class="text-center mt--10">
+                                <br><br>
+                                <h5>Đã có tài khoản? <a href="/user/login"><span>ĐĂNG NHẬP</span></a></h5>
+                            </div>
+
+
+                        </form>
                     </div>
                     <!-- End Single Content -->
                 </div>

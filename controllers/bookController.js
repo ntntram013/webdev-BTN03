@@ -1,12 +1,6 @@
 const bookModel = require('../models/bookModel');
 
-exports.index = async (req, res, next) => {
-    // Get books from model
-    const book = await bookModel.list();
-    // Pass data to view to display list of books
-    res.render('store/store',{title:'Cửa hàng',book});
 
-};
 
 exports.detail = async (req,res,next) => {
     const book = await bookModel.detail(req.params.id);
@@ -118,9 +112,16 @@ exports.pagination = async(req,res) => {
         title = 'Bộ Sưu Tập | ' + 'NXB ' + publisherName;
     }
 
-
+    const [catalog, publisher, book] = await Promise.all(
+        [bookModel.listDocuments('Catalog'),
+            bookModel.listDocuments('Publisher'),
+            bookModel.list()]);
+    // Get books from model
+    // Pass data to view to display list of books
     res.render('store/store', {
         title: title,
+        catalog: catalog,
+        publisher: publisher,
         titleSearch: titleSearch, catId: catId, pubId: pubId,
         book: productPerPage,
         previousPage: previousPage,

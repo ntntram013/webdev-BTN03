@@ -11,7 +11,7 @@ const session = require('express-session');
 console.log(require('dotenv').config());
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
-
+const MongoStore = require('connect-mongo')(session);
 const passport = require('./passport');
 const homeRouter = require('./routes/home');
 const usersRouter = require('./routes/users');
@@ -38,7 +38,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 // Express session
-app.use(session({secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true}));
+app.use(session({
+    secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true,
+    store: new MongoStore({url: 'mongodb+srv://webteam:development@cluster0.qqvwj.mongodb.net/Store?retryWrites=true&w=majority',collection: 'Session'}),
+    cookie: {maxAge: 180 * 60 * 1000}
+}));
 // Passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,6 +52,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.user = req.user;
     res.locals.err = req.flash('err');
+    res.locals.session = req.session;
     next();
 });
 
