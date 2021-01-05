@@ -1,32 +1,42 @@
+
 <div class="shopping__cart">
     <div class="shopping__cart__inner">
         <div class="offsetmenu__close__btn">
             <a href="#"><i class="zmdi zmdi-close"></i></a>
         </div>
+        {{#if session.cart.totalQty}}
         <div class="shp__cart__wrap">
+            {{#each session.cart.items }}
             <div class="shp__single__product">
+
                 <div class="shp__pro__thumb">
                     <a href="#">
-                        <img src="/images/product/sm-img/1.jpg" alt="product images">
+                        <img src="{{this.item.bookImage}}" alt="product images">
                     </a>
                 </div>
                 <div class="shp__pro__details">
-                    <h2><a href="product-details">BO&Play Wireless Speaker</a></h2>
-                    <span class="quantity">SL: 1</span>
-                    <span class="shp__price">VNĐ 105.00</span>
+                    <h5><a href="/store/{{this.item._id}}">{{this.item.bookName}}</a></h5>
+                    <span class="quantity">{{this.qty}} x {{this.price}} đ </span>
+                    <span class="shp__price"></span>
                 </div>
-                <div class="remove__btn">
-                    <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                </div>
+
             </div>
+            {{/each}}
         </div>
         <ul class="shoping__total">
             <li class="subtotal">Tổng:</li>
-            <li class="total__price"><strong>VNĐ 130.00</strong></li>
+            <li class="h5 shp__price"><strong>{{session.cart.totalPrice}} đ</strong></li>
         </ul>
         <ul class="shopping__btn">
             <li><a href="cart">Xem giỏ hàng</a></li>
             <li class="shp__checkout"><a href="">Thanh toán</a></li>
         </ul>
+        {{else}}
+            <div class="row">
+                <h2 class="text-center mt--100 mb--10">GIỎ HÀNG TRỐNG</h2>
+                <p class="text-center">Hãy chọn một cuốn sách và quay lại bạn nhé!</p>
+            </div>
+
+        {{/if}}
     </div>
 </div>
