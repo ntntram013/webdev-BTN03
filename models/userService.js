@@ -3,7 +3,6 @@ const nodemailer = require('nodemailer');
 
 const userModel = require('../models/userModel');
 
-
 module.exports.checkCredential = async (loginInfo, password) => {
     const userByUsername = await userModel.queryUser('username', loginInfo);
     const userByEmail = await userModel.queryUser('email', loginInfo);

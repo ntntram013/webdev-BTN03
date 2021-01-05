@@ -8,7 +8,6 @@ cloudinary.config({
 
 })
 
-
 const userModel = require('../models/userModel');
 const userService = require('../models/userService');
 
@@ -255,7 +254,9 @@ module.exports.resetPass = async (req, res) => {
 module.exports.postResetPass = async (req, res) => {
     const {password, retypePassword} = req.body
     let errors = [];
-    if (password === retypePassword) {
+    if (password.length < 5) {
+        errors.push('Mật khẩu phải ít nhất 5 ký tự!');
+    } else if (password === retypePassword) {
         const userId = req.params.token
         const hashedPassword = await userService.hashPass(password);
         userModel.updateByQuery(userId, 'password', hashedPassword).then(result => {
@@ -268,8 +269,6 @@ module.exports.postResetPass = async (req, res) => {
             }
         });
         return;
-    } else if (password.length < 5) {
-        errors.push('Mật khẩu phải ít nhất 5 ký tự!');
     } else {
         errors.push('Mật khẩu không khớp. Vui lòng nhập lại.');
     }
