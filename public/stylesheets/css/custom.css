@@ -49,3 +49,15 @@
     display: block;
     align-items: center;
 }
+.badge{
+    color: #2ec4b6;
+    background: white;
+    border: 1px solid #2ec4b6;
+    position: relative;
+    width: border-box;
+    height: border-box;
+}
+.cart-menu{
+    display: block;
+    width: 80%;
+}

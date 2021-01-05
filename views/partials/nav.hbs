@@ -1,7 +1,7 @@
 <div id="sticky-header-with-topbar" class="mainmenu__area mainmenu__nav sticky__header">
     <div class="container">
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-lg-3 col-sm-3 col-xs-3">
                 <div class="logo">
                     <a href="/">
                         <img src="/images/logo/logo.png" alt="logo">
@@ -9,7 +9,7 @@
                 </div>
             </div>
             <!-- Start MAinmenu Ares -->
-            <div class="col-md-8 col-lg-8 col-sm-6 col-xs-6">
+            <div class="col-md-8 col-lg-6 col-sm-6 col-xs-6">
                 <nav class="mainmenu__nav hidden-xs hidden-sm">
                     <ul class="main__menu">
                         <li class="drop"><a href="/">TRANG CHỦ</a></li>
@@ -30,7 +30,7 @@
             </div>
             <!-- End MAinmenu Ares -->
 
-            <div class="col-md-2 col-sm-4 col-xs-4">
+            <div class="col-md-2 col-lg-3 col-sm-4 col-xs-4">
                 <ul class="menu-extra">
                     <li class="search search__open hidden-xs"><span class="ti-search"> </span></li>
                     {{#if user}}
@@ -46,9 +46,9 @@
                     {{else}}
                         <li> <a href="/user/login" >Đăng nhập </a> </li>
                     {{/if}}
-                    <li class="cart__menu">
-                        <span class="ti-shopping-cart"> </span>
-                        <span class="badge" >{{session.cart.totalQty}}</span>
+                    <li class="cart__menu text-center">
+                        <span class="ti-shopping-cart"></span>
+                        <span class="badge bg__white" >{{session.cart.totalQty}}</span>
                     </li>
                 </ul>
             </div>

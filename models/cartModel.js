@@ -13,7 +13,7 @@ module.exports = function Cart(oldCart){
         this.totalPrice += parseInt(storedItem.item.price);
     };
     this.generateArray = function () {
-        let arr;
+        let arr = [];
         for (let id in this.items){
             arr.push(this.items[id])
 

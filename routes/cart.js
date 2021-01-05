@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+const cartController = require('../controllers/cartController');
 /* GET home page. */
-router.get('/', (req, res) => {
-    res.render('cart', {title: 'Giỏ hàng'});
-});
+
+router.get('/', cartController.detail );
 
 
 module.exports = router;

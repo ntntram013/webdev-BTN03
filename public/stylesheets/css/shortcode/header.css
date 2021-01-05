@@ -200,8 +200,6 @@
   line-height: 62px;
 }
 .sticky__header.scroll-header .menu-extra li span {
-  height: 60px;
-  line-height: 62px;
 }
 .fluid-container.mobile-menu-container {
   position: relative;
@@ -362,7 +360,7 @@
     padding-left: 0;
 }
 .menu-extra li span {
-    color: #666666;
+
     font-size: 19px;
     line-height: 30px;
     transition: all 0.3s ease 0s;
