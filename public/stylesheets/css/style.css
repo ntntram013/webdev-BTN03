@@ -2384,14 +2384,14 @@ select.select-color {
     display: flex;
 }
 .product__small__images {
-    min-width: 20%;
+    width: 20%;
     padding-right: 10px;
 }
 .product__big__images {
     max-width: 80%;
 }
 .pot-small-img a {
-    display: block;
+    display: inline;
 }
 .pot-small-img a img {
     width: 100%;
