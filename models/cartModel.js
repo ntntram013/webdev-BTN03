@@ -30,17 +30,16 @@ module.exports = function Cart(oldCart){
             delete this.items[id];
         }
     };
-    this.changeQty = (item, id, qty) => {
+    this.changeQty = ( id, qty) => {
         const itemQty = qty ? Number(qty) : 1;
         let storeItem = this.items[id];
-        if (!storeItem) {
-            storeItem = this.items[id] = { item: item, qty: 0, price: 0, images: '' };
-            this.totalQty++;
+        if (storeItem) {
+            let oldQty = storeItem.qty;
+            storeItem.qty = itemQty;
+            storeItem.price = storeItem.item.price * storeItem.qty;
+            this.totalPrice += storeItem.price - storeItem.item.price * oldQty;
         }
-        let oldQty = storeItem.qty;
-        storeItem.qty = itemQty;
-        storeItem.price = storeItem.item.price * storeItem.qty;
-        storeItem.images = storeItem.item.images[0];
-        this.totalPrice += storeItem.price - storeItem.item.price * oldQty;
+
+
     };
 };

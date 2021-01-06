@@ -3515,8 +3515,9 @@ blockquote::before {
     font-size: 13px;
 }
 .table-content table td input {
-    background: #e5e5e5 none repeat scroll 0 0;
-    border: medium none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-radius: 3px;
     color: #6f6f6f;
     font-size: 15px;

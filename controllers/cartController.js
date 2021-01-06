@@ -21,11 +21,8 @@ exports.detail = function (req,res,next){
 exports.deleteItem = async (req,res,next) => {
     const bookId = req.params.id;
     let cart = new cartModel(req.session.cart ? req.session.cart : {items: {}});
-    const book = await bookModel.detail(bookId);
-    if(book){
-        cart.deleteItem(bookId);
-        req.session.cart = cart;
-    }
+    cart.deleteItem(bookId);
+    req.session.cart = cart;
     res.redirect("back");
 }
 exports.deleteCart = (req, res, next) => {
@@ -34,6 +31,18 @@ exports.deleteCart = (req, res, next) => {
         req.user.cart = {};
         req.user.save();
     }
+    res.redirect("back");
+};
+exports.modifyCart = async (req, res, next) => {
+    const bookId = req.query.bookId;
+    const qty = req.query.qty;
+    if (qty == 0) {
+        res.redirect("back");
+    }
+    let cart = new cartModel(req.session.cart ? req.session.cart : {});
+    cart.changeQty(bookId, qty);
+    req.session.cart = cart;
+    console.log(req.session.cart);
     res.redirect("back");
 };
 

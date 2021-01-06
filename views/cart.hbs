@@ -1,8 +1,46 @@
 <!-- cart-main-area start -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+        let s = $('#lengthCart').val();
+        for(let $i=0;$i<s;$i++) {
+
+            $("#"+"upCart"+$i).on('change keyup', function () {
+                let newQty = $(this).val();
+                let rowId = $("#"+"rowId"+$i).val();
+                let bookId = $("#"+"bookId"+$i).val();
+                if(isNaN(newQty) || newQty <=0 ){
+                       alert("Vui lòng nhập số lượng hợp lệ") ;
+                }
+                else{
+
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'html',
+                        url: '/cart/modify/'+bookId,
+                        data: {bookId: bookId, qty: newQty},
+                        success: data=> {
+                            $('.subtotal-' + bookId).load(' .subtotal-' + bookId );
+                            $('.temp-total').load(' .temp-total' );
+                            $('.temp-subtotal').load(' .temp-subtotal' );
+                            $('.partial-qty').load(' .partial-qty' );
+
+                            $('.partial-totalPrice').load(' .partial-totalPrice' );
+                        }
+                    });
+
+
+                }
+            });
+        }
+    });
+</script>
 <div class="cart-main-area ptb--120 bg__white">
     <div class="container">
         <div class="row">
             {{#if books}}
+                <input class="hidden" id="lengthCart" value="{{books.length}}"/>
                 <div class="shopping__cart__inner col-md-12 col-sm-12 col-xs-12">
                     <form action="#">
                         <div class="row">
@@ -22,21 +60,41 @@
                                     <th class="product-price">Đơn giá</th>
                                     <th class="product-quantity">Số lượng</th>
                                     <th class="product-subtotal">Thành tiền</th>
-                                    <th class="product-remove">Tùy chọn</th>
+                                    <th class="product-remove">Xóa</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {{#each books}}
-                                <tr>
-                                    <td class="product-thumbnail"><a href="#"><img src="{{this.item.bookImage}}" alt="product img" /></a></td>
-                                    <td class="product-name"><a href="#"><h5>{{this.item.bookName}}</h5></a></td>
-                                    <td class="product-price"><span class="amount">{{this.item.price}}</span></td>
-                                    <td class="product-quantity"><input type="number" min="1" value="{{this.qty}}" /></td>
-                                    <td class="product-subtotal">{{this.price}}</td>
-                                    <td class="product-remove"><a href="/cart/delete-item/{{this.item._id}}"><span class="ti-trash"></span></a></td>
-                                </tr>
+
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img src="{{this.item.bookImage}}" alt="product img" /></a>
+                                            </td>
+                                            <td class="product-name">
+                                                <a href="#">{{this.item.bookName}}</a>
+                                            </td>
+                                            <td  class="product-name">
+                                                <p id="price-{{this.item._id}}">{{this.item.price}} đ </p>
+                                            </td>
+                                            <td  class="product-quantity"> x
+
+                                                <input type="hidden" id="rowId{{@index}}" value="{{@index}}"/>
+                                                <input type="hidden" id="bookId{{@index}}" value="{{this.item._id}}"/>
+                                                <input name="qty" id="upCart{{@index}}"  type="number" min="1" value="{{this.qty}}" /></td>
+                                            <td class="product-subtotal "><p class="subtotal-{{this.item._id}}" >{{this.price}} đ</p></td>
+                                            <td class="product-remove center-b">
+
+                                                <a href="/cart/delete-item/{{this.item._id}}"><span class="ti-trash"></span></a>
+
+                                            </td>
+                                        </tr>
+
+
                                 {{/each}}
                             </table>
+
+
+
                         </div>
 
                         <div class="row">
@@ -44,9 +102,7 @@
                             <div class="col-md-8 col-sm-7 col-xs-12">
                                 <div class="buttons-cart">
                                     <a href="/store"><span class="ti-angle-left"></span> Tiếp tục mua hàng</a>
-                                    <input type="submit" value="Cập nhật giỏ hàng">
-
-                                </div>
+                                                                    </div>
                             </div>
                             <div class="col-md-4 col-sm-5 col-xs-12">
                                 <div class="cart_totals">
@@ -55,7 +111,7 @@
                                         <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Tổng tiền</th>
-                                            <td><span class="amount">{{totalPrice}}</span></td>
+                                            <td class="temp-subtotal">{{totalPrice}} đ</td>
                                         </tr>
                                         <tr class="shipping">
                                             <th>Vận chuyển</th>
@@ -74,8 +130,8 @@
                                         </tr>
                                         <tr class="order-total">
                                             <th>Thành tiền</th>
-                                            <td>
-                                                <strong><span class="amount">{{totalPrice}}</span></strong>
+                                            <td class="temp-total">
+                                                {{totalPrice}} đ
                                             </td>
                                         </tr>
                                         </tbody>

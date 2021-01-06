@@ -16,7 +16,7 @@
                 </div>
                 <div class="shp__pro__details">
                     <h5><a href="/store/{{this.item._id}}">{{this.item.bookName}}</a></h5>
-                    <span class="quantity">{{this.qty}} x {{this.price}} đ </span>
+                    <span class="quantity partial-qty">{{this.qty}} x {{this.price}} đ </span>
                     <span class="shp__price"></span>
                 </div>
 
@@ -25,7 +25,7 @@
         </div>
         <ul class="shoping__total">
             <li class="subtotal">Tổng:</li>
-            <li class="h5 shp__price"><strong>{{session.cart.totalPrice}} đ</strong></li>
+            <li class="h5 shp__price"><strong class="partial-totalPrice">{{session.cart.totalPrice}} đ</strong></li>
         </ul>
         <ul class="shopping__btn">
             <li><a href="cart">Xem giỏ hàng</a></li>
