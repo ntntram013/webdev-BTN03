@@ -1,42 +1,5 @@
 <!-- cart-main-area start -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-
-    $(document).ready(function(){
-        let s = $('#lengthCart').val();
-        for(let $i=0;$i<s;$i++) {
-
-            $("#"+"upCart"+$i).on('change keyup', function () {
-                let newQty = $(this).val();
-                let rowId = $("#"+"rowId"+$i).val();
-                let bookId = $("#"+"bookId"+$i).val();
-                if(isNaN(newQty) || newQty <=0 ){
-                       alert("Vui lòng nhập số lượng hợp lệ") ;
-                }
-                else{
-
-                    $.ajax({
-                        type: 'get',
-                        dataType: 'html',
-                        url: '/cart/modify/'+bookId,
-                        data: {bookId: bookId, qty: newQty},
-                        success: data=> {
-                            $('.subtotal-' + bookId).load(' .subtotal-' + bookId );
-                            $('.temp-total').load(' .temp-total' );
-                            $('.temp-subtotal').load(' .temp-subtotal' );
-                            $('.partial-qty').load(' .partial-qty' );
-
-                            $('.partial-totalPrice').load(' .partial-totalPrice' );
-                        }
-                    });
-
-
-                }
-            });
-        }
-    });
-</script>
-<div class="cart-main-area ptb--120 bg__white">
+<div class="cart-main-area ptb--50 bg__white">
     <div class="container">
         <div class="row">
             {{#if books}}
@@ -145,7 +108,7 @@
                     </form>
                 </div>
             {{else}}
-                <div class="row">
+                <div class="row ptb--100">
                     <div class="col-xs-12">
                         <div class="bradcaump__inner text-center">
                             <h5 class="title__5 mb--50">CÓ VẺ BẠN CHƯA CHỌN ĐƯỢC CUỐN SÁCH NÀO :((</h5>
@@ -153,7 +116,7 @@
                             <div class="bradcaump-inner">
                                 <div class="h5 btn-group-vertical ">
                                     <div class="buttons-cart">
-                                        <a href="/store">Tiếp tục mua hàng</a>
+                                        <a href="/store">Quay lại cửa hàng</a>
                                     </div>
                                 </div>
 

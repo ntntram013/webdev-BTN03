@@ -32,7 +32,7 @@
   19. Price Slider Active
   20.  Plus Minus Button
   21. jQuery scroll Nav
-
+  22. cart ajax
   
 
 /*--------------------------------
@@ -678,7 +678,39 @@ $('.image-popup').magnificPopup({
     
     
 })(jQuery);
+/*---------------------
+    22. Cart ajax
+  --------------------- */
 
+$(document).ready(function(){
+    let s = $('#lengthCart').val();
+    for(let $i=0;$i<s;$i++) {
 
+        $("#"+"upCart"+$i).on('change keyup', function () {
+            let newQty = $(this).val();
+            let rowId = $("#"+"rowId"+$i).val();
+            let bookId = $("#"+"bookId"+$i).val();
+            if(isNaN(newQty) || newQty <=0 ){
+                alert("Vui lòng nhập số lượng hợp lệ") ;
+            }
+            else{
 
+                $.ajax({
+                    type: 'get',
+                    dataType: 'html',
+                    url: '/cart/modify/'+bookId,
+                    data: {bookId: bookId, qty: newQty},
+                    success: data=> {
+                        $('.subtotal-' + bookId).load(' .subtotal-' + bookId );
+                        $('.temp-total').load(' .temp-total' );
+                        $('.temp-subtotal').load(' .temp-subtotal' );
+                        $('.partial-qty').load(' .partial-qty' );
+
+                        $('.partial-totalPrice').load(' .partial-totalPrice' );
+                    }
+                });
+            }
+        });
+    }
+});
 
