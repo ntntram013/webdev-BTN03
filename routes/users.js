@@ -7,7 +7,7 @@ const authMiddleware = require('../middlewares/auth');
 
 router.get('/login', userController.login);
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/home',
+    successRedirect: '/cart/merge',
     failureRedirect: '/user/login',
     failureFlash: true
 }));

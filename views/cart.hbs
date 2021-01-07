@@ -51,21 +51,14 @@
 
                                             </td>
                                         </tr>
-
-
                                 {{/each}}
                             </table>
-
-
-
                         </div>
-
                         <div class="row">
-
                             <div class="col-md-8 col-sm-7 col-xs-12">
                                 <div class="buttons-cart">
                                     <a href="/store"><span class="ti-angle-left"></span> Tiếp tục mua hàng</a>
-                                                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-4 col-sm-5 col-xs-12">
                                 <div class="cart_totals">
@@ -99,9 +92,15 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <div class="wc-proceed-to-checkout">
-                                        <a href="#">Tiến hành Đặt hàng</a>
-                                    </div>
+                                    {{#if user}}
+                                        <div class="wc-proceed-to-checkout">
+                                            <a href="">Tiến hành Đặt hàng</a>
+                                        </div>
+                                    {{else}}
+                                        <div class="wc-proceed-to-checkout">
+                                            <a href="">Đăng nhập và Đặt hàng ngay</a>
+                                        </div>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>

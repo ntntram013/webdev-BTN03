@@ -35,9 +35,9 @@
                     <li class="search search__open hidden-xs"><span class="ti-search"> </span></li>
                     {{#if user}}
                         <ul class="main__menu hidden-xs hidden-sm">
-                            <li class="drop"><a href="/user/login"><span class="ti-user"></span> </a>
+                            <li class="drop"><a href="/user/profile"><span class="ti-user"></span> </a>
                                 <ul class="dropdown">
-                                    <li><a href="/user/profile"><b>{{user.username}}</b></a></li>
+                                    <li><a class="text-center"><b>{{user.username}}</b></a></li>
                                     <li><a href="/user/profile">Hồ sơ</a></li>
                                     <li><a href="/user/logout">Đăng Xuất</a></li>
                                 </ul>

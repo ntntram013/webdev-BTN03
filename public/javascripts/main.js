@@ -704,7 +704,7 @@ $(document).ready(function(){
                         $('.subtotal-' + bookId).load(' .subtotal-' + bookId );
                         $('.temp-total').load(' .temp-total' );
                         $('.temp-subtotal').load(' .temp-subtotal' );
-                        $('.partial-qty').load(' .partial-qty' );
+                        $('.partial-qty' + bookId).load(' .partial-qty' + bookId );
 
                         $('.partial-totalPrice').load(' .partial-totalPrice' );
                     }

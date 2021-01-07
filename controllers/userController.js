@@ -10,10 +10,10 @@ cloudinary.config({
 
 const userModel = require('../models/userModel');
 const userService = require('../models/userService');
-
+const cartModel = require('../models/cartModel');
 module.exports.login = (req, res) => {
     if (req.user) {
-        res.redirect('/user/profile');
+        res.redirect('/cart/merge');
         return;
     } else {
         let errors = [];
@@ -76,8 +76,18 @@ module.exports.postRegister = async (req, res) => {
             return;
         } else {
             // add user to database
+            let newCart;
+            if (!req.session.cart) {
+                let cartNew = new cartModel();
+                cartNew.generateArray();
+                newCart = await cartNew.createCartDB();
+            } else {
+                let cartNew = new cartModel(req.session.cart);
+                cartNew.generateArray();
+                newCart = await cartNew.createCartDB();
+            }
             const newUser = {username, email, password};
-            const addedUser = await userModel.add(newUser);
+            const addedUser = await userModel.add(newUser,newCart);
 
             res.render('signIn/register', {
                 title: 'Đăng ký',
@@ -118,6 +128,9 @@ module.exports.postRegister = async (req, res) => {
 }
 
 module.exports.logout = (req, res) => {
+    if (req.session.cart) {
+        req.session.cart = null;
+    }
     req.logout();
     res.redirect('/home');
 }

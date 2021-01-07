@@ -75,7 +75,7 @@ module.exports.checkBlockedUser = async (id) => {
 }
 
 
-module.exports.add = async (user) => {
+module.exports.add = async (user, cart) => {
     const userCollection = db().collection('User');
     const {username, email, password} = user;
     // hash password
@@ -93,9 +93,22 @@ module.exports.add = async (user) => {
         detail: "",
         userImage: "https://res.cloudinary.com/webdevteam468/image/upload/v1607323611/dqvskwss8c2g1pbavl31.jpg",
         phone: "",
+        cart:cart,
+        order:"",
         name: username
     };
     const result = await userCollection.insertOne(newUser);
+    return result;
+}
+module.exports.saveCart = async (id, cartId)=>{
+    const userCollection = db().collection('User');
+    const result = await userCollection.updateOne({
+        "_id": id
+    }, {
+        $set: {
+            'cart': cartId
+        }
+    });
     return result;
 }
 

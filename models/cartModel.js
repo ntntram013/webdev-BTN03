@@ -1,3 +1,5 @@
+const {ObjectId} = require('mongodb');
+const {db} = require("../dal/db");
 module.exports = function Cart(oldCart){
     this.items = oldCart.items || {};
     this.totalQty =  oldCart.totalQty || 0;
@@ -16,7 +18,7 @@ module.exports = function Cart(oldCart){
     this.generateArray = function () {
         let arr = [];
         for (let id in this.items){
-            arr.push(this.items[id])
+            arr.push(this.items[id]);
 
         }
         return arr;
@@ -40,6 +42,50 @@ module.exports = function Cart(oldCart){
             this.totalPrice += storeItem.price - storeItem.item.price * oldQty;
         }
 
-
     };
+    this.addCart = cart => {
+        for (let id in cart.items) {
+            let storedItem = this.items[id];
+            if (!storedItem) {
+                storedItem = this.items[id] = {
+                    item: cart.items[id].item,
+                    qty: cart.items[id].qty,
+                    price: cart.items[id].price,
+                    images: cart.items[id].images
+                };
+                this.totalQty++;
+            }
+            else {
+                storedItem.qty += parseInt(cart.items[id].qty);
+                storedItem.price += cart.items[id].price;
+            }
+            this.totalPrice += cart.items[id].price;
+        }
+        return this;
+    };
+    this.saveCart = async (id) =>{
+        const userCollection = db().collection('Carts');
+        const result = await userCollection.updateOne({
+            "_id": ObjectId(id)
+        }, {
+            $set: this
+        });
+
+        return result;
+    }
+    this.createCartDB = async () =>{
+        const userCollection = db().collection('Carts');
+        const result = await userCollection.insertOne(this);
+
+        return result.insertedId;
+    }
+
 };
+module.exports.findCart = async (id) =>{
+    const cartCollection = db().collection('Carts');
+
+    const cart = await cartCollection.findOne({
+        _id: id
+    });
+    return cart;
+}

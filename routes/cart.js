@@ -8,4 +8,5 @@ router.get('/', cartController.detail );
 router.get("/delete-item/:id", cartController.deleteItem);
 router.get("/delete", cartController.deleteCart);
 router.get("/modify/:id", cartController.modifyCart);
+router.get("/merge", cartController.mergeCart);
 module.exports = router;
