@@ -1,0 +1,109 @@
+<div class="our-checkout-area ptb--50 bg__white">
+    <div class="container">
+        <div class="row">
+            <div class="shopping__cart__inner col-md-12 col-sm-12 col-xs-12">
+                <div class="row mb--20">
+                    <div class="col-md-8 col-lg-8">
+                        <div class="ckeckout-left-sidebar">
+                            <!-- Start Checkbox Area -->
+                            <div class="checkout-form">
+                                <h2 class="section-title-3">Thông tin đặt hàng</h2>
+                                <div class="checkout-form-inner">
+                                    <div class="single-checkout-box">
+                                        <label class="col-3 h6 mb--10"><strong>Tên người nhận hàng</strong></label>
+                                        <input class="h5" type="text" readonly value="{{user.name}}">
+
+
+                                    </div>
+                                    <form id="orderForm" method="post" action="/order/send">
+                                        <div class="single-checkout-box">
+                                            <label class="col-3 h6 mb--10"><strong>Địa chỉ</strong></label>
+                                            <input type="text" required name="userAddress" placeholder="Địa chỉ *">
+                                        </div>
+                                        <div class="single-checkout-box">
+                                            <label class="col-3 h6 mb--10"><strong>Số điện thoại</strong></label>
+                                            <input type="text" required name="userPhone" placeholder="Điện thoại *" value="{{user.phone}}">
+                                        </div>
+                                        <div class="single-checkout-box">
+                                            <label class="col-3 h6 mb--10"><strong>Ghi chú </strong></label>
+                                            <input type="text" name="userNote" name="message" placeholder="Ghi chú cho đơn hàng *"></input>
+                                        </div>
+                                    </form>
+
+                                    <div class="single-checkout-box">
+                                        <label class="col-3 h6 mb--10"><strong>Thành tiền </strong></label>
+                                        <div class="total__price h5"><strong>{{totalPrice}} đ</strong></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Checkbox Area -->
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-4">
+                        <div class="checkout-right-sidebar">
+                            <div class="our-important-note">
+                                <h5 class="section-title-4">Lưu ý :</h5>
+                                <p class="note-desc">Để có trải nghiệm mua hàng tốt nhất, bạn hãy chú ý những điểm dưới đây nhé!</p>
+                                <ul class="important-note">
+                                    <li><i class="zmdi zmdi-caret-right-circle"></i> Kiểm tra địa chỉ trước khi đặt hàng</li>
+                                    <li><i class="zmdi zmdi-caret-right-circle"></i> Kiểm tra số điện thoại</li>
+                                    <li><i class="zmdi zmdi-caret-right-circle"></i> Ghi chú giao hàng (nếu có) trong mục <strong>Ghi chú</strong></li>
+                                    <li><i class="zmdi zmdi-caret-right-circle"></i> Kiểm tra nội dung đặt hàng</li>
+                                </ul>
+                            </div>
+                            <div class="contact-box mt--60 ">
+                                <h5 class="section-title-5 mb--20">Bạn có thắc mắc?</h5>
+                                <p class="note-desc">Hãy liên hệ với chúng tôi qua hotline<br>+84 98 771 6303</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <h2 class="section-title-3 mtb--40">Chi tiết đơn hàng</h2>
+                <div class="table-content table-responsive">
+                    <table class="table-responsive">
+                        <thead>
+                        <tr>
+                            <th class="product-thumbnail">Hình ảnh</th>
+                            <th class="product-name">Sản phẩm</th>
+                            <th class="product-price">Đơn giá</th>
+                            <th class="product-quantity">Số lượng</th>
+                            <th class="product-subtotal">Thành tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each books}}
+
+                            <tr>
+                                <td class="product-thumbnail">
+                                    <a href="#"><img src="{{this.item.bookImage}}" alt="product img" /></a>
+                                </td>
+                                <td class="product-name">
+                                    <a href="#">{{this.item.bookName}}</a>
+                                </td>
+                                <td  class="product-name">
+                                    <p id="price-{{this.item._id}}">{{this.item.price}} đ </p>
+                                </td>
+                                <td  class="product-quantity">
+                                    <p id="price-{{this.item._id}}">x {{this.qty}}</p>
+                                </td>
+                                <td class="product-subtotal ">
+                                    <p class="subtotal-{{this.item._id}}" >{{this.price}} đ</p>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                    <div class="wc-proceed-to-checkout float-left-style">
+                        <button form="orderForm" formaction="/order/send" formmethod="post" >Đặt hàng</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

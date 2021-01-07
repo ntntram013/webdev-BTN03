@@ -32,10 +32,11 @@ module.exports = function Cart(oldCart){
             delete this.items[id];
         }
     };
-    this.changeQty = ( id, qty) => {
+    this.changeQty = (item, id, qty) => {
         const itemQty = qty ? Number(qty) : 1;
         let storeItem = this.items[id];
         if (storeItem) {
+            storeItem.item = item;
             let oldQty = storeItem.qty;
             storeItem.qty = itemQty;
             storeItem.price = storeItem.item.price * storeItem.qty;

@@ -14,7 +14,7 @@ exports.addToCart = async (req,res, next) => {
     }
     res.redirect("back");
 }
-exports.detail = function (req,res,next){
+module.exports.detail = function (req,res,next){
     if(!req.session.cart){
         return res.render('cart',{title: 'Giỏ hàng',books: null});
     }
@@ -45,8 +45,9 @@ exports.modifyCart = async (req, res, next) => {
     if (qty == 0) {
         res.redirect("back");
     }
+    const book = await bookModel.detail(req.params.id);
     let cart = new cartModel(req.session.cart ? req.session.cart : {});
-    cart.changeQty(bookId, qty);
+    cart.changeQty(book, bookId, qty);
     req.session.cart = cart;
     if (req.user) {
         await cart.saveCart(req.user.cart);

@@ -16,7 +16,7 @@
                 </div>
                 <div class="shp__pro__details">
                     <h5><a href="/store/{{this.item._id}}">{{this.item.bookName}}</a></h5>
-                    <span class="quantity partial-qty{{this.item._id}}">{{this.qty}} x {{this.price}} đ </span>
+                    <span class="quantity partial-qty{{this.item._id}}">{{this.qty}} x {{this.item.price}} đ </span>
                     <span class="shp__price"></span>
                 </div>
 
@@ -29,7 +29,12 @@
         </ul>
         <ul class="shopping__btn">
             <li><a href="cart">Xem giỏ hàng</a></li>
-            <li class="shp__checkout"><a href="">Thanh toán</a></li>
+            {{#if user}}
+                <li class="shp__checkout"><a href="/order/new">Đặt hàng</a></li>
+            {{else}}
+                <li class="shp__checkout"><a href="/user/login">Đăng nhập và Đặt hàng ngay</a></li>
+            {{/if}}
+
         </ul>
         {{else}}
             <div class="row">
