@@ -3,10 +3,9 @@ const router = express.Router();
 const cartModel = require('../models/cartModel');
 const orderController = require('../controllers/orderController');
 const authMiddleware = require('../middlewares/auth');
+const cartMiddleware = require('../middlewares/cart');
 
-router.get('/new', authMiddleware.requireAuth, orderController.orderCartDetail );
-router.get('/list', (req,res) =>{
-    res.render('userOrder', {title: "Lịch sử đặt hàng"});
-})
-router.post('/send', authMiddleware.requireAuth, orderController.orderCreate);
+router.get('/new', authMiddleware.requireAuth, cartMiddleware.requireCart, orderController.orderCartDetail );
+router.get('/list', authMiddleware.requireAuth, orderController.orderList);
+router.post('/send', authMiddleware.requireAuth,cartMiddleware.requireCart, orderController.orderCreate);
 module.exports = router;

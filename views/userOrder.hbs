@@ -1,1 +1,156 @@
-<h1>UserOrder</h1>
+<section class="htc__product__details__tab bg__white ptb--50">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="bradcaump__inner text-center mt--20 mb--50">
+                    <h2 class="bradcaump-title">LỊCH SỬ MUA HÀNG</h2>
+
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <ul class="product__deatils__tab mb--60 " role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#description" role="tab" data-toggle="tab">ĐANG XỬ LÝ</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#sheet" role="tab" data-toggle="tab">ĐANG VẬN CHUYỂN</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#reviews" role="tab" data-toggle="tab">LỊCH SỬ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product__details__tab__content mt--50 mb--150">
+                    <!-- Start Single Content -->
+                    <div role="tabpanel" id="description" class="product__tab__content fade in active">
+                        <div class="product__description__wrap">
+                            {{#if orderProcessing}}
+                                {{#each orderProcessing}}
+                                    <div class="product__desc">
+                                        <div class="container row">
+                                            <h2 class="title__5">MÃ ĐƠN   : {{this._id}}</h2>
+                                            <h2 class="title__5">TỔNG TIỀN: {{this.cart.totalPrice}} đ</h2>
+                                            <div class="col-3">
+                                                <div><p>Ngày đặt hàng: {{this.date}}</p></div>
+                                                <div><p>Số điện thoại: {{this.info.userPhone}}</p></div>
+                                                <div><p>Địa chỉ: {{this.info.userAddress}}</p></div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class=" row">
+                                                    <div class="col-4">Tên sách</div>
+                                                    <div class="col-2">Đơn giá</div>
+                                                    <div class="col-2">Số lượng</div>
+                                                    <div class="col-2 float-left-style">Thành tiền</div>
+                                                </div>
+                                                <div class="product__deatils__tab mtb--10"></div>
+                                                {{#each this.cart.items as |item|}}
+                                                    <div class="row">
+                                                        <div class="col-4">{{item.item.bookName}}</div>
+                                                        <div class="col-2">{{item.item.price}} đ</div>
+                                                        <div class="col-2">x {{item.qty}}</div>
+                                                        <div class="col-2 float-left-style">{{item.price}} đ</div>
+                                                    </div>
+
+                                                {{/each}}
+                                            </div>
+
+                                        </div>
+                                        <div class="product__deatils__tab mt--10 mb--20"></div>
+                                    </div>
+                                {{/each}}
+                            {{else}}
+                                <div class="container text-center mb--100">Không có đơn hàng đang xử lý</div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <!-- End Single Content -->
+                    <!-- Start Single Content -->
+                    <div role="tabpanel" id="sheet" class="product__tab__content fade">
+                        <div class="pro__feature">
+                            {{#if orderDelivering}}
+                                {{#each orderDelivering}}
+                                    <div class="product__desc">
+                                        <div class="container row">
+                                            <h2 class="title__5">MÃ ĐƠN: </h2>
+                                            <h2 class="title__5">TỔNG TIỀN: </h2>
+                                            <div class="col-4">
+                                                <div class="col-4"><p>Ngày đặt hàng</p></div>
+                                                <div class="col-4"><p>Số điện thoại</p></div>
+                                                <div class="col-4"><p>Địa chỉ</p></div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-4">Tên sách</div>
+                                                    <div class="col-2">Đơn giá</div>
+                                                    <div class="col-2">Số lượng</div>
+                                                    <div class="col-2">Thành tiền</div>
+                                                </div>
+                                                {{#each books}}
+                                                    <div class="row">
+                                                        <div class="col-4">Tên sách</div>
+                                                        <div class="col-2">Đơn giá</div>
+                                                        <div class="col-2">Số lượng</div>
+                                                        <div class="col-2">Thành tiền</div>
+                                                    </div>
+                                                {{/each}}
+                                            </div>
+
+                                        </div>
+                                        <div class="product__deatils__tab mt--10 mb--20"></div>
+                                    </div>
+                                {{/each}}
+                            {{else}}
+                                <div class="container text-center">Không có đơn hàng đang vận chuyển</div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <!-- End Single Content -->
+                    <!-- Start Single Content -->
+                    <div role="tabpanel" id="reviews" class="product__tab__content fade">
+                        <div class="product__description__wrap">
+                            {{#if orderDelivered}}
+                                {{#each orderDelivered}}
+                                    <div class="product__desc">
+                                        <div class="container row">
+                                            <h2 class="title__5">MÃ ĐƠN: </h2>
+                                            <h2 class="title__5">TỔNG TIỀN: </h2>
+                                            <div class="col-4">
+                                                <div class="col-4"><p>Ngày đặt hàng</p></div>
+                                                <div class="col-4"><p>Số điện thoại</p></div>
+                                                <div class="col-4"><p>Địa chỉ</p></div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-4">Tên sách</div>
+                                                    <div class="col-2">Đơn giá</div>
+                                                    <div class="col-2">Số lượng</div>
+                                                    <div class="col-2">Thành tiền</div>
+                                                </div>
+                                                {{#each books}}
+                                                    <div class="row">
+                                                        <div class="col-4">Tên sách</div>
+                                                        <div class="col-2">Đơn giá</div>
+                                                        <div class="col-2">Số lượng</div>
+                                                        <div class="col-2">Thành tiền</div>
+                                                    </div>
+                                                {{/each}}
+                                            </div>
+
+                                        </div>
+                                        <div class="product__deatils__tab mt--10 mb--20"></div>
+                                    </div>
+                                {{/each}}
+                            {{else}}
+                                <div class="container text-center">Không có đơn hàng đã giao</div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <!-- End Single Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

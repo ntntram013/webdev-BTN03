@@ -13,3 +13,9 @@ module.exports.add = async (user, cart) =>{
     const result = await orderCollection.insertOne(newOrder);
     return result;
 }
+module.exports.listOrder = async (id, status) =>{
+    const orderCollection = db().collection('Orders');
+    const orderList = await orderCollection.find({userId: ObjectId(id),status: status}).toArray();
+    console.log(orderList);
+    return orderList;
+}
