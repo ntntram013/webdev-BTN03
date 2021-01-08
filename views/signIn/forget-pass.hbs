@@ -27,9 +27,11 @@
                             <form class="login" id="theForm" method="POST">
                                 <input type="email" required name="email" placeholder="Email của bạn*">
                             </form>
+
                             <div class="htc__login__btn mt--30">
-                                <a class="resetpass" id="theButton">Đặt lại mật khẩu</a>
+                                <button type="submit" form="theForm" value="Submit"><a class="resetpass">Đặt lại mật khẩu</a></button>
                             </div>
+
                         </div>
                     {{else if userFound}}
                         <div class="alert alert-success text-center" role="alert">
