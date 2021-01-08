@@ -23,8 +23,11 @@ router.get('/register', userController.register);
 router.post('/register', userController.postRegister);
 
 router.get('/logout', userController.logout);
-
-
+router.get('/change-pass',  authMiddleware.requireAuth,(req, res) => {
+    res.render('user/change-pass', {title: 'Đổi mật khẩu'});
+});
+//router.get('/change-pass', );
+router.post('/change-pass',  authMiddleware.requireAuth, userController.postChangePass);
 router.get('/profile/modify', authMiddleware.requireAuth, userController.modify);
 router.post('/profile/modify', authMiddleware.requireAuth, userController.postModify);
 router.get('/profile', authMiddleware.requireAuth, userController.profile);

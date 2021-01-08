@@ -705,7 +705,6 @@ $(document).ready(function(){
                         $('.temp-total').load(' .temp-total' );
                         $('.temp-subtotal').load(' .temp-subtotal' );
                         $('.partial-qty' + bookId).load(' .partial-qty' + bookId );
-
                         $('.partial-totalPrice').load(' .partial-totalPrice' );
                     }
                 });

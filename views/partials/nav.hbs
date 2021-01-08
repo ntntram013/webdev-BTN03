@@ -39,7 +39,7 @@
                                 <ul class="dropdown">
                                     <li><a class="hidden">Hồ sơ</a></li>
                                     <li><a href="/user/profile">Hồ sơ</a></li>
-                                    <li><a href="/order/list">Đơn hàng</a></li>
+                                    <li><a href="/order/view">Đơn hàng</a></li>
                                     <li><a href="/user/logout">Đăng Xuất</a></li>
                                 </ul>
                             </li>
@@ -49,7 +49,7 @@
                     {{/if}}
                     <li class="cart__menu text-center">
                         <span class="ti-shopping-cart"></span>
-                        <span class="badge bg__white" >{{#if session.cart.totalQty}}{{session.cart.totalQty}}{{/if}}</span>
+                        <span class="badge bg__white cart-total" >{{#if session.cart.totalQty}}{{session.cart.totalQty}}{{/if}}</span>
                     </li>
                 </ul>
             </div>

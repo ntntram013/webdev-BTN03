@@ -4,13 +4,13 @@
         {{#user}}
         <div class="row form__offset__50">
 
-            <div class="col-md-5">
-                <div class="single-portfolio-img">
-                    <img src="{{userImage}}" alt="user-image">
+            <div class="col-md-5 col-xs-12 ">
+                <div class="single-portfolio-img float-left-style" >
+                    <img style="max-height:300px;height: auto; width: auto;max-width: 300px" src="{{userImage}}" alt="user-image">
                 </div>
 
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7 col-xs-12">
                 <div class="portfolio-description mrg-sm">
                     <h2>{{name}}</h2>
                     <p>{{detail}}</p>
@@ -23,8 +23,11 @@
                             <li><span>Email:</span>{{email}}</li>
                         </ul>
                     </div>
-                    <div class="btn__change__cover mt--10">
+                    <div class="col-3 btn__change__cover mt--10">
                         <a href="/user/profile/modify" >Thay đổi thông tin</a>
+                    </div>
+                    <div class="col-3 btn__change__cover mt--10">
+                        <a href="/user/change-pass" >Thay đổi mật khẩu</a>
                     </div>
                 </div>
             </div>

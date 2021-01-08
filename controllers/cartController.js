@@ -25,8 +25,8 @@ exports.deleteItem = async (req,res,next) => {
     const bookId = req.params.id;
     let cart = new cartModel(req.session.cart ? req.session.cart : {items: {}});
     cart.deleteItem(bookId);
+    req.session.cart = cart;
     if (req.user) {
-        req.user.cart = cart;
         await cart.saveCart(req.user.cart);
     }
     res.redirect("back");

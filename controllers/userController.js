@@ -319,3 +319,47 @@ module.exports.postResetPass = async (req, res) => {
         validateErrors: errors
     });
 }
+module.exports.postChangePass = async (req,res) =>{
+    const {newPassword, password, retypePassword} = req.body;
+    //const hashedPassword = await userService.hashPass(password);
+    //const user = await userModel.queryUser('email', userEmail);
+    //let checkPassword = await bcrypt.compare(password, existedUser.password);
+    const user = await userModel.detail(req.user._id);
+    let errors = [];
+
+    if (!newPassword|| !password || !retypePassword) {
+        errors.push('Vui lòng điền đầy đủ thông tin!');
+    } else {
+        let checkPassword = await bcrypt.compare(password, user.password);
+        console.log("Check pass: " + checkPassword.toString());
+        //if (!checkPassword){
+       //    errors.push('Mật khẩu cũ không đúng!');
+        //}
+        if (newPassword !== retypePassword) {
+            errors.push('Mật khẩu mới nhập lại không khớp!');
+        }
+        if (newPassword.length < 5) {
+            errors.push('Mật khẩu mới phải có ít nhất 5 ký tự!');
+        }
+    }
+    // render errors msg
+    if (errors.length > 0) {
+        res.render('user/change-pass', {
+            title: 'Đổi mật khẩu',
+            errors: errors
+        });
+        return;
+    } else {
+        const userId = req.user._id;
+        const hashedPassword = await userService.hashPass(newPassword);
+        userModel.updateByQuery(userId, 'password', hashedPassword).then(result => {
+            const {matchedCount, modifiedCount} = result;
+            if (matchedCount && modifiedCount) {
+                res.render('user/change-pass', {
+                    title: 'Đổi mật khẩu',
+                    success: true,
+                });
+            }
+        });
+    }
+}

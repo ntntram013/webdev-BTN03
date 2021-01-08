@@ -102,10 +102,9 @@ module.exports.add = async (user, cart) => {
         dob: "",
         gender: "",
         detail: "",
-        userImage: "https://res.cloudinary.com/webdevteam468/image/upload/v1607323611/dqvskwss8c2g1pbavl31.jpg",
+        userImage: "https://res.cloudinary.com/webdevteam468/image/upload/v1610125203/user.png",
         phone: "",
         cart:cart,
-        order:"",
         name: username
     };
     const result = await userCollection.insertOne(newUser);

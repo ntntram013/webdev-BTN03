@@ -19,7 +19,7 @@ const storeRouter = require('./routes/store');
 const contactRouter = require('./routes/contact');
 const cartRouter = require('./routes/cart');
 const orderRouter = require('./routes/order');
-
+const authMiddleware = require('./middlewares/auth');
 const app = express();
 
 // configuration ===============================================================
@@ -63,7 +63,7 @@ app.use('/home', homeRouter);
 app.use('/store', storeRouter);
 app.use('/contact', contactRouter);
 app.use('/cart', cartRouter);
-app.use('/order', orderRouter);
+app.use('/order', authMiddleware.requireAuth, orderRouter);
 app.use('/user', usersRouter);
 
 

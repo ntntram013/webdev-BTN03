@@ -28,7 +28,7 @@ module.exports = function Cart(oldCart){
         if (storedItem) {
             this.totalQty--;
             this.totalPrice -= storedItem.price ;
-            storedItem = this.items[id] = {item: null, qty: 0, price: 0, option: null, taxAmount: 0};
+            storedItem = this.items[id] = {item: null, qty:0, price: 0};
             delete this.items[id];
         }
     };

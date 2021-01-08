@@ -8,28 +8,38 @@
                             <!-- Start Checkbox Area -->
                             <div class="checkout-form">
                                 <h2 class="section-title-3">Thông tin đặt hàng</h2>
+                                {{#if errors}}
+                                    {{#each errors}}
+                                        <div class="alert alert-danger alert-dismissible mtb--20 text-center" role="alert">
+                                            <div class="alert-message">
+                                                <strong> {{this}} </strong>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                {{/if}}
                                 <div class="checkout-form-inner">
+                                    {{#user}}
                                     <div class="single-checkout-box">
                                         <label class="col-3 h6 mb--10"><strong>Tên người nhận hàng</strong></label>
-                                        <input class="h5" type="text" readonly value="{{user.name}}">
+                                        <input class="h5" type="text" readonly value="{{name}}">
 
 
                                     </div>
                                     <form id="orderForm" method="post" action="/order/send">
                                         <div class="single-checkout-box">
                                             <label class="col-3 h6 mb--10"><strong>Địa chỉ</strong></label>
-                                            <input type="text" required name="userAddress" placeholder="Địa chỉ *">
+                                            <input type="text" required name="userAddress" value="{{address}}" placeholder="Địa chỉ *">
                                         </div>
                                         <div class="single-checkout-box">
                                             <label class="col-3 h6 mb--10"><strong>Số điện thoại</strong></label>
-                                            <input type="text" required name="userPhone" placeholder="Điện thoại *" value="{{user.phone}}">
+                                            <input type="text" required name="userPhone" placeholder="Điện thoại *" value="{{phone}}">
                                         </div>
                                         <div class="single-checkout-box">
                                             <label class="col-3 h6 mb--10"><strong>Ghi chú </strong></label>
-                                            <input type="text" name="userNote" name="message" placeholder="Ghi chú cho đơn hàng *"></input>
+                                            <input type="text" name="userNote" value="{{note}}" placeholder="Ghi chú cho đơn hàng *"></input>
                                         </div>
                                     </form>
-
+                                    {{/user}}
                                     <div class="single-checkout-box">
                                         <label class="col-3 h6 mb--10"><strong>Thành tiền </strong></label>
                                         <div class="total__price h5"><strong>{{totalPrice}} đ</strong></div>
@@ -99,7 +109,7 @@
                         {{/each}}
                     </table>
                     <div class="wc-proceed-to-checkout float-left-style">
-                        <button form="orderForm" formaction="/order/send" formmethod="post" >Đặt hàng</button>
+                        <button class="btn btn-custom button" form="orderForm" formaction="/order/send" formmethod="post" >Đặt hàng</button>
                     </div>
                 </div>
             </div>

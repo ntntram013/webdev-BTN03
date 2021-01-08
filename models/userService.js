@@ -45,14 +45,11 @@ module.exports.sendMail = async (config, mailOptions) => {
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.log("error is " + error);
-                resolve(false); // or use rejcet(false) but then you will have to handle errors
+                resolve(false); // or use reject(false) but then you will have to handle errors
             } else {
                 console.log('Email sent: ' + info.response);
                 resolve(true);
             }
         });
     });
-}
-module.exports.saveCart = async (cart)=>{
-
 }

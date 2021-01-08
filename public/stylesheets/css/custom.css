@@ -61,3 +61,11 @@
     display: block;
     width: 80%;
 }
+.btn-custom{
+    background-color: #191919;
+    color: white;
+}
+.btn-custom:hover {
+    background-color: #2ec4b6;
+    color: white;
+}

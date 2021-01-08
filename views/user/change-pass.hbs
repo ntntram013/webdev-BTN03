@@ -1,0 +1,61 @@
+<div class="container bg__white">
+    <div class="form__offset__50 mtb--50">
+        <div class="portfolio-description mrg-sm">
+            <h2 class="text-center mb--20">Đổi mật khẩu</h2>
+        </div>
+
+        {{#if errors}}
+            {{#each errors}}
+                <div class="alert alert-danger alert-dismissible text-center" role="alert">
+                    <div class="alert-message">
+                        <strong> {{this}} </strong>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+        {{#if success}}
+            <div class="alert alert-success text-center mtb--100" role="alert">
+                <strong>Thay đổi mật khẩu thành công.</strong>
+                <a href="/user/profile" class="alert-link"> Quay lại trang cá nhân?</a>
+            </div>
+        {{else}}
+            <form class="row">
+                <div class="col-lg-9 col-md-10 col-sm-11 col-xs-12 float-left-style">
+                    <div class="row mb--10 ">
+                        <label class="col-form-label col-md-3 col-sm-4 text-sm-right">Mật khẩu cũ</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control"  name="password" value="{{password}}" required>
+                        </div>
+                    </div>
+                    <div class="row mb--10 ">
+                        <label class="col-form-label col-md-3 col-sm-4 text-sm-right">Mật khẩu mới</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control"  minlength="5" name="newPassword" value="{{newPassword}}" placeholder="Mật khẩu có ít nhất 5 kí tự *" required>
+                        </div>
+                    </div>
+                    <div class="row mb--10 ">
+                        <label class="col-form-label col-md-3 col-sm-4 text-sm-right">Nhập lại mật khẩu mới</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control"  name="retypePassword" value="{{retypePassword}}" required>
+                        </div>
+                    </div>
+                    <div class="row mb--10">
+                        <div class="col-md-3 col-sm-4 col-xs-0"></div>
+                        <div class="col-sm-1 col-xs-3 mb--10">
+                            <button type="submit" formmethod="post" formaction="/user/change-pass" class="btn btn-custom"> Lưu </button>
+                        </div>
+
+                        <div class="col-sm-1 col-xs-3">
+                            <a href="/user/profile"><button type="button" class="btn btn-custom"> Hủy </button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        {{/if}}
+
+
+
+
+    </div>
+</div>
