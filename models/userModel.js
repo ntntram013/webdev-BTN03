@@ -10,9 +10,20 @@ exports.detail = async (id) => {
     return user;
 }
 
-exports.update = async (id, fields) => {
+exports.updateImage = async (id, fields) => {
     const userCollection = db().collection('User');
     await userCollection.updateOne({"_id": ObjectId(id)}, {$set: {'userImage': fields}});
+}
+exports.updateInfo = async (id, info) =>{
+    const userCollection = db().collection('User');
+    await userCollection.updateOne(
+        {"_id": ObjectId(id)},
+        {$set: {'name': info.name,
+                'address': info.address,
+                'dob': info.dob,
+                'gender': info.gender,
+                'detail': info.detail,
+                'phone': info.phone}});
 }
 
 exports.updateByQuery = async (id, field, fieldValue) => {

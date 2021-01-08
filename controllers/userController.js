@@ -148,30 +148,58 @@ module.exports.modify = async (req, res, next) => {
     const user = await userModel.detail(req.user._id);
 
     res.render('user/userModify', {
-        title: 'Chỉnh sửa',
+        title: 'Chỉnh sửa thông tin',
         user
     });
 }
 
 exports.postModify = async (req, res, next) => {
-    const form = formidable({multiple: true});
 
-    await form.parse(req, (err, fields, files) => {
+
+    const form = formidable({multiple: true});
+    await form.parse(req, async (err, fields, files) => {
         if (err) {
             next(err);
             return;
         }
-        if (files.imageFile && files.imageFile.size > 0) {
-            cloudinary.uploader.upload(files.imageFile.path,
-                function (error, result) {
-                    console.log(result, error);
-                    fields.userImage = result.secure_url;
-                    userModel.update(id, fields.userImage).then(res.redirect("/user/profile"));
-                });
+        const  name = fields.name, detail = fields.detail, dob = fields.dob,
+                gender =fields.gender, phone =fields.phone, address = fields.address;
+        const user = {name, detail, dob, gender, phone, address};
+        console.log(user);
+        let errors = [];
+
+        if (!name || !detail || !dob || !gender || !phone || !address) {
+            errors.push('Vui lòng điền đầy đủ thông tin!');
         } else {
-            res.redirect("/user/profile");
+            if ((/^\d+$/.test(phone.toString())) === false) {
+                errors.push('Số điện thoại không hợp lệ!');
+            }
+        }
+        // render errors msg
+        if (errors.length > 0) {
+            res.render('user/userModify', {
+                title: 'Chỉnh sửa thông tin',
+                user: user,
+                errors: errors
+            });
+            return;
+        } else {
+            if (files.imageFile && files.imageFile.size > 0) {
+                cloudinary.uploader.upload(files.imageFile.path,
+                    function (error, result) {
+                        console.log(result, error);
+                        fields.userImage = result.secure_url;
+                        userModel.updateImage(req.user._id, fields.userImage);
+                    });
+            }
+             await userModel.updateInfo(req.user._id, user);
+            res.redirect('/user/profile');
+
         }
     });
+
+
+
 }
 
 module.exports.confirm = async (req, res) => {

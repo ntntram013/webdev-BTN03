@@ -5,7 +5,7 @@ module.exports.add = async (user, cart) =>{
     const orderCollection = db().collection('Orders');
     const today = new Date();
     const newDate = today.getDate() + '-' + (today.getMonth()+1)+'-'+today.getFullYear()+' '+
-                    today.getHours() + ':' +today.getMinutes() + ':' + today.getMilliseconds() ;
+                    today.getHours() + ':' +today.getMinutes() + ':' + today.getSeconds() ;
     const newOrder = {
         userId: user.userId,
         info: user.info,
