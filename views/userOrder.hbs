@@ -32,26 +32,26 @@
                                     <div class="product__desc">
                                         <div class="container row">
                                             <h2 class="title__5">MÃ ĐƠN   : {{this._id}}</h2>
-                                            <h2 class="title__5">TỔNG TIỀN: {{this.cart.totalPrice}} đ</h2>
-                                            <div class="col-3">
+                                            <h2 class="title__5">TỔNG TIỀN : {{this.cart.totalPrice}} đ</h2>
+                                            <div class=" col-sm-4 col-xs-12 mb--10">
                                                 <div><p>Ngày đặt hàng: {{this.date}}</p></div>
                                                 <div><p>Số điện thoại: {{this.info.userPhone}}</p></div>
                                                 <div><p>Địa chỉ: {{this.info.userAddress}}</p></div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-sm-8 col-xs-12">
                                                 <div class=" row">
-                                                    <div class="col-4">Tên sách</div>
-                                                    <div class="col-2">Đơn giá</div>
-                                                    <div class="col-2">Số lượng</div>
-                                                    <div class="col-2 float-left-style">Thành tiền</div>
+                                                    <div class="col-4 ">Tên sách</div>
+                                                    <div class="col-2 text-center">Đơn giá</div>
+                                                    <div class="col-2 text-center">Số lượng</div>
+                                                    <div class="col-2 text-center">Thành tiền</div>
                                                 </div>
                                                 <div class="product__deatils__tab mtb--10"></div>
                                                 {{#each this.cart.items as |item|}}
                                                     <div class="row">
-                                                        <div class="col-4">{{item.item.bookName}}</div>
-                                                        <div class="col-2">{{item.item.price}} đ</div>
-                                                        <div class="col-2">x {{item.qty}}</div>
-                                                        <div class="col-2 float-left-style">{{item.price}} đ</div>
+                                                        <div class="col-4 ">{{item.item.bookName}}</div>
+                                                        <div class="col-2 text-center">{{item.item.price}} đ</div>
+                                                        <div class="col-2 text-center">x {{item.qty}}</div>
+                                                        <div class="col-2 text-center">{{item.price}} đ</div>
                                                     </div>
 
                                                 {{/each}}
@@ -74,27 +74,29 @@
                                 {{#each orderDelivering}}
                                     <div class="product__desc">
                                         <div class="container row">
-                                            <h2 class="title__5">MÃ ĐƠN: </h2>
-                                            <h2 class="title__5">TỔNG TIỀN: </h2>
-                                            <div class="col-4">
-                                                <div class="col-4"><p>Ngày đặt hàng</p></div>
-                                                <div class="col-4"><p>Số điện thoại</p></div>
-                                                <div class="col-4"><p>Địa chỉ</p></div>
+                                            <h2 class="title__5">MÃ ĐƠN   : {{this._id}}</h2>
+                                            <h2 class="title__5">TỔNG TIỀN : {{this.cart.totalPrice}} đ</h2>
+                                            <div class=" col-sm-4 col-xs-12 mb--10">
+                                                <div><p>Ngày đặt hàng: {{this.date}}</p></div>
+                                                <div><p>Số điện thoại: {{this.info.userPhone}}</p></div>
+                                                <div><p>Địa chỉ: {{this.info.userAddress}}</p></div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-4">Tên sách</div>
-                                                    <div class="col-2">Đơn giá</div>
-                                                    <div class="col-2">Số lượng</div>
-                                                    <div class="col-2">Thành tiền</div>
+                                            <div class="col-sm-8 col-xs-12">
+                                                <div class=" row">
+                                                    <div class="col-4 ">Tên sách</div>
+                                                    <div class="col-2 text-center">Đơn giá</div>
+                                                    <div class="col-2 text-center">Số lượng</div>
+                                                    <div class="col-2 text-center">Thành tiền</div>
                                                 </div>
-                                                {{#each books}}
+                                                <div class="product__deatils__tab mtb--10"></div>
+                                                {{#each this.cart.items as |item|}}
                                                     <div class="row">
-                                                        <div class="col-4">Tên sách</div>
-                                                        <div class="col-2">Đơn giá</div>
-                                                        <div class="col-2">Số lượng</div>
-                                                        <div class="col-2">Thành tiền</div>
+                                                        <div class="col-4">{{item.item.bookName}}</div>
+                                                        <div class="col-2 text-center">{{item.item.price}} đ</div>
+                                                        <div class="col-2 text-center">x {{item.qty}}</div>
+                                                        <div class="col-2 text-center">{{item.price}} đ</div>
                                                     </div>
+
                                                 {{/each}}
                                             </div>
 
@@ -115,27 +117,29 @@
                                 {{#each orderDelivered}}
                                     <div class="product__desc">
                                         <div class="container row">
-                                            <h2 class="title__5">MÃ ĐƠN: </h2>
-                                            <h2 class="title__5">TỔNG TIỀN: </h2>
-                                            <div class="col-4">
-                                                <div class="col-4"><p>Ngày đặt hàng</p></div>
-                                                <div class="col-4"><p>Số điện thoại</p></div>
-                                                <div class="col-4"><p>Địa chỉ</p></div>
+                                            <h2 class="title__5">MÃ ĐƠN   : {{this._id}}</h2>
+                                            <h2 class="title__5">TỔNG TIỀN : {{this.cart.totalPrice}} đ</h2>
+                                            <div class=" col-sm-4 col-xs-12 mb--10">
+                                                <div><p>Ngày đặt hàng: {{this.date}}</p></div>
+                                                <div><p>Số điện thoại: {{this.info.userPhone}}</p></div>
+                                                <div><p>Địa chỉ: {{this.info.userAddress}}</p></div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-4">Tên sách</div>
-                                                    <div class="col-2">Đơn giá</div>
-                                                    <div class="col-2">Số lượng</div>
-                                                    <div class="col-2">Thành tiền</div>
+                                            <div class="col-sm-8 col-xs-12">
+                                                <div class=" row">
+                                                    <div class="col-4 ">Tên sách</div>
+                                                    <div class="col-2 text-center">Đơn giá</div>
+                                                    <div class="col-2 text-center">Số lượng</div>
+                                                    <div class="col-2 text-center">Thành tiền</div>
                                                 </div>
-                                                {{#each books}}
+                                                <div class="product__deatils__tab mtb--10"></div>
+                                                {{#each this.cart.items as |item|}}
                                                     <div class="row">
-                                                        <div class="col-4">Tên sách</div>
-                                                        <div class="col-2">Đơn giá</div>
-                                                        <div class="col-2">Số lượng</div>
-                                                        <div class="col-2">Thành tiền</div>
+                                                        <div class="col-4">{{item.item.bookName}}</div>
+                                                        <div class="col-2 text-center">{{item.item.price}} đ</div>
+                                                        <div class="col-2 text-center">x {{item.qty}}</div>
+                                                        <div class="col-2 text-center">{{item.price}} đ</div>
                                                     </div>
+
                                                 {{/each}}
                                             </div>
 

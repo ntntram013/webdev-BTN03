@@ -16,8 +16,7 @@ module.exports.orderCreate = async (req,res,next) => {
     const info = {userPhone, userAddress, userNote};
     const user = {userId, info};
     let cart = new cartModel(req.session.cart ? req.session.cart :{})
-    let cartNew  = cart.generateArray();
-    const  result =  await orderModel.add(user,cartNew);
+    const  result =  await orderModel.add(user,cart);
     console.log(result);
     if(result.insertedId){
         req.session.cart = null;
