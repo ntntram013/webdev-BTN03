@@ -328,10 +328,10 @@ module.exports.postChangePass = async (req,res) =>{
         errors.push('Vui lòng điền đầy đủ thông tin!');
     } else {
         let checkPassword = await bcrypt.compare(password, user.password);
-        console.log("Check pass: " + checkPassword.toString());
-        //if (!checkPassword){
-       //    errors.push('Mật khẩu cũ không đúng!');
-        //}
+        console.log("Check pass: " + password);
+        if (!checkPassword){
+            errors.push('Mật khẩu cũ không đúng!');
+        }
         if (newPassword !== retypePassword) {
             errors.push('Mật khẩu mới nhập lại không khớp!');
         }
