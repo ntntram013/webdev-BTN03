@@ -19,12 +19,12 @@
                 <a href="/user/profile" class="alert-link"> Quay lại trang cá nhân?</a>
             </div>
         {{else}}
-            <form class="row">
+            <form class="row" autocomplete="off">
                 <div class="col-lg-9 col-md-10 col-sm-11 col-xs-12 float-left-style">
                     <div class="row mb--10 ">
                         <label class="col-form-label col-md-3 col-sm-4 text-sm-right">Mật khẩu cũ</label>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control" name="password" value="{{password}}" required>
+                            <input type="password" class="form-control" autocomplete="false" name="password" value="{{password}}" required>
                         </div>
                     </div>
                     <div class="row mb--10 ">

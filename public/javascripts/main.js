@@ -725,9 +725,9 @@ $(document).ready(function() {
         const bookId = $("#bookId").val();
         let name = $('#username').val()|| $('#name').val()
         const today = new Date();
-        const time = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + ' ' +
+        const time = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + ' ' +
             today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-        if (comment != null && name != null) {
+        if (comment != '' && name != '') {
             $.ajax({
                 type: 'post',
                 dataType: 'html',

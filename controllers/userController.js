@@ -186,13 +186,13 @@ exports.postModify = async (req, res, next) => {
         } else {
             if (files.imageFile && files.imageFile.size > 0) {
                 cloudinary.uploader.upload(files.imageFile.path,
-                    function (error, result) {
+                    async function (error, result) {
                         console.log(result, error);
                         fields.userImage = result.secure_url;
-                        userModel.updateImage(req.user._id, fields.userImage);
+                        await userModel.updateImage(req.user._id, fields.userImage);
                     });
             }
-             await userModel.updateInfo(req.user._id, user);
+            await userModel.updateInfo(req.user._id, user);
             res.redirect('/user/profile');
 
         }
