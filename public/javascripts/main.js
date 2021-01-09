@@ -712,4 +712,31 @@ $(document).ready(function(){
         });
     }
 });
+/*
+$(document).ready(function() {
 
+    $("#send").on('click', function () {
+        const comment = $('#comment').val();
+        const bookId = 'Hello';
+        const name = $('#username').val();
+        const today = new Date();
+        const time = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + ' ' +
+            today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        console.log(comment);
+        if (comment != '' && name != '') {
+            $.ajax({
+                type: 'get',
+                dataType: 'html',
+                url: '/store/' + bookId + '/add-comment',
+                data: {comment: comment, bookId: bookId, name: name, time: time},
+                success: data => {
+                    const source = $("#comment-template").html();
+                    const template = exphbs.compile(source);
+                    const html = template(data);
+                    $('.pro__review').append(html);
+                }
+            });
+        }
+    })
+});
+*/

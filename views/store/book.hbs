@@ -1,13 +1,14 @@
 <!-- Start Product Details -->
 
 <section class="htc__product__details pt--120 pb--100 bg__white">
-    {{# book}}
+
     <div class="container">
         <div class="row">
+            {{# book}}
             <div class="col-md-5 col-lg-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 
                 <div class="product__details__container">
-
+                    <input id="bookId" value="{{_id}}" hidden>
                     <ul class="product__small__images" role="tablist">
                     {{# each bookImage as | item | }}
                         <li role="presentation" class="pot-small-img">
@@ -38,27 +39,127 @@
             <div class="col-md-5 col-lg-5 col-sm-7 col-xs-12 xmt-30">
                 <div class="htc__product__details__inner">
                     <div class="pro__detl__title">
-                        <h2>{{bookName}}</h2>
+                        <div class="pro__detl__title"><h2>{{bookName}}</h2></div>
                     </div>
-                    <div class="pro__detl__title mt--50">
-                        <h5>Tác giả: {{author}}</h5>
+                    <div class="pro__detl__title mt--20">
+                        <h6> - {{author}} -</h6>
                     </div>
-                    <div class="pro__details">
-                        <p><h5>Giới thiệu: <br></h5> {{detail}}</p>
+                    <ul class="pro__dtl__prize">
+                        <li>{{price}} đ</li>
+                    </ul>
+                    <div class="pro__details mb--20">
+                        <p>{{detail}}</p>
                     </div>
-                    <div class="pro__dtl__prize">
-                        <h5>Giá: {{price}} đ</h5>
-                    </div>
+
 
                     <ul class="pro__dtl__btn">
                         <li class="buy__now__btn"><a href="/store/add-to-cart/{{_id}}">Mua ngay</a></li>
-                        <li><a href="#"><span class="ti-heart"></span></a></li>
-                        <li><a href="#"><span class="ti-email"></span></a></li>
                     </ul>
                 </div>
             </div>
+            {{/book}}
+        </div>
+
+        <div class="row">
+
+                <div class="row">
+                    <div class="h5 mt--40 mb--20">BÌNH LUẬN</div>
+                    <div class="product__deatils__tab"/>
+                </div>
+                <div class="row mtb--20">
+                    <div class="col-md-12">
+                            <!-- Start Single Content -->
+                            <div role="tabpanel" class="product__tab__content fade in active">
+                                <div class="review__address__inner">
+                                    <!-- Start Single Review -->
+                                    <div class="pro__review">
+
+                                        <div class="review__details">
+                                            <div class="review__info">
+                                                <h4>Gerald Barnes</h4>
+                                                <span>27 Jun, 2016 at 2:30pm</span>
+                                            </div>
+
+                                            <div class="header--6">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Review -->
+                                </div>
+                                <!-- Start RAting Area -->
+
+                                <!-- Start review form -->
+                                <div class="review__box">
+                                    <form id="comment-form" name="comment-form">
+                                        {{#if user}}
+                                            <div class="review__info">
+                                                <h3>Bình luận của bạn</h3>
+                                                <input type="text" id="username" name="username" hidden value="{{user.name}}">
+                                            </div>
+                                        {{else}}
+                                        <div class="single-review-form">
+                                            <div class="review-box name">
+                                                <input type="text" id="name" name="name" placeholder="Tên của bạn *">
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        <div class="single-review-form mtb--20">
+                                            <div class="review-box message">
+                                                <textarea required id="comment" name="comment" placeholder="Bình luận *"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                    <div class="review-btn">
+                                        <button id="send" form="comment-form" formmethod="post"   class="btn btn-custom" >Đăng bình luận</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Content -->
+                        </div>
+                    </div>
+                </div>
+
         </div>
     </div>
-    {{/book}}
+
 </section>
 <!-- End Product Details -->
+<script >
+    $(document).ready(function() {
+        //option A
+        $("form").submit(function(e){
+            e.preventDefault(e);
+        });
+    });
+    $("#send").on('click', function () {
+        const addComment = "/add-comment";
+        let comment = $("#comment").val();
+        const bookId = $("#bookId").val();
+        const name = $('#username').val();
+        const today = new Date();
+        const time = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + ' ' +
+                today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        console.log(this);
+        if (comment != null && name != null) {
+            $.ajax({
+                type: 'post',
+                dataType: 'html',
+                url: '/store/' + bookId + addComment,
+                data: {comment: comment, bookId: bookId, name: name, time: time},
+                success: data => {
+                    $('.review__address__inner').append(function() {
+                        return       '<div class="pro__review mt--20">' +
+                                         '<div class="review__details">' +
+                                             '<div class="review__info">' +
+                                                '<h4>'+ name +'</h4>' +
+                                                '<span>'+ time + '</span>'+
+                                            '</div>' +
+                                            '<div class="header--6">' + comment + '</div>'+
+                                        '</div>' +
+                                    '</div>';
+                        });
+                }
+            });
+        }
+    });
+</script>

@@ -13,6 +13,10 @@ const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('./passport');
+const socket = require('socket.io');
+const app = express();
+
+
 const homeRouter = require('./routes/home');
 const usersRouter = require('./routes/users');
 const storeRouter = require('./routes/store');
@@ -20,7 +24,7 @@ const contactRouter = require('./routes/contact');
 const cartRouter = require('./routes/cart');
 const orderRouter = require('./routes/order');
 const authMiddleware = require('./middlewares/auth');
-const app = express();
+
 
 // configuration ===============================================================
 // view engine setup

@@ -96,3 +96,13 @@ module.exports.PaginationQuery = async (queryField, filterId, itemPerPage, curre
         .catch(e => console.log('Error: ', e.message));
     return bookPerPage;
 }
+module.exports.addComment = async (data) =>{
+    const commentCollection = db().collection('Comments');
+    const  result = await commentCollection.insertOne({
+        bookId: data.bookId,
+        name: data.name,
+        comment: data.comment,
+        time: data.time
+    });
+    return result;
+}

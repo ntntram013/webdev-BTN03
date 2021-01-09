@@ -132,3 +132,17 @@ exports.pagination = async(req,res) => {
     });
 
 }
+module.exports.addComment = async (req,res)=>{
+    console.log(req.params.id);
+    const bookId = req.params.id;
+    const name = (req.body.name != ''?  req.body.name : req.body.username )|| '';
+    const comment = req.body.comment;
+    const today = new Date();
+    const time = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + ' ' +
+        today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const data = {bookId, name, comment, time};
+
+        const result = await bookModel.addComment(data);
+
+    res.redirect('back');
+}

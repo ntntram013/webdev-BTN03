@@ -321,9 +321,6 @@ module.exports.postResetPass = async (req, res) => {
 }
 module.exports.postChangePass = async (req,res) =>{
     const {newPassword, password, retypePassword} = req.body;
-    //const hashedPassword = await userService.hashPass(password);
-    //const user = await userModel.queryUser('email', userEmail);
-    //let checkPassword = await bcrypt.compare(password, existedUser.password);
     const user = await userModel.detail(req.user._id);
     let errors = [];
 
