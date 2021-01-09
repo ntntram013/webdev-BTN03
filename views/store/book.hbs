@@ -69,50 +69,59 @@
                 <div class="row mtb--20">
                     <div class="col-md-12">
                             <!-- Start Single Content -->
-                            <div role="tabpanel" class="product__tab__content fade in active">
-                                <div class="review__address__inner">
-                                    <!-- Start Single Review -->
-                                    <div class="pro__review">
+                            <div class="product__tab__content fade in active">
+                                <div class="row">
+                                    <div class="col-md-8 col-xs-12">
+                                        <div class="review__address__inner">
+                                            <!-- Start Single Review -->
+                                            {{#each comment}}
+                                            <div class="pro__review mtb--20">
 
-                                        <div class="review__details">
-                                            <div class="review__info">
-                                                <h4>Gerald Barnes</h4>
-                                                <span>27 Jun, 2016 at 2:30pm</span>
+                                                <div class="review__details">
+                                                    <div class="review__info">
+                                                        <h4>{{name}}</h4>
+                                                        <span>{{time}}</span>
+                                                    </div>
+
+                                                    <div class="header--6">{{comment}}</div>
+                                                </div>
                                             </div>
-
-                                            <div class="header--6">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                            {{/each}}
+                                            <!-- End Single Review -->
                                         </div>
                                     </div>
-                                    <!-- End Single Review -->
-                                </div>
-                                <!-- Start RAting Area -->
 
-                                <!-- Start review form -->
-                                <div class="review__box">
-                                    <form id="comment-form" name="comment-form">
-                                        {{#if user}}
-                                            <div class="review__info">
-                                                <h3>Bình luận của bạn</h3>
-                                                <input type="text" id="username" name="username" hidden value="{{user.name}}">
-                                            </div>
-                                        {{else}}
-                                        <div class="single-review-form">
-                                            <div class="review-box name">
-                                                <input type="text" id="name" name="name" placeholder="Tên của bạn *">
+                                    <div class="col-md-4 col-xs-12">
+                                        <div class="review__box">
+                                            <form id="comment-form" name="comment-form">
+                                                {{#if user}}
+                                                    <div class="review__info">
+                                                        <input  hidden id="username" name="username" value="{{user.name}}">
+                                                    </div>
+                                                {{else}}
+                                                    <div class="single-review-form">
+                                                        <div class="review-box name">
+                                                            <input type="text" id="name" style="width: 100%" name="name" maxlength="50" placeholder="Tên của bạn *">
+                                                        </div>
+                                                    </div>
+                                                {{/if}}
+                                                <div class="single-review-form mtb--20">
+                                                    <div class="review-box message">
+                                                        <textarea required id="comment" name="comment" maxlength="500" placeholder="Bình luận *"></textarea>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                            <div class="review-btn">
+                                                <button id="send-comment" form="comment-form" formmethod="post"   class="btn btn-custom" >Đăng bình luận</button>
                                             </div>
                                         </div>
-                                        {{/if}}
-                                        <div class="single-review-form mtb--20">
-                                            <div class="review-box message">
-                                                <textarea required id="comment" name="comment" placeholder="Bình luận *"></textarea>
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                    <div class="review-btn">
-                                        <button id="send" form="comment-form" formmethod="post"   class="btn btn-custom" >Đăng bình luận</button>
                                     </div>
+
+                                    <!-- Start review form -->
+
                                 </div>
+
                             </div>
                             <!-- End Single Content -->
                         </div>
@@ -124,42 +133,4 @@
 
 </section>
 <!-- End Product Details -->
-<script >
-    $(document).ready(function() {
-        //option A
-        $("form").submit(function(e){
-            e.preventDefault(e);
-        });
-    });
-    $("#send").on('click', function () {
-        const addComment = "/add-comment";
-        let comment = $("#comment").val();
-        const bookId = $("#bookId").val();
-        const name = $('#username').val();
-        const today = new Date();
-        const time = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + ' ' +
-                today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-        console.log(this);
-        if (comment != null && name != null) {
-            $.ajax({
-                type: 'post',
-                dataType: 'html',
-                url: '/store/' + bookId + addComment,
-                data: {comment: comment, bookId: bookId, name: name, time: time},
-                success: data => {
-                    $('.review__address__inner').append(function() {
-                        return       '<div class="pro__review mt--20">' +
-                                         '<div class="review__details">' +
-                                             '<div class="review__info">' +
-                                                '<h4>'+ name +'</h4>' +
-                                                '<span>'+ time + '</span>'+
-                                            '</div>' +
-                                            '<div class="header--6">' + comment + '</div>'+
-                                        '</div>' +
-                                    '</div>';
-                        });
-                }
-            });
-        }
-    });
-</script>
+

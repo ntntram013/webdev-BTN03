@@ -3,8 +3,10 @@ const bookModel = require('../models/bookModel');
 
 
 exports.detail = async (req,res,next) => {
-    const book = await bookModel.detail(req.params.id);
-    res.render('store/book',{title:'Chi tiết',book});
+    let [book, comment] =  await Promise.all([
+        bookModel.detail(req.params.id), bookModel.getComment(req.params.id)]);
+
+    res.render('store/book',{title:'Chi tiết',book, comment});
 }
 
 exports.pagination = async(req,res) => {

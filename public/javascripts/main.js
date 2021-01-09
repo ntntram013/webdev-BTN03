@@ -712,31 +712,45 @@ $(document).ready(function(){
         });
     }
 });
-/*
+/*---------------------
+    22. Comment ajax
+  --------------------- */
 $(document).ready(function() {
-
-    $("#send").on('click', function () {
-        const comment = $('#comment').val();
-        const bookId = 'Hello';
-        const name = $('#username').val();
+    $("#send-comment").on('click', function () {
+        $("form").submit(function(e){
+            e.preventDefault(e);
+        });
+        const addComment = "/add-comment";
+        let comment = $("#comment").val();
+        const bookId = $("#bookId").val();
+        let name = $('#username').val()|| $('#name').val()
         const today = new Date();
-        const time = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + ' ' +
+        const time = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + ' ' +
             today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-        console.log(comment);
-        if (comment != '' && name != '') {
+        if (comment != null && name != null) {
             $.ajax({
-                type: 'get',
+                type: 'post',
                 dataType: 'html',
-                url: '/store/' + bookId + '/add-comment',
+                url: '/store/' + bookId + addComment,
                 data: {comment: comment, bookId: bookId, name: name, time: time},
                 success: data => {
-                    const source = $("#comment-template").html();
-                    const template = exphbs.compile(source);
-                    const html = template(data);
-                    $('.pro__review').append(html);
+                    $('.review__address__inner').prepend(function() {
+                        return       '<div class="pro__review mtb--20">' +
+                            '<div class="review__details">' +
+                            '<div class="review__info">' +
+                            '<h4>'+ name +'</h4>' +
+                            '<span>'+ time + '</span>'+
+                            '</div>' +
+                            '<div class="header--6">' + comment + '</div>'+
+                            '</div>' +
+                            '</div>';
+                    });
+                    $('#name').val('');
+                    $('#comment').val('');
                 }
             });
         }
-    })
+    });
+
+
 });
-*/

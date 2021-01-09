@@ -102,7 +102,13 @@ module.exports.addComment = async (data) =>{
         bookId: data.bookId,
         name: data.name,
         comment: data.comment,
-        time: data.time
+        time: data.time,
+        isDeleted: false
     });
     return result;
+}
+module.exports.getComment = async (id) =>{
+    const commentCollection = db().collection('Comments');
+    const  result = await commentCollection.find({bookId: id, isDeleted: false}).toArray();
+    return result.reverse();
 }
