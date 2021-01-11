@@ -3,25 +3,35 @@ const {ObjectId} = require('mongodb');
 const {db} = require("../dal/db");
 
 
-exports.list = async () => {
+module.exports.list = async () => {
     const bookCollection = db().collection('Product');
     const bookList = await bookCollection.find({isDeleted: false}).toArray();
     return bookList;
 }
 
-exports.detail = async (id) => {
+module.exports.detail = async (id) => {
     const booksCollection = db().collection('Product');
     const book = await booksCollection.findOne({_id: ObjectId(id), isDeleted: false});
     return book;
 }
 
-exports.Pagination = async (itemPerPage, currentPage) => {
+module.exports.increaseView = async (id) => {
+    const booksCollection = db().collection('Product');
+    const filter = { _id: ObjectId(id) };
+    const options = { upsert: false };
+    const updateDoc = {
+        $inc: { view: 1 }
+    };
+    const result = await booksCollection.updateOne(filter, updateDoc, options);
+}
+
+module.exports.Pagination = async (itemPerPage, currentPage) => {
     const booksCollection = db().collection('Product');
     const bookPerPage = await booksCollection.find({isDeleted: false}).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray();
     return bookPerPage;
 }
 
-exports.PaginationFindTitle = async (searchName, itemPerPage, currentPage) => {
+module.exports.PaginationFindTitle = async (searchName, itemPerPage, currentPage) => {
     const booksCollection = db().collection('Product');
     const bookPerPage = await booksCollection.find({
         isDeleted: false,
@@ -31,7 +41,7 @@ exports.PaginationFindTitle = async (searchName, itemPerPage, currentPage) => {
     return bookPerPage;
 }
 
-exports.TotalProduct = async (filterName) => {
+module.exports.TotalProduct = async (filterName) => {
     const booksCollection = db().collection('Product');
 
     if (!filterName) {
@@ -96,6 +106,7 @@ module.exports.PaginationQuery = async (queryField, filterId, itemPerPage, curre
         .catch(e => console.log('Error: ', e.message));
     return bookPerPage;
 }
+
 module.exports.addComment = async (data) =>{
     const commentCollection = db().collection('Comments');
     const  result = await commentCollection.insertOne({
