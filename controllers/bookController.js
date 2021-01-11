@@ -17,6 +17,10 @@ exports.pagination = async(req,res) => {
     let catId = req.query.catId;
     let pubId = req.query.pubId;
 
+    //post filter
+    let price = req.body.price;
+    let pagenum = req.body.pagenum;
+
     const slugify = require('slugify');
     let parseBookName;
 
@@ -26,6 +30,7 @@ exports.pagination = async(req,res) => {
     let isFoundCatalog;
     let isFoundPublisher;
 
+    let totalProducts;
     let productPerPage;
     let totalPage;
 
@@ -38,22 +43,26 @@ exports.pagination = async(req,res) => {
             locale: 'vi'       // language code of the locale to use
         });
         isFoundTitle = true;
-        totalPage = Math.ceil(await bookModel.TotalProduct(parseBookName)/resPerPage);
+        totalProducts = await bookModel.TotalProduct(parseBookName);
+        totalPage = Math.ceil(totalProducts/resPerPage);
     }
     else if (catId) {
         isFoundCatalog = true;
-        totalPage = Math.ceil(await bookModel.totalProductById('categoryID',catId)/resPerPage);
+        totalProducts = await bookModel.totalProductById('categoryID',catId);
+        totalPage = Math.ceil(totalProducts/resPerPage);
     }
     else if (pubId) {
         isFoundPublisher = true;
-        totalPage = Math.ceil(await bookModel.totalProductById('publisherID',pubId)/resPerPage);
+        totalProducts = await bookModel.totalProductById('publisherID',pubId);
+        totalPage = Math.ceil(totalProducts/resPerPage);
     }
     else {
         parseBookName = undefined;
         isFoundCatalog = false;
         isFoundTitle = false;
         isFoundPublisher = false;
-        totalPage = Math.ceil(await bookModel.TotalProduct(parseBookName)/resPerPage);
+        totalProducts = await bookModel.TotalProduct(parseBookName);
+        totalPage = Math.ceil(totalProducts/resPerPage);
     }
 
     if (page < 1) {
@@ -103,15 +112,17 @@ exports.pagination = async(req,res) => {
 
 
     let title = 'Cửa hàng'
+    let catalogName;
+    let publisherName;
     if (titleSearch) {
         title = 'Tìm kiếm | ' + titleSearch;
     }
     else if (catId) {
-        const catalogName = await bookModel.getKeyNameOfId(catId,'catalogName','Catalog');
+        catalogName = await bookModel.getKeyNameOfId(catId,'catalogName','Catalog');
         title = 'Bộ Sưu Tập | ' + catalogName;
     }
     else if (pubId) {
-        const publisherName = await bookModel.getKeyNameOfId(pubId,'publisherName','Publisher');
+        publisherName = await bookModel.getKeyNameOfId(pubId,'publisherName','Publisher');
         title = 'Bộ Sưu Tập | ' + 'NXB ' + publisherName;
     }
 
@@ -123,8 +134,8 @@ exports.pagination = async(req,res) => {
     // Pass data to view to display list of books
     res.render('store/store', {
         title: title,
-        catalog: catalog,
-        publisher: publisher,
+        catalogName, publisherName, totalProducts,
+        catalog: catalog, publisher: publisher,
         titleSearch: titleSearch, catId: catId, pubId: pubId,
         book: productPerPage,
         previousPage: previousPage,
