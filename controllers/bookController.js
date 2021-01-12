@@ -165,8 +165,7 @@ module.exports.addComment = async (req,res)=>{
     const name = (req.body.name != ''?  req.body.name : req.body.username )|| '';
     const comment = req.body.comment;
     const today = new Date();
-    const time = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear() + ' ' +
-        today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const time = today.toLocaleString('vi-Vi', {timeZone: "Asia/Jakarta",hour12: false});
     const data = {bookId, name, comment, time};
 
         const result = await bookModel.addComment(data);

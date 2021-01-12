@@ -4,8 +4,7 @@ const {db} = require("../dal/db");
 module.exports.add = async (user, cart) =>{
     const orderCollection = db().collection('Orders');
     const today = new Date();
-    const newDate = today.getDate() + '-' + (today.getMonth()+1)+'-'+today.getFullYear()+' '+
-                    today.getHours() + ':' +today.getMinutes() + ':' + today.getSeconds() ;
+    const newDate = today.toLocaleString('vi-Vi', {timeZone: "Asia/Jakarta"});
     const newOrder = {
         userId: user.userId,
         info: user.info,

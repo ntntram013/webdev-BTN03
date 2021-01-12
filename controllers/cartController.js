@@ -59,7 +59,7 @@ exports.mergeCart = async (req, res, next) => {
     if(req.user){
         let cart = new cartModel(req.session.cart ? req.session.cart : {});
 
-        if (req.user.cart != {} && req.user.cart) {
+        if (req.user.cart != "" && req.user.cart) {
             const  userCart = await cartModel.findCart(req.user.cart);
             cart = cart.addCart(userCart);
             await cart.saveCart(req.user.cart);
