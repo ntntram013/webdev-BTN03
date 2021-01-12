@@ -55,21 +55,31 @@
 
                     <br>
 
-                    <form action="/store" class="form-inline text-center" method="POST">
-                        <input type="submit" value="     Sắp Xếp     ">&nbsp&nbsp&nbsp
+                    <form action="/store" class="form-inline" method="POST">
+                        &nbsp&nbspSắp Xếp Theo&nbsp&nbsp&nbsp
                         <div class="form-group">
-                            <select list="orders" name="order" id="order" class="form-control">
-                                <option value="1">Mặc Định</option>
-                                <option value="2">Giá Thấp</option>
-                                <option value="3">Giá Cao</option>
+                            <select name="order" id="order" class="form-control" onchange="location = this.value;">
+                                {{#if isLastSortInc}}
+                                    <option value="/store/?{{defaultQueryString}}">Mặc Định</option>
+                                    <option value="/store/?{{curQueryStringWithoutOrder}}&order=1" selected="selected">Giá Thấp</option>
+                                    <option value="/store/?{{curQueryStringWithoutOrder}}&order=-1">Giá Cao</option>
+                                {{else if isLastSortDec}}
+                                    <option value="/store/?{{defaultQueryString}}">Mặc Định</option>
+                                    <option value="/store/?{{curQueryStringWithoutOrder}}&order=1">Giá Thấp</option>
+                                    <option value="/store/?{{curQueryStringWithoutOrder}}&order=-1" selected="selected">Giá Cao</option>
+                                {{else}}
+                                    <option value="/store/?{{defaultQueryString}}" selected="selected">Mặc Định</option>
+                                    <option value="/store/?{{curQueryStringWithoutOrder}}&order=1">Giá Thấp</option>
+                                    <option value="/store/?{{curQueryStringWithoutOrder}}&order=-1">Giá Cao</option>
+                                {{/if}}
+
                             </select>
                         </div>
                     </form>
 
                     <br>
                     <div class="filter__box">
-                        &nbsp&nbsp<img alt="" src="/images/icons/filter-24.png"><a class="filter__menu" href="#">&nbsp&nbsp
-                        Bộ lọc</a>
+                        &nbsp&nbsp<img alt="" src="/images/icons/filter-24.png"><a class="filter__menu" href="#">&nbsp&nbspBộ lọc</a>
                     </div>
                     <!-- Start Filter Menu -->
                     <div class="filter__wrap">
@@ -88,40 +98,24 @@
                                                         <label for="price">Chọn nhà xuất bản:</label>
                                                         <select class="form-control" name="price" id="price">
                                                             <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="price">Chọn nhà xuất bản:</label>
                                                         <select class="form-control" name="price" id="price">
                                                             <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="price">Chọn nhà xuất bản:</label>
                                                         <select class="form-control" name="price" id="price">
                                                             <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="price">Chọn nhà xuất bản:</label>
                                                         <select class="form-control" name="price" id="price">
                                                             <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
                                                         </select>
                                                     </div>
                                                     <input type="submit" class="btn btn-primary" value="Tìm kiếm">

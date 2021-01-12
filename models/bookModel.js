@@ -25,20 +25,66 @@ module.exports.increaseView = async (id) => {
     const result = await booksCollection.updateOne(filter, updateDoc, options);
 }
 
-module.exports.Pagination = async (itemPerPage, currentPage) => {
+module.exports.Pagination = async (itemPerPage, currentPage,order) => {
     const booksCollection = db().collection('Product');
-    const bookPerPage = await booksCollection.find({isDeleted: false}).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray();
-    return bookPerPage;
+    if(order){
+        const sort = {};
+        sort["price"] = order;
+        const bookPerPage = await booksCollection.find({isDeleted: false})
+            .sort(sort)
+            .limit(itemPerPage)
+            .skip(itemPerPage * (currentPage - 1))
+            .toArray();
+        return bookPerPage;
+    }else{
+        const bookPerPage = await booksCollection.find({isDeleted: false})
+            .limit(itemPerPage)
+            .skip(itemPerPage * (currentPage - 1))
+            .toArray();
+        return bookPerPage;
+    }
+
 }
 
-module.exports.PaginationFindTitle = async (searchName, itemPerPage, currentPage) => {
+module.exports.PaginationFindTitle = async (searchName, itemPerPage, currentPage,order) => {
     const booksCollection = db().collection('Product');
-    const bookPerPage = await booksCollection.find({
-        isDeleted: false,
-        parseBookName: new RegExp(searchName)
-    }).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
-        .catch(e => console.log('Error: ', e.message));
-    return bookPerPage;
+    if(order){
+        const sort = {};
+        sort["price"] = order;
+        const bookPerPage = await booksCollection.find({
+            isDeleted: false,
+            parseBookName: new RegExp(searchName)
+        }).sort(sort).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
+            .catch(e => console.log('Error: ', e.message));
+        return bookPerPage;
+    }else{
+        const bookPerPage = await booksCollection.find({
+            isDeleted: false,
+            parseBookName: new RegExp(searchName)
+        }).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
+            .catch(e => console.log('Error: ', e.message));
+        return bookPerPage;
+    }
+
+}
+
+// phân trang dựa theo queryField & filterId
+module.exports.PaginationQuery = async (queryField, filterId, itemPerPage, currentPage,order) => {
+    const booksCollection = db().collection('Product');
+    let query = {};
+    query["isDeleted"] = false;
+    query[queryField] = ObjectId(filterId);
+    if(order){
+        const sort = {};
+        sort["price"] = order;
+        const bookPerPage = await booksCollection.find(query).sort(sort).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
+            .catch(e => console.log('Error: ', e.message));
+        return bookPerPage;
+    }else{
+        const bookPerPage = await booksCollection.find(query).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
+            .catch(e => console.log('Error: ', e.message));
+        return bookPerPage;
+    }
 }
 
 module.exports.TotalProduct = async (filterName) => {
@@ -94,18 +140,7 @@ module.exports.totalProductById = async (queryField, filterId) => {
         return numBook;
     }
 }
-// phân trang dựa theo queryField & filterId
-module.exports.PaginationQuery = async (queryField, filterId, itemPerPage, currentPage) => {
-    const booksCollection = db().collection('Product');
 
-    let query = {};
-    query["isDeleted"] = false;
-    query[queryField] = ObjectId(filterId);
-
-    const bookPerPage = await booksCollection.find(query).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
-        .catch(e => console.log('Error: ', e.message));
-    return bookPerPage;
-}
 
 module.exports.addComment = async (data) =>{
     const commentCollection = db().collection('Comments');

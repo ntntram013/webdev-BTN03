@@ -1,4 +1,5 @@
 const queryString = require('query-string');
+const slugify = require('slugify');
 
 const bookModel = require('../models/bookModel');
 
@@ -17,11 +18,20 @@ exports.pagination = async(req,res) => {
     let titleSearch = req.query.title;
     let catId = req.query.catId;
     let pubId = req.query.pubId;
-
-    const slugify = require('slugify');
-    let parseBookName;
-
+    let order = +req.query.order;
     let page = +req.query.page || 1;
+
+
+    let isLastSortInc = false;
+    let isLastSortDec = false;
+    if(order === 1){
+        isLastSortInc = true;
+    }
+    else if(order === -1){
+        isLastSortDec = true;
+    }
+
+    let parseBookName;
 
     let isFoundTitle;
     let isFoundCatalog;
@@ -70,16 +80,16 @@ exports.pagination = async(req,res) => {
     }
 
     if (titleSearch) {
-        productPerPage = await bookModel.PaginationFindTitle(parseBookName,resPerPage,page);
+        productPerPage = await bookModel.PaginationFindTitle(parseBookName,resPerPage,page,order);
     }
     else if (catId) {
-        productPerPage = await bookModel.PaginationQuery('categoryID',catId,resPerPage,page);
+        productPerPage = await bookModel.PaginationQuery('categoryID',catId,resPerPage,page,order);
     }
     else if (pubId) {
-        productPerPage = await bookModel.PaginationQuery('publisherID',pubId,resPerPage,page);
+        productPerPage = await bookModel.PaginationQuery('publisherID',pubId,resPerPage,page,order);
     }
     else {
-        productPerPage = await bookModel.Pagination(resPerPage, page);
+        productPerPage = await bookModel.Pagination(resPerPage, page, order);
     }
 
     let currentPage = page;
@@ -106,9 +116,15 @@ exports.pagination = async(req,res) => {
         isFound = false;
     }
 
+
     const nextQueryString = queryString.stringify({...req.query,page: nextPage});
     const prevQueryString = queryString.stringify({...req.query,page: previousPage});
     const curQueryString = queryString.stringify({...req.query,page: currentPage});
+    const defaultQueryString = queryString.stringify({...req.query,page: 1, order: null},{skipNull: true});
+
+    const nextQueryStringWithoutOrder = queryString.stringify({...req.query,page: 1, order: null}, {skipNull: true});
+    const prevQueryStringWithoutOrder = queryString.stringify({...req.query,page: 1,order: null},{skipNull: true});
+    const curQueryStringWithoutOrder = queryString.stringify({...req.query,page: 1, order: null},{skipNull: true});
 
     let title = 'Cửa hàng';
     let catalogName;
@@ -138,7 +154,8 @@ exports.pagination = async(req,res) => {
         previousPage, nextPage, currentPage,
         IsHasPrev, IsHasNext,
         nextQueryString,prevQueryString,curQueryString,
-        isFound
+        nextQueryStringWithoutOrder,prevQueryStringWithoutOrder,curQueryStringWithoutOrder,defaultQueryString,
+        isFound,isLastSortInc,isLastSortDec
     });
 
 }
