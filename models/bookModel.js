@@ -87,6 +87,56 @@ module.exports.PaginationQuery = async (queryField, filterId, itemPerPage, curre
     }
 }
 
+module.exports.queryBook = async (catId, pubId, price, itemPerPage, currentPage,order) => {
+    const booksCollection = db().collection('Product');
+    let query = {};
+    if(price === 1){
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 0 , $lt : 50000}
+        };
+    }
+    else if(price === 2){
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 50000 , $lt : 100000}
+        };
+    }
+    else if(price === 3){
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 100000 , $lt : 200000}
+        };
+    }
+    else{
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 200000 }
+        };
+    }
+
+    if(order){
+        const sort = {};
+        sort["price"] = order;
+        const bookPerPage = await booksCollection.find(query).sort(sort).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
+            .catch(e => console.log('Error: ', e.message));
+        return bookPerPage;
+    }else{
+        const bookPerPage = await booksCollection.find(query).limit(itemPerPage).skip(itemPerPage * (currentPage - 1)).toArray()
+            .catch(e => console.log('Error: ', e.message));
+        return bookPerPage;
+    }
+}
+
+
 module.exports.TotalProduct = async (filterName) => {
     const booksCollection = db().collection('Product');
 
@@ -139,6 +189,46 @@ module.exports.totalProductById = async (queryField, filterId) => {
         const numBook = await booksCollection.find(query).count();
         return numBook;
     }
+}
+module.exports.totalProductBySearch = async (pubId, catId, price) => {
+    const booksCollection = db().collection('Product');
+
+    let query = {};
+    if(price === 1){
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 0 , $lt : 50000}
+        };
+    }
+    else if(price === 2){
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 50000 , $lt : 100000}
+        };
+    }
+    else if(price === 3){
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 100000 , $lt : 200000}
+        };
+    }
+    else{
+        query = {
+            "isDeleted": false,
+            "publisherID": ObjectId(pubId),
+            "categoryID": ObjectId(catId),
+            price: { $gte : 200000 }
+        };
+    }
+
+    const numBook = await booksCollection.find(query).count();
+    return numBook;
 }
 
 

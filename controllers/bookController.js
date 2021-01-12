@@ -4,7 +4,7 @@ const slugify = require('slugify');
 const bookModel = require('../models/bookModel');
 
 
-exports.detail = async (req,res,next) => {
+module.exports.detail = async (req,res,next) => {
     await bookModel.increaseView(req.params.id);
     let [book, comment] =  await Promise.all([
         bookModel.detail(req.params.id), bookModel.getComment(req.params.id)]);
@@ -12,7 +12,7 @@ exports.detail = async (req,res,next) => {
     res.render('store/book',{title:'Chi tiết',book, comment});
 }
 
-exports.pagination = async(req,res) => {
+module.exports.pagination = async(req,res) => {
     const resPerPage = 8;
 
     let titleSearch = req.query.title;
@@ -20,7 +20,7 @@ exports.pagination = async(req,res) => {
     let pubId = req.query.pubId;
     let order = +req.query.order;
     let page = +req.query.page || 1;
-
+    let price = +req.query.price;
 
     let isLastSortInc = false;
     let isLastSortDec = false;
@@ -53,14 +53,18 @@ exports.pagination = async(req,res) => {
         totalProducts = await bookModel.TotalProduct(parseBookName);
         totalPage = Math.ceil(totalProducts/resPerPage);
     }
-    else if (catId) {
+    else if (catId && !price) {
         isFoundCatalog = true;
         totalProducts = await bookModel.totalProductById('categoryID',catId);
         totalPage = Math.ceil(totalProducts/resPerPage);
     }
-    else if (pubId) {
+    else if (pubId && !price) {
         isFoundPublisher = true;
         totalProducts = await bookModel.totalProductById('publisherID',pubId);
+        totalPage = Math.ceil(totalProducts/resPerPage);
+    }
+    else if(catId && pubId && price){ // search by price range
+        totalProducts = await bookModel.totalProductBySearch(pubId, catId, price);
         totalPage = Math.ceil(totalProducts/resPerPage);
     }
     else {
@@ -82,11 +86,14 @@ exports.pagination = async(req,res) => {
     if (titleSearch) {
         productPerPage = await bookModel.PaginationFindTitle(parseBookName,resPerPage,page,order);
     }
-    else if (catId) {
+    else if (catId && !price) {
         productPerPage = await bookModel.PaginationQuery('categoryID',catId,resPerPage,page,order);
     }
-    else if (pubId) {
+    else if (pubId  && !price) {
         productPerPage = await bookModel.PaginationQuery('publisherID',pubId,resPerPage,page,order);
+    }
+    else if (catId && pubId && price) {
+        productPerPage = await bookModel.queryBook(catId,pubId,price,resPerPage,page,order);
     }
     else {
         productPerPage = await bookModel.Pagination(resPerPage, page, order);
@@ -107,7 +114,7 @@ exports.pagination = async(req,res) => {
 
     let isFound = true;
     if (productPerPage) {
-        for (i = 0; i < productPerPage.length; i++) {
+        for (let i = 0; i < productPerPage.length; i++) {
             productPerPage[i].resPerPage = resPerPage;
             productPerPage[i].currentPage = currentPage;
         }
@@ -115,7 +122,6 @@ exports.pagination = async(req,res) => {
     else {
         isFound = false;
     }
-
 
     const nextQueryString = queryString.stringify({...req.query,page: nextPage});
     const prevQueryString = queryString.stringify({...req.query,page: previousPage});
@@ -126,27 +132,33 @@ exports.pagination = async(req,res) => {
     const prevQueryStringWithoutOrder = queryString.stringify({...req.query,page: 1,order: null},{skipNull: true});
     const curQueryStringWithoutOrder = queryString.stringify({...req.query,page: 1, order: null},{skipNull: true});
 
+    let multiSearch = false;
     let title = 'Cửa hàng';
     let catalogName;
     let publisherName;
     if (titleSearch) {
         title = 'Tìm kiếm | ' + titleSearch;
     }
-    else if (catId) {
+    else if (catId && !price) {
         catalogName = await bookModel.getKeyNameOfId(catId,'catalogName','Catalog');
         title = 'Bộ Sưu Tập | ' + catalogName;
     }
-    else if (pubId) {
+    else if (pubId && !price) {
         publisherName = await bookModel.getKeyNameOfId(pubId,'publisherName','Publisher');
         title = 'Bộ Sưu Tập | ' + 'NXB ' + publisherName;
+    }
+    else if (price){
+        catalogName = await bookModel.getKeyNameOfId(catId,'catalogName','Catalog');
+        publisherName = await bookModel.getKeyNameOfId(pubId,'publisherName','Publisher');
+        title = 'Tìm kiếm nâng cao | ' + publisherName  + ', ' + catalogName;
+        multiSearch = true;
     }
 
     const [catalog, publisher, book] = await Promise.all(
         [bookModel.listDocuments('Catalog'),
             bookModel.listDocuments('Publisher'),
             bookModel.list()]);
-    // Get books from model
-    // Pass data to view to display list of books
+
     res.render('store/store', {
         title: title, catalog, publisher,
         catalogName, publisherName, totalProducts, titleSearch,
@@ -155,10 +167,13 @@ exports.pagination = async(req,res) => {
         IsHasPrev, IsHasNext,
         nextQueryString,prevQueryString,curQueryString,
         nextQueryStringWithoutOrder,prevQueryStringWithoutOrder,curQueryStringWithoutOrder,defaultQueryString,
-        isFound,isLastSortInc,isLastSortDec
+        isFound,isLastSortInc,isLastSortDec,
+        multiSearch
     });
-
 }
+
+
+
 module.exports.addComment = async (req,res)=>{
     console.log(req.params.id);
     const bookId = req.params.id;
