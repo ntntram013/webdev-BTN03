@@ -32,6 +32,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', exphbs({
     extname: '.hbs',
     defaultLayout: 'layout',
+    helpers: {
+        formatCurrency: function (currency) {
+            var formatter = new Intl.NumberFormat('vi-VI', {
+                style: 'currency',
+                currency: 'VND',
+            });
+            var value = currency.toString();
+            var coin = formatter.format(value);
+            return coin;
+        },
+    }
 }));
 app.set('view engine', 'hbs');
 
