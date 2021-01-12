@@ -11,8 +11,7 @@
                         </div>
                         <div class="category-menu-list">
                             <ul>
-                                <li><a href="#"><img alt="" src="/images/icons/book-25.png"> Thể loại <i
-                                        class="zmdi zmdi-chevron-right"></i></a>
+                                <li><a href="#"><img alt="" src="/images/icons/book-25.png"> Thể loại <i class="zmdi zmdi-chevron-right"></i></a>
                                     <div class="category-menu-dropdown">
                                         <div class="category-common">
                                             <ul>
@@ -26,8 +25,7 @@
                                     </div>
                                 </li>
 
-                                <li><a href="#"><img alt="" src="/images/icons/publisher-25.png"> Nhà xuất bản <i
-                                        class="zmdi zmdi-chevron-right"></i></a>
+                                <li><a href="#"><img alt="" src="/images/icons/publisher-25.png"> Nhà xuất bản <i class="zmdi zmdi-chevron-right"></i></a>
                                     <div class="category-menu-dropdown">
                                         <div class="category-common mb--10">
                                             <ul class="dropdown">
@@ -41,13 +39,12 @@
                                     </div>
                                 </li>
 
-                                <li><a href="#"><img alt="" src="/images/icons/medals-25.png"> Best sellers <i
-                                        class="zmdi zmdi-chevron-right"></i></a>
+                                <li><a href="#"><img alt="" src="/images/icons/medals-25.png"> Best sellers <i class="zmdi zmdi-chevron-right"></i></a>
                                     <div class="category-menu-dropdown">
                                         <div class="category-common mb--10">
                                             <h4 class="categories-subtitle"> Bán chạy nhất </h4>
                                             <ul>
-                                                <li>Nguyễn Huy Tú</li>
+                                                <li>Top 10</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -139,18 +136,17 @@
                     </div>
                     <!-- End Filter Menu -->
                 </div>
+
                 {{#if catalogName}}
                     <br>
-                    <h2 class="text-center"><strong>{{catalogName}}</strong><span class="text-danger"
-                                                                                  style='font-size: 20px;'>  ({{totalProducts}}
-                        sản phẩm)</span></h2>
+                    <h2 class="text-center"><strong>{{catalogName}}</strong><span class="text-danger" style='font-size: 20px;'>  ({{totalProducts}} sản phẩm)</span></h2>
                 {{/if}}
                 {{#if publisherName}}
                     <br>
-                    <h2 class="text-center"><strong>{{publisherName}}</strong><span class="text-danger"
-                                                                                    style='font-size: 20px;'>  ({{totalProducts}}
-                        sản phẩm)</span></h2>
+                    <h2 class="text-center"><strong>{{publisherName}}</strong><span class="text-danger" style='font-size: 20px;'>  ({{totalProducts}} sản phẩm)</span></h2>
                 {{/if}}
+
+
                 <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style pb--50">
                     <div class="product__list another-product-style">
                         {{#each book}}
@@ -165,13 +161,12 @@
                                         </div>
                                         <div class="product__hover__info">
                                             <ul class="product__action bg__custom">
-                                                <li><a title="Add To Cart" href="/store/add-to-cart/{{_id}}"><span
-                                                        class="ti-shopping-cart"></span></a></li>
+                                                <li><a title="Add To Cart" href="/store/add-to-cart/{{_id}}"><span class="ti-shopping-cart"></span></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product__details">
-                                        <a href="/store/{{_id}}"><h2>{{bookName}}</h2></a>
+                                        <a href="/store/{{_id}}"> <h2>{{bookName}}</h2> </a>
                                         <ul class="product__price">
                                             <li class="new__price">{{price}} đ</li>
                                         </ul>
@@ -189,142 +184,43 @@
         <br><br><br>
         {{#if isFound}}
             <div class="text-center">
-
-                {{#if isFoundTitle}}
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                {{#if IsHasPrev}}
-                                    <a class="page-link" href="/store/?title={{titleSearch}}&page={{previousPage}}"
-                                    aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
                             {{#if IsHasPrev}}
-                                <li class="page-item"><a class="page-link" href="/store/?title={{titleSearch}}
-                                    &page={{previousPage}}">{{previousPage}}</a></li>
+                                <a class="page-link" href="/store/?{{prevQueryString}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
                             {{/if}}
-                            <li class="page-item  active"><a class="page-link" href="/store/?title={{titleSearch}}
-                                &page={{currentPage}}">{{currentPage}}</a></li>
+                        </li>
+                        {{#if IsHasPrev}}
+                            <li class="page-item"><a class="page-link" href="/store/?{{prevQueryString}}">{{previousPage}}</a></li>
+                        {{/if}}
+                        <li class="page-item  active"><a class="page-link" href="/store/?{{curQueryString}}">{{currentPage}}</a></li>
 
+                        {{#if IsHasNext}}
+                            <li class="page-item"><a class="page-link" href="/store/?{{nextQueryString}}">{{nextPage}}</a></li>
+                        {{/if}}
+                        <li class="page-item">
                             {{#if IsHasNext}}
-                                <li class="page-item"><a class="page-link" href="/store/?title={{titleSearch}}
-                                    &page={{nextPage}}">{{nextPage}}</a></li>
+                                <a class="page-link" href="/store/?{{nextQueryString}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
                             {{/if}}
-                            <li class="page-item">
-                                {{#if IsHasNext}}
-                                    <a class="page-link" href="/store/?title={{titleSearch}}&page={{nextPage}}"
-                                    aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
-                        </ul>
-                    </nav>
-                {{else if isFoundCatalog}}
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                {{#if IsHasPrev}}
-                                    <a class="page-link" href="/store/?catId={{catId}}&page={{previousPage}}"
-                                    aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
-                            {{#if IsHasPrev}}
-                                <li class="page-item"><a class="page-link" href="/store/?catId={{catId}}
-                                    &page={{previousPage}}">{{previousPage}}</a></li>
-                            {{/if}}
-                            <li class="page-item  active"><a class="page-link" href="/store/?catId={{catId}}
-                                &page={{currentPage}}">{{currentPage}}</a></li>
-
-                            {{#if IsHasNext}}
-                                <li class="page-item"><a class="page-link" href="/store/?catId={{catId}}
-                                    &page={{nextPage}}">{{nextPage}}</a></li>
-                            {{/if}}
-                            <li class="page-item">
-                                {{#if IsHasNext}}
-                                    <a class="page-link" href="/store/?catId={{catId}}&page={{nextPage}}"
-                                    aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
-                        </ul>
-                    </nav>
-                {{else if isFoundPublisher}}
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                {{#if IsHasPrev}}
-                                    <a class="page-link" href="/store/?pubId={{pubId}}&page={{previousPage}}"
-                                    aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
-                            {{#if IsHasPrev}}
-                                <li class="page-item"><a class="page-link" href="/store/?pubId={{pubId}}
-                                    &page={{previousPage}}">{{previousPage}}</a></li>
-                            {{/if}}
-                            <li class="page-item  active"><a class="page-link" href="/store/?pubId={{pubId}}
-                                &page={{currentPage}}">{{currentPage}}</a></li>
-
-                            {{#if IsHasNext}}
-                                <li class="page-item"><a class="page-link" href="/store/?pubId={{pubId}}
-                                    &page={{nextPage}}">{{nextPage}}</a></li>
-                            {{/if}}
-                            <li class="page-item">
-                                {{#if IsHasNext}}
-                                    <a class="page-link" href="/store/?pubId={{pubId}}&page={{nextPage}}"
-                                    aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
-                        </ul>
-                    </nav>
-                {{else}}
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                {{#if IsHasPrev}}
-                                    <a class="page-link" href="/store/?page={{previousPage}}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
-                            {{#if IsHasPrev}}
-                                <li class="page-item"><a class="page-link" href="/store/?page={{previousPage}}
-                                    ">{{previousPage}}</a></li>
-                            {{/if}}
-                            <li class="page-item  active"><a class="page-link" href="/store/?page={{currentPage}}
-                                ">{{currentPage}}</a></li>
-
-                            {{#if IsHasNext}}
-                                <li class="page-item"><a class="page-link" href="/store/?page={{nextPage}}
-                                    ">{{nextPage}}</a></li>
-                            {{/if}}
-                            <li class="page-item">
-                                {{#if IsHasNext}}
-                                    <a class="page-link" href="/store/?page={{nextPage}}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                {{/if}}
-                            </li>
-                        </ul>
-                    </nav>
-                {{/if}}
-
+                        </li>
+                    </ul>
+                </nav>
             </div>
         {{else}}
+        <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style pb--50">
+        <div class="product__list another-product-style">
             <div class="text-center">
                 <div class="alert alert-danger" role="alert">
-                    KHÔNG TÌM THẤY SẢN PHẨM - <a href="/store" class="alert-link">Quay về cửa hàng!</a>
+                    KHÔNG TÌM THẤY SẢN PHẨM -  <a href="/store" class="alert-link">Quay về cửa hàng!</a>
                 </div>
             </div>
+        </div>
+        </div>
         {{/if}}
 
     </div>

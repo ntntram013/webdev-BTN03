@@ -1,133 +1,131 @@
+
 <body>
 <!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
 
-<!-- Start Feature Product -->
-<section class="categories-slider-area bg__gray">
-    <div class="container">
-        <div class="row mtb--50">
-            <!-- Start Left Feature -->
-            <div class="">
-                <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12 float-right-style">
-                    <div class="categories-menu mrg-xs">
-                        <div class="product-categories-title">
-                            <h3><strong>Bộ sưu tập</strong></h3>
+    <!-- Start Feature Product -->
+    <section class="categories-slider-area bg__gray">
+        <div class="container">
+            <div class="row mtb--50">
+                <!-- Start Left Feature -->
+                <div class="">
+                    <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12 float-right-style">
+                        <div class="categories-menu mrg-xs">
+                            <div class="product-categories-title">
+                                <h3><strong>Bộ sưu tập</strong></h3>
+                            </div>
+                            <div class="category-menu-list">
+                                <ul>
+                                    <li><a href="#"><img alt="" src="/images/icons/book-25.png"> Thể loại <i class="zmdi zmdi-chevron-right"></i></a>
+                                        <div class="category-menu-dropdown">
+                                            <div class="category-common">
+                                                <ul>
+                                                    {{#each catalog}}
+                                                        <li class="mt--0 mb--10">
+                                                            <a href="/store/?catId={{_id}}"> {{catalogName}}</a>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li><a href="#"><img alt="" src="/images/icons/publisher-25.png"> Nhà xuất bản <i class="zmdi zmdi-chevron-right"></i></a>
+                                        <div class="category-menu-dropdown">
+                                            <div class="category-common mb--10">
+                                                <ul class="dropdown">
+                                                    {{#each publisher}}
+                                                        <li class="mt--0 mb--10">
+                                                            <a href="/store/?pubId={{_id}}"> {{publisherName}}</a>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li><a href="#"><img alt="" src="/images/icons/medals-25.png"> Best sellers <i class="zmdi zmdi-chevron-right"></i></a>
+                                        <div class="category-menu-dropdown">
+                                            <div class="category-common mb--10">
+                                                <h4 class="categories-subtitle"> Bán chạy nhất </h4>
+                                                <ul>
+                                                    <li class="mt--0 mb--10">Top 10 view</li>
+                                                    <li class="mt--0 mb--10">Top 10 sale</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
                         </div>
-                        <div class="category-menu-list">
-                            <ul>
-                                <li><a href="#"><img alt="" src="/images/icons/book-25.png"> Thể loại <i
-                                        class="zmdi zmdi-chevron-right"></i></a>
-                                    <div class="category-menu-dropdown">
-                                        <div class="category-common">
-                                            <ul>
-                                                {{#each catalog}}
-                                                    <li class="mt--0 mb--10">
-                                                        <a href="/store/?catId={{_id}}"> {{catalogName}}</a>
-                                                    </li>
-                                                {{/each}}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li><a href="#"><img alt="" src="/images/icons/publisher-25.png"> Nhà xuất bản <i
-                                        class="zmdi zmdi-chevron-right"></i></a>
-                                    <div class="category-menu-dropdown">
-                                        <div class="category-common mb--10">
-                                            <ul class="dropdown">
-                                                {{#each publisher}}
-                                                    <li class="mt--0 mb--10">
-                                                        <a href="/store/?pubId={{_id}}"> {{publisherName}}</a>
-                                                    </li>
-                                                {{/each}}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li><a href="#"><img alt="" src="/images/icons/medals-25.png"> Best sellers <i
-                                        class="zmdi zmdi-chevron-right"></i></a>
-                                    <div class="category-menu-dropdown">
-                                        <div class="category-common mb--10">
-                                            <h4 class="categories-subtitle"> Bán chạy nhất </h4>
-                                            <ul>
-                                                <li class="mt--0 mb--10">Top 10 sản phẩm</li>
-                                                <li class="mt--0 mb--10">Top 10 gian hàng</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-
-
                     </div>
-                </div>
-                <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style pb--50">
-                    <!-- Start Slider Area -->
-                    <div class="slider__container slider--one">
-                        <div class="slider__activation__wrap owl-carousel owl-theme">
-                            <!-- Start Single Slide -->
-                            <div class="slide slider__full--screen slider-height-inherit slider-text-right " style="">
-                                <div class="container  slider__bg--1">
-                                    <div class="row">
-                                        <div class="col-md-10 col-lg-8 col-md-offset-2 col-lg-offset-4 col-sm-12 col-xs-12 ">
-                                            <div class="slider__inner">
-                                                <h1 class="slider__content">Bộ sưu tập <br> <span class="text--theme">Sách của năm </span>
-                                                </h1>
-                                                <div class="slider__btn">
-                                                    <a class="htc__btn " href="/store/?page=1">Cửa hàng </a>
+                    <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style pb--50">
+                        <!-- Start Slider Area -->
+                        <div class="slider__container slider--one">
+                            <div class="slider__activation__wrap owl-carousel owl-theme">
+                                <!-- Start Single Slide -->
+                                <div class="slide slider__full--screen slider-height-inherit slider-text-right " style="">
+                                    <div class="container  slider__bg--1">
+                                        <div class="row">
+                                            <div class="col-md-10 col-lg-8 col-md-offset-2 col-lg-offset-4 col-sm-12 col-xs-12 ">
+                                                <div class="slider__inner">
+                                                    <h1 class="slider__content">Bộ sưu tập <br> <span class="text--theme">Sách của năm </span></h1>
+                                                    <div class="slider__btn">
+                                                        <a class="htc__btn " href="/store/?page=1">Cửa hàng </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Single Slide -->
-                            <!-- Start Single Slide -->
-                            <div class="slide slider__full--screen slider-height-inherit  slider-text-left" style="">
-                                <div class="container slider__bg--1">
-                                    <div class="row">
-                                        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
-                                            <div class="slider__inner">
-                                                <h1 class="slider__content">Bộ sưu tập<br><span class="text--theme">Sách của năm</span>
-                                                </h1>
-                                                <div class="slider__btn">
-                                                    <a class="htc__btn text--white" href="/store/?page=1">Cửa hàng</a>
+                                <!-- End Single Slide -->
+                                <!-- Start Single Slide -->
+                                <div class="slide slider__full--screen slider-height-inherit  slider-text-left" style="">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                                                <div class="slider__inner">
+                                                    <h1>Bộ sưu tập<br><span class="text--theme">Sách của năm</span></h1>
+                                                    <div class="slider__btn">
+                                                        <a class="htc__btn text--white" href="/store/?page=1">Cửa hàng</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- End Single Slide -->
                             </div>
-                            <!-- End Single Slide -->
                         </div>
-                    </div>
-                    <!-- Start Slider Area -->
-                </div>
-            </div>
-            <div class="row ptb--50">
-                <div class="only-banner ">
-                    <div class="container">
-                        <div class="only-banner-img">
-                            <a href="/store"><img src="/images/new-product/1.png" alt="new product"></a>
-                        </div>
+                        <!-- Start Slider Area -->
                     </div>
                 </div>
+                <div class="row ptb--50">
+                    <div class="only-banner ">
+                        <div class="container">
+                            <div class="only-banner-img">
+                                <a href="/store"><img src="/images/new-product/1.png" alt="new product"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- End Left Feature -->
+
+
+
             </div>
 
-            <!-- End Left Feature -->
 
 
         </div>
+    </section>
 
-
-    </div>
-</section>
 
 
 </body>

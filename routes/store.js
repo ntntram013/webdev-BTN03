@@ -6,7 +6,6 @@ const cartController = require('../controllers/cartController');
 
 /* GET list of goods. */
 router.get('/', bookController.pagination);
-router.post('/', bookController.pagination);
 router.get('/:id', bookController.detail);
 router.get('/add-to-cart/:id', cartController.addToCart );
 router.post('/:id/add-comment', bookController.addComment);

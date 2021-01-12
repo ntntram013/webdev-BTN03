@@ -25,6 +25,7 @@
     "nodemailer": "^6.4.17",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "query-string": "^6.13.8",
     "slugify": "^1.4.6",
     "socket.io": "^3.0.5"
   }

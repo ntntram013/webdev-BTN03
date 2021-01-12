@@ -1,5 +1,6 @@
-const bookModel = require('../models/bookModel');
+const queryString = require('query-string');
 
+const bookModel = require('../models/bookModel');
 
 
 exports.detail = async (req,res,next) => {
@@ -16,10 +17,6 @@ exports.pagination = async(req,res) => {
     let titleSearch = req.query.title;
     let catId = req.query.catId;
     let pubId = req.query.pubId;
-
-    //post filter
-    let price = req.body.price;
-    let pagenum = req.body.pagenum;
 
     const slugify = require('slugify');
     let parseBookName;
@@ -101,7 +98,6 @@ exports.pagination = async(req,res) => {
     let isFound = true;
     if (productPerPage) {
         for (i = 0; i < productPerPage.length; i++) {
-            //console.log(productPerPage[i]);
             productPerPage[i].resPerPage = resPerPage;
             productPerPage[i].currentPage = currentPage;
         }
@@ -110,8 +106,11 @@ exports.pagination = async(req,res) => {
         isFound = false;
     }
 
+    const nextQueryString = queryString.stringify({...req.query,page: nextPage});
+    const prevQueryString = queryString.stringify({...req.query,page: previousPage});
+    const curQueryString = queryString.stringify({...req.query,page: currentPage});
 
-    let title = 'Cửa hàng'
+    let title = 'Cửa hàng';
     let catalogName;
     let publisherName;
     if (titleSearch) {
@@ -133,15 +132,12 @@ exports.pagination = async(req,res) => {
     // Get books from model
     // Pass data to view to display list of books
     res.render('store/store', {
-        title: title,
-        catalogName, publisherName, totalProducts,
-        catalog: catalog, publisher: publisher,
-        titleSearch: titleSearch, catId: catId, pubId: pubId,
+        title: title, catalog, publisher,
+        catalogName, publisherName, totalProducts, titleSearch,
         book: productPerPage,
-        previousPage: previousPage,
-        nextPage: nextPage,
-        IsHasPrev, IsHasNext, currentPage,
-        isFoundTitle, isFoundCatalog, isFoundPublisher,
+        previousPage, nextPage, currentPage,
+        IsHasPrev, IsHasNext,
+        nextQueryString,prevQueryString,curQueryString,
         isFound
     });
 
