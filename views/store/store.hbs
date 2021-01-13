@@ -41,6 +41,21 @@
                                     </div>
                                 </li>
 
+                                <li><a href="#"><img alt="" src="/images/icons/cover-24.png"> Hình thức <i class="zmdi zmdi-chevron-right"></i></a>
+                                    <div class="category-menu-dropdown">
+                                        <div class="category-common mb--10">
+                                            <h4 class="categories-subtitle"> Hình thức </h4>
+                                            <ul class="dropdown">
+                                                {{#each cover}}
+                                                    <li class="mt--0 mb--10">
+                                                        <a href="/store/?coverId={{_id}}"> {{coverName}}</a>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -87,7 +102,7 @@
                                             <ul class="filter__list">
                                                 <form action="/store" method="GET">
                                                     <div class="form-group">
-                                                        <label for="publisher">Chọn nhà xuất bản:</label>
+                                                        <label for="pubId">Chọn nhà xuất bản:</label>
                                                         <select class="form-control" name="pubId" id="pubId">
                                                             {{#each publisher}}
                                                                 <option value="{{_id}}">{{publisherName}}</option>
@@ -95,10 +110,18 @@
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="catalog">Chọn nhà xuất bản:</label>
+                                                        <label for="catId">Chọn nhà xuất bản:</label>
                                                         <select class="form-control" name="catId" id="catId">
                                                             {{#each catalog}}
                                                                 <option value="{{_id}}">{{catalogName}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="coverId">Chọn hình thức:</label>
+                                                        <select class="form-control" name="coverId" id="coverId">
+                                                            {{#each cover}}
+                                                                <option value="{{_id}}">{{coverName}}</option>
                                                             {{/each}}
                                                         </select>
                                                     </div>
@@ -125,13 +148,16 @@
                 </div>
                 <br>
                 {{#if multiSearch}}
-                    <h2 class="text-center">Tìm kiếm nâng cao: <strong>{{catalogName}}, {{publisherName}}</strong><span class="text-danger" style='font-size: 20px;'>  ({{totalProducts}} sản phẩm)</span></h2>
+                    <h2 class="text-center">Tìm kiếm nâng cao: <strong>{{catalogName}}, {{publisherName}}, {{coverName}}</strong><span class="text-danger" style='font-size: 20px;'>  ({{totalProducts}} sản phẩm)</span></h2>
                 {{else}}
                     {{#if catalogName}}
                         <h2 class="text-center"><strong>{{catalogName}}</strong><span class="text-danger" style='font-size: 20px;'>  ({{totalProducts}} sản phẩm)</span></h2>
                     {{/if}}
                     {{#if publisherName}}
                         <h2 class="text-center"><strong>{{publisherName}}</strong><span class="text-danger" style='font-size: 20px;'>  ({{totalProducts}} sản phẩm)</span></h2>
+                    {{/if}}
+                    {{#if coverName}}
+                        <h2 class="text-center"><strong>{{coverName}}</strong><span class="text-danger" style='font-size: 20px;'>  ({{totalProducts}} sản phẩm)</span></h2>
                     {{/if}}
                 {{/if}}
 

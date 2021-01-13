@@ -18,6 +18,7 @@ module.exports.pagination = async(req,res) => {
     let titleSearch = req.query.title;
     let catId = req.query.catId;
     let pubId = req.query.pubId;
+    let coverId = req.query.coverId;
     let order = +req.query.order;
     let page = +req.query.page || 1;
     let price = +req.query.price;
@@ -63,8 +64,12 @@ module.exports.pagination = async(req,res) => {
         totalProducts = await bookModel.totalProductById('publisherID',pubId);
         totalPage = Math.ceil(totalProducts/resPerPage);
     }
-    else if(catId && pubId && price){ // search by price range
-        totalProducts = await bookModel.totalProductBySearch(pubId, catId, price);
+    else if (coverId && !price) {
+        totalProducts = await bookModel.totalProductById('coverForm',coverId);
+        totalPage = Math.ceil(totalProducts/resPerPage);
+    }
+    else if(catId && pubId && coverId && price){
+        totalProducts = await bookModel.totalProductBySearch(pubId, catId, coverId, price);
         totalPage = Math.ceil(totalProducts/resPerPage);
     }
     else {
@@ -92,8 +97,11 @@ module.exports.pagination = async(req,res) => {
     else if (pubId  && !price) {
         productPerPage = await bookModel.PaginationQuery('publisherID',pubId,resPerPage,page,order);
     }
-    else if (catId && pubId && price) {
-        productPerPage = await bookModel.queryBook(catId,pubId,price,resPerPage,page,order);
+    else if (coverId  && !price) {
+        productPerPage = await bookModel.PaginationQuery('coverForm',coverId,resPerPage,page,order);
+    }
+    else if (catId && pubId &&  coverId && price) {
+        productPerPage = await bookModel.queryBook(catId,pubId,coverId,price,resPerPage,page,order);
     }
     else {
         productPerPage = await bookModel.Pagination(resPerPage, page, order);
@@ -136,6 +144,7 @@ module.exports.pagination = async(req,res) => {
     let title = 'Cửa hàng';
     let catalogName;
     let publisherName;
+    let coverName;
     if (titleSearch) {
         title = 'Tìm kiếm | ' + titleSearch;
     }
@@ -147,21 +156,27 @@ module.exports.pagination = async(req,res) => {
         publisherName = await bookModel.getKeyNameOfId(pubId,'publisherName','Publisher');
         title = 'Bộ Sưu Tập | ' + 'NXB ' + publisherName;
     }
+    else if (coverId && !price) {
+        coverName = await bookModel.getKeyNameOfId(coverId,'coverName','Cover');
+        title = 'Bộ Sưu Tập | ' + coverName;
+    }
     else if (price){
         catalogName = await bookModel.getKeyNameOfId(catId,'catalogName','Catalog');
         publisherName = await bookModel.getKeyNameOfId(pubId,'publisherName','Publisher');
-        title = 'Tìm kiếm nâng cao | ' + publisherName  + ', ' + catalogName;
+        coverName = await bookModel.getKeyNameOfId(coverId,'coverName','Cover');
+        title = 'Tìm kiếm nâng cao | ' + publisherName  + ', ' + catalogName + ', ' + coverName;
         multiSearch = true;
     }
 
-    const [catalog, publisher, book] = await Promise.all(
+    const [catalog, publisher, cover, book] = await Promise.all(
         [bookModel.listDocuments('Catalog'),
             bookModel.listDocuments('Publisher'),
+            bookModel.listDocuments('Cover'),
             bookModel.list()]);
 
     res.render('store/store', {
-        title: title, catalog, publisher,
-        catalogName, publisherName, totalProducts, titleSearch,
+        title: title, catalog, publisher,cover,
+        catalogName, publisherName, coverName, totalProducts, titleSearch,
         book: productPerPage,
         previousPage, nextPage, currentPage,
         IsHasPrev, IsHasNext,

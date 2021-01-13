@@ -87,7 +87,7 @@ module.exports.PaginationQuery = async (queryField, filterId, itemPerPage, curre
     }
 }
 
-module.exports.queryBook = async (catId, pubId, price, itemPerPage, currentPage,order) => {
+module.exports.queryBook = async (catId, pubId, coverId, price, itemPerPage, currentPage,order) => {
     const booksCollection = db().collection('Product');
     let query = {};
     if(price === 1){
@@ -95,6 +95,7 @@ module.exports.queryBook = async (catId, pubId, price, itemPerPage, currentPage,
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 0 , $lt : 50000}
         };
     }
@@ -103,6 +104,7 @@ module.exports.queryBook = async (catId, pubId, price, itemPerPage, currentPage,
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 50000 , $lt : 100000}
         };
     }
@@ -111,6 +113,7 @@ module.exports.queryBook = async (catId, pubId, price, itemPerPage, currentPage,
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 100000 , $lt : 200000}
         };
     }
@@ -119,6 +122,7 @@ module.exports.queryBook = async (catId, pubId, price, itemPerPage, currentPage,
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 200000 }
         };
     }
@@ -190,7 +194,7 @@ module.exports.totalProductById = async (queryField, filterId) => {
         return numBook;
     }
 }
-module.exports.totalProductBySearch = async (pubId, catId, price) => {
+module.exports.totalProductBySearch = async (pubId, catId, coverId, price) => {
     const booksCollection = db().collection('Product');
 
     let query = {};
@@ -199,6 +203,7 @@ module.exports.totalProductBySearch = async (pubId, catId, price) => {
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 0 , $lt : 50000}
         };
     }
@@ -207,6 +212,7 @@ module.exports.totalProductBySearch = async (pubId, catId, price) => {
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 50000 , $lt : 100000}
         };
     }
@@ -215,6 +221,7 @@ module.exports.totalProductBySearch = async (pubId, catId, price) => {
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 100000 , $lt : 200000}
         };
     }
@@ -223,6 +230,7 @@ module.exports.totalProductBySearch = async (pubId, catId, price) => {
             "isDeleted": false,
             "publisherID": ObjectId(pubId),
             "categoryID": ObjectId(catId),
+            "coverForm": ObjectId(coverId),
             price: { $gte : 200000 }
         };
     }
