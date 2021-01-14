@@ -11,11 +11,28 @@ module.exports.list = async () => {
 
 module.exports.detail = async (id) => {
     const booksCollection = db().collection('Product');
-    const book = await booksCollection.findOne({_id: ObjectId(id), isDeleted: false});
+    let book;
+    try {
+        book = await booksCollection.findOne({_id: ObjectId(id), isDeleted: false});
+    } catch(err) {
+       console.log(err)// TypeError: failed to fetch
+    }
     return book;
 }
 
 module.exports.increaseView = async (id) => {
+    try {
+        const booksCollection = db().collection('Product');
+        const filter = { _id: ObjectId(id) };
+        const options = { upsert: false };
+        const updateDoc = {
+            $inc: { view: 1 }
+        };
+        const result = await booksCollection.updateOne(filter, updateDoc, options);
+    } catch(err) {
+        console.log(err) // TypeError: failed to fetch
+    }
+    /*
     const booksCollection = db().collection('Product');
     const filter = { _id: ObjectId(id) };
     const options = { upsert: false };
@@ -23,6 +40,8 @@ module.exports.increaseView = async (id) => {
         $inc: { view: 1 }
     };
     const result = await booksCollection.updateOne(filter, updateDoc, options);
+    */
+
 }
 
 module.exports.Pagination = async (itemPerPage, currentPage,order) => {

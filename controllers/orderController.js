@@ -54,7 +54,7 @@ module.exports.orderList = async (req,res,next) =>{
 
     let [orderProcessing, orderDelivering, orderDelivered] = await Promise.all(
         [orderModel.listOrder(req.user._id,'Processing'),
-                orderModel.listOrder(req.user._id,'Delivering'),
+                orderModel.listOrder(req.user._id,'Deliver'),
                  orderModel.listOrder(req.user._id,'Delivered'),]);
     res.render('userOrder',{title: 'Lịch sử mua hàng',orderProcessing,orderDelivering,orderDelivered});
 

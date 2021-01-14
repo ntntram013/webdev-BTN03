@@ -5,15 +5,21 @@ const bookModel = require('../models/bookModel');
 
 
 module.exports.detail = async (req,res,next) => {
-    await bookModel.increaseView(req.params.id);
+    let book, comment, publisherName, catalogName, coverName;
 
-    let [book, comment] =  await Promise.all([
-        bookModel.detail(req.params.id), bookModel.getComment(req.params.id)]);
+        await bookModel.increaseView(req.params.id);
 
-    const [publisherName, catalogName, coverName] = await Promise.all(
-        [bookModel.getKeyNameOfId(book.publisherID.toString(),'publisherName','Publisher'),
-            bookModel.getKeyNameOfId(book.categoryID.toString(),'catalogName','Catalog'),
-            bookModel.getKeyNameOfId(book.coverForm.toString(),'coverName','Cover'),]);
+        [book, comment] =  await Promise.all([
+            bookModel.detail(req.params.id), bookModel.getComment(req.params.id)]);
+
+        [publisherName, catalogName, coverName] = await Promise.all(
+            [bookModel.getKeyNameOfId(book.publisherID.toString(),'publisherName','Publisher'),
+                bookModel.getKeyNameOfId(book.categoryID.toString(),'catalogName','Catalog'),
+                bookModel.getKeyNameOfId(book.coverForm.toString(),'coverName','Cover'),]);
+
+
+
+
 
     res.render('store/book',{
         title:'Chi tiết',
