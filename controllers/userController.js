@@ -78,7 +78,7 @@ module.exports.postRegister = async (req, res) => {
             // add user to database
             let newCart;
             if (!req.session.cart) {
-                let cartNew = new cartModel();
+                let cartNew = new cartModel(req.session.cart? req.session.cart: {});
                 cartNew.generateArray();
                 newCart = await cartNew.createCartDB();
             } else {
