@@ -7,10 +7,8 @@ const bookModel = require('../models/bookModel');
 module.exports.detail = async (req,res,next) => {
     await bookModel.increaseView(req.params.id);
 
-    const [book,comment] = await Promise.all([
-        bookModel.detail(req.params.id),
-        bookModel.getComment(req.params.id)
-    ]);
+    let [book, comment] =  await Promise.all([
+        bookModel.detail(req.params.id), bookModel.getComment(req.params.id)]);
 
     const [publisherName, catalogName, coverName] = await Promise.all(
         [bookModel.getKeyNameOfId(book.publisherID.toString(),'publisherName','Publisher'),
