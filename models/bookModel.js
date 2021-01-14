@@ -161,6 +161,7 @@ module.exports.listDocuments = async (collectionName) => {
     const catalogList = await catalogCollection.find({isDeleted: false}).toArray();
     return catalogList;
 }
+
 // lấy tên của 1 nxb, thể loại cụ thể từ collectionName dựa theo Id & keyName (để hiện title khi search)
 module.exports.getKeyNameOfId = async (Id, keyName, collectionName) => {
     const catalogCollection = db().collection(collectionName);

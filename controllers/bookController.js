@@ -6,10 +6,17 @@ const bookModel = require('../models/bookModel');
 
 module.exports.detail = async (req,res,next) => {
     await bookModel.increaseView(req.params.id);
-    let [book, comment] =  await Promise.all([
-        bookModel.detail(req.params.id), bookModel.getComment(req.params.id)]);
 
-    res.render('store/book',{title:'Chi tiết',book, comment});
+    let book = await  bookModel.detail(req.params.id);
+    let comment = await bookModel.getComment(req.params.id);
+
+    const publisherName = await bookModel.getKeyNameOfId(book.publisherID.toString(),'publisherName','Publisher');
+    const catalogName = await bookModel.getKeyNameOfId(book.categoryID.toString(),'catalogName','Catalog');
+    const coverName = await bookModel.getKeyNameOfId(book.coverForm.toString(),'coverName','Cover');
+
+    res.render('store/book',{
+        title:'Chi tiết',
+        book, comment,publisherName,catalogName,coverName});
 }
 
 module.exports.pagination = async(req,res) => {
